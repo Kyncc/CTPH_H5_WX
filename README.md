@@ -18,16 +18,13 @@
 
 -	[VueRouter和Vuex流同步-Vuex-router-sync](https://github.com/vuejs/vuex-router-sync)
 
-## 功能组件
-
--	[时间格式化-Moment.js](http://momentjs.cn/)
-
 ## UI组件
+
+-	[手机UI库-Vux](https://vux.li/#/zh-CN/README?id=-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8webpack)
 
 -	[图片懒加载-Vue-lazyload](https://github.com/hilongjw/vue-lazyload)
 
 -	[灯箱-PhotoSwipe](https://github.com/dimsemenov/PhotoSwipe)
-
 
 # 步骤
 
