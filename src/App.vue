@@ -1,10 +1,19 @@
 <template>
-  <div>
-    <router-view></router-view>
+  <div style="height:100%;">
+    <view-box ref="viewBox">
+      <router-view></router-view>
+    </view-box>
   </div>
 </template>
 
 <script>
+import {ViewBox} from 'vux'
+
+export default {
+  components: {
+    ViewBox
+  }
+}
 </script>
 
 <style lang="less">
