@@ -1,7 +1,7 @@
 {
-  "name": "test",
+  "name": "ctpeifei",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Ce Tu Pei Fei Ahqianmo",
   "author": "Hope <hopefullstack@gmail.com>",
   "private": true,
   "scripts": {
@@ -12,6 +12,7 @@
     "axios": "^0.15.3",
     "fastclick": "^1.0.6",
     "vue": "^2.1.10",
+    "vue-amap": "^0.1.6",
     "vue-infinite-loading": "^2.0.0",
     "vue-router": "^2.2.0",
     "vuex": "^2.1.2",

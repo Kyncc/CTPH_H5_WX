@@ -5,7 +5,7 @@
     </div>
     <div style="padding-top:46px;">
         <div style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;">
-          <tab style="width:500px;" bar-active-color="#668599" :line-width="1">
+          <tab style="width:500px;"  :line-width="1">
             <tab-item selected>村东一号田块</tab-item>
             <tab-item>村东一号田块</tab-item>
             <tab-item>村东一号田块</tab-item>
