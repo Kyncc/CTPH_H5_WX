@@ -4,6 +4,8 @@
 
 ## 环境编译
 
+-	[Webpack2.2](https://www.npmjs.com/package/webpack)
+
 -	[VueLoader](http://vue-loader.vuejs.org/en/index.html)
 
 ## 数据视图控制

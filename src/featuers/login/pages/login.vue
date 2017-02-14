@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="vux-demo">
-      <img class="logo" src="../../../assets/vux_logo.png">
+      <img class="logo" src="../../../assets/logo.png">
     </div>
      <group class="weui_cells_form">
       <x-input name="mobile" placeholder="手机号" keyboard="number" v-model="mobile" is-type="china-mobile" v-ref:mobile></x-input>
@@ -17,8 +17,7 @@ import { Group, Cell ,XInput,XButton } from 'vux'
 
 export default {
   components: {
-    Group,XInput ,XButton,
-    Cell
+    Group,XInput ,XButton,Cell
   },
   data () {
     return {

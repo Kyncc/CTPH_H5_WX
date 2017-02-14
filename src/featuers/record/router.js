@@ -3,7 +3,6 @@ const R_RECORD = r => require.ensure([], () => r(require('./pages/index')), '/re
 const R_RECORD_HISTORY = r => require.ensure([], () => r(require('./pages/history')), '/record/history')
 const R_RECORD_DETAIL = r => require.ensure([], () => r(require('./pages/detail')), '/record/detail')
 
-
 export default  {
   path: '/record', 
   component:R_RECORD_LAYOUT,
