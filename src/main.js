@@ -5,10 +5,10 @@ import 'babel-polyfill'
 import VueRouter from 'vue-router'
 import App from './App'
 import router from './router'
-import { WechatPlugin } from 'vux'
+import {ToastPlugin } from 'vux'
 
 Vue.use(VueRouter)
-Vue.use(WechatPlugin)
+Vue.use(ToastPlugin)
 
 FastClick.attach(document.body)
 
