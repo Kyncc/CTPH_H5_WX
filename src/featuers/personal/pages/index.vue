@@ -8,9 +8,10 @@
       </x-header>
     </div>
     <div style="padding-top:46px;">
+      <cell title="配肥信息"></cell>
       <group-title>你可以根据土壤得养分情况个性化选择配肥比例</group-title>
       <flexbox style="padding:0 10px">
-        <flexbox-item >
+        <flexbox-item>
           <group-title style="text-align:center" class="vux-1px-b">氮(N)<sub></sub></group-title>
           <picker :data='num' v-model='danNum' @on-change='change'></picker>
         </flexbox-item>
@@ -28,7 +29,7 @@
 </template>
 
 <script>
-import {XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group} from 'vux'
+import {XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group,Cell} from 'vux'
 
 let num = []
 for (var i = 0; i <= 60; i++) {
@@ -40,7 +41,7 @@ for (var i = 0; i <= 60; i++) {
 
 export default {
   components: {
-    XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group
+    XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group,Cell
   },
   methods: {
     change (value) {
