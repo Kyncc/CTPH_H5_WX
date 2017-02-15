@@ -4,6 +4,7 @@ import login from './featuers/login/router'
 import fertilizer from './featuers/fertilizer/router'
 import record from './featuers/record/router'
 import personal  from './featuers/personal/router' 
+import order  from './featuers/order/router' 
 // import home from './home/router'
 
 let router = new Router({
@@ -12,7 +13,8 @@ let router = new Router({
     login,
     fertilizer,
     record,
-    personal
+    personal,
+    order
   ]
 });
 

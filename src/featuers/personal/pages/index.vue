@@ -9,17 +9,17 @@
     </div>
     <div style="padding-top:46px;">
       <group-title>你可以根据土壤得养分情况个性化选择配肥比例</group-title>
-      <flexbox>
+      <flexbox style="padding:0 10px">
         <flexbox-item >
-          <group-title style="text-align:center" class="vux-1px-b" >氮(尿素)</group-title>
+          <group-title style="text-align:center" class="vux-1px-b">氮(N)<sub></sub></group-title>
           <picker :data='num' v-model='danNum' @on-change='change'></picker>
         </flexbox-item>
         <flexbox-item>
-          <group-title style="text-align:center">磷(磷酸二铵)</group-title>
+          <group-title style="text-align:center">磷(P<sub>2</sub>O<sub>5</sub>)</group-title>
           <picker :data='num' v-model='linNum' @on-change='change'></picker>
         </flexbox-item>
         <flexbox-item>
-          <group-title style="text-align:center">钾(氯化钾)</group-title>
+          <group-title style="text-align:center">钾(K<sub>2</sub>O)</group-title>
           <picker :data='num' v-model='jiaNum' @on-change='change'></picker>
         </flexbox-item>
       </flexbox>
@@ -31,7 +31,7 @@
 import {XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group} from 'vux'
 
 let num = []
-for (var i = 1; i <= 30; i++) {
+for (var i = 0; i <= 60; i++) {
   num.push({
     name: i ,
     value: i + ''
@@ -50,9 +50,9 @@ export default {
   data () {
     return {
       num: [num],
-      jiaNum:['15','15'],
-      danNum:['15','15'],
-      linNum:['15','15']
+      jiaNum:['18','18'],
+      danNum:['18','18'],
+      linNum:['18','18']
     }
   }
 }

@@ -18,8 +18,13 @@ export default {
 
 <style lang="less">
 @import '~vux/src/styles/reset.less';
+@import '~vux/src/styles/1px.less';
+@import 'assets/fonts/iconfont.css';
 
-body {
+html, body {
+  height: 100%;
+  width: 100%;
   background-color: #fbf9fe;
+  overflow-x: hidden;
 }
 </style>

@@ -41,6 +41,9 @@
 ```
 ├── build       # webpack编译配置
 ├── config      # webpack配置
+    ├── http              # 接口配置
+    ├── wx.config         # 微信配置
+    ├── theme.less        # VUX主题颜色配置
 ├── dist        # 打包后文件
 ├── app.vue     # 入口页面
 ├── main.js     # 入口JS

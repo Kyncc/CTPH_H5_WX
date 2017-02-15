@@ -1,10 +1,8 @@
 <template>
   <div class="recordDetail">
-    <div>
-      <x-header slot="header" :left-options="{showBack: true,backText:'返回'}" style="width:100%;position:absolute;left:0;top:0;z-index:100;"  title="基肥测土申请"></x-header>
-    </div>
-    <div style="padding-top:46px;">
-        <div style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;">
+    <div slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;">
+      <x-header  :left-options="{showBack: true,backText:'返回'}"  title="基肥测土申请"></x-header>
+      <div style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;">
           <tab style="width:500px;"  :line-width="1">
             <tab-item selected>村东一号田块</tab-item>
             <tab-item>村东一号田块</tab-item>
@@ -13,6 +11,8 @@
             <tab-item>村东一号田块</tab-item>
           </tab>
         </div>
+    </div>
+    <div style="padding-top:86px;">
         <group>
           <cell title="肥料" value="水稻"></cell>
           <cell title="建议施肥量" value="水稻"></cell>

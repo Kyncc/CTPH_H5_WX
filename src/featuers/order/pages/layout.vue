@@ -3,8 +3,5 @@
 </template>
 
 <script>
-import './index.less'
-
-
-//一个检测
+// import './index.less'
 </script>
