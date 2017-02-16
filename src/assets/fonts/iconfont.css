@@ -28,6 +28,8 @@
 
 .icon-order:before { content: "\e611"; }
 
+.icon-success1:before { content: "\e629"; }
+
 .icon-adress:before { content: "\e67b"; }
 
 .icon-edit:before { content: "\e66b"; }
@@ -41,4 +43,6 @@
 .icon-cart:before { content: "\e606"; }
 
 .icon-success:before { content: "\e726"; }
+
+
 
