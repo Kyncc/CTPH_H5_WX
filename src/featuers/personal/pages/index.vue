@@ -33,17 +33,17 @@
           <flexbox-item :span="3" class="type">
             50公斤/袋
           </flexbox-item>
-          <flexbox-item :span="6">
-            <x-number :min="1" :max="99999" :value="1" type="inline" fillable></x-number>
+          <flexbox-item :span="6" >
+            <x-number :min="1" :max="99999" :value="1" type="inline" button-style="round" fillable></x-number>
           </flexbox-item>
         </flexbox> 
       </group>
       <group title="配肥站">
-        <selector :options="zhanList"  v-model="zhan"></selector>
+        <selector :options="zhanList" v-model="zhan"></selector>
       </group>
     </div>
      <tabbar class="footer">
-       <flexbox gutter="0">
+       <flexbox :gutter="0">
           <flexbox-item :span="8" >
             <x-button type="primary" class="price">
             <i class="iconfont icon-cart"></i>
@@ -51,7 +51,7 @@
             </x-button>
           </flexbox-item>
            <flexbox-item :span="4" >
-             <x-button type="primary" class="buy">立即购买</x-button>
+             <x-button type="primary" class="buy" @click="_buy">立即购买</x-button>
           </flexbox-item>
        <flexbox>
     </tabbar>
@@ -60,7 +60,7 @@
 
 <script>
 import {XButton,XHeader,Flexbox,FlexboxItem,Tabbar, TabbarItem,Picker,GroupTitle,Group,Cell,Selector,XNumber} from 'vux'
-import './index.less'
+
 let num = []
 for (var i = 0; i <= 60; i++) {
   num.push({
@@ -76,6 +76,9 @@ export default {
   methods: {
     change (value) {
       console.log('new Value', value)
+    },
+     _buy(){
+      this.$router.replace('order');
     }
   },
   data () {
