@@ -62,8 +62,7 @@ import { Group, Cell ,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxI
 
 export default {
   components: {
-    Group,XInput ,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,
-    Cell
+    Group,XInput ,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Cell
   },
   data () {
     return {

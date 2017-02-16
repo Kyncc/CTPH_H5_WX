@@ -16,8 +16,7 @@ import { Group, Cell ,XInput,XButton } from 'vux'
 
 export default {
   components: {
-    Group,XInput ,XButton,
-    Cell
+    Group,XInput,XButton,Cell
   },
   data () {
     return {

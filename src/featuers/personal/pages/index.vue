@@ -8,27 +8,45 @@
       </x-header>
     </div>
     <div style="padding-top:46px;">
-      <group-title>你可以根据土壤得养分情况个性化选择配肥比例</group-title>
-      <flexbox style="padding:0 10px">
-        <flexbox-item >
-          <group-title style="text-align:center" class="vux-1px-b">氮(N)<sub></sub></group-title>
-          <picker :data='num' v-model='danNum' @on-change='change'></picker>
-        </flexbox-item>
-        <flexbox-item>
-          <group-title style="text-align:center">磷(P<sub>2</sub>O<sub>5</sub>)</group-title>
-          <picker :data='num' v-model='linNum' @on-change='change'></picker>
-        </flexbox-item>
-        <flexbox-item>
-          <group-title style="text-align:center">钾(K<sub>2</sub>O)</group-title>
-          <picker :data='num' v-model='jiaNum' @on-change='change'></picker>
-        </flexbox-item>
-      </flexbox>
+      <group title="配肥信息">
+        <group-title style="color:#000">你可以根据土壤得养分情况个性化选择配肥比例</group-title>
+        <flexbox style="padding:0 10px;box-sizing:border-box">
+          <flexbox-item>
+            <group-title style="text-align:center" class="vux-1px-b">氮(N)<sub></sub></group-title>
+            <picker :data='num' v-model='danNum' @on-change='change'></picker>
+          </flexbox-item>
+          <flexbox-item>
+            <group-title style="text-align:center">磷(P<sub>2</sub>O<sub>5</sub>)</group-title>
+            <picker :data='num' v-model='linNum' @on-change='change'></picker>
+          </flexbox-item>
+          <flexbox-item>
+            <group-title style="text-align:center">钾(K<sub>2</sub>O)</group-title>
+            <picker :data='num' v-model='jiaNum' @on-change='change'></picker>
+          </flexbox-item>
+        </flexbox>
+      </group>
+      <group>
+        <flexbox>
+          <flexbox-item :span="3">
+            ￥80
+          </flexbox-item>
+          <flexbox-item :span="3">
+            50公斤/袋
+          </flexbox-item>
+          <flexbox-item :span="6">
+            50公斤/袋
+          </flexbox-item>
+        </flexbox> 
+      </group>
+      <group title="配肥站">
+        <selector :options="zhanList"  v-model="zhan"></selector>
+      </group>
     </div>
   </div>
 </template>
 
 <script>
-import {XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group} from 'vux'
+import {XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group,Cell,Selector} from 'vux'
 
 let num = []
 for (var i = 0; i <= 60; i++) {
@@ -40,7 +58,7 @@ for (var i = 0; i <= 60; i++) {
 
 export default {
   components: {
-    XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group
+    XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group,Cell,Selector
   },
   methods: {
     change (value) {
@@ -52,7 +70,9 @@ export default {
       num: [num],
       jiaNum:['18','18'],
       danNum:['18','18'],
-      linNum:['18','18']
+      linNum:['18','18'],
+      zhanList:['配肥站1','配肥站2','配肥站3'],
+      zhan:'配肥站3'
     }
   }
 }

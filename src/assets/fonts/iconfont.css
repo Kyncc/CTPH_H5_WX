@@ -11,6 +11,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-iconfontdelete:before { content: "\e617"; }
+
 .icon-zhuanzhang:before { content: "\e603"; }
 
 .icon-chenggong:before { content: "\e625"; }
@@ -23,7 +25,13 @@
 
 .icon-wodecetushenqing:before { content: "\e66f"; }
 
+.icon-edit:before { content: "\e66b"; }
+
 .icon-daishouhuo1:before { content: "\e815"; }
 
 .icon-cetushifei:before { content: "\e662"; }
+
+.icon-cart:before { content: "\e606"; }
+
+.icon-success:before { content: "\e726"; }
 
