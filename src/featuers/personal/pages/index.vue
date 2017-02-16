@@ -1,5 +1,5 @@
 <template>
-  <div class="recordHistory">
+  <div class="personal">
     <div>
       <x-header slot="header" :left-options="{showBack: true,backText:'返回'}" style="width:100%;position:absolute;left:0;top:0;z-index:100;" title="个性化配肥">
         <p slot="right">
@@ -26,15 +26,15 @@
         </flexbox>
       </group>
       <group>
-        <flexbox>
-          <flexbox-item :span="3">
+        <flexbox >
+          <flexbox-item :span="3" class="price">
             ￥80
           </flexbox-item>
-          <flexbox-item :span="3">
+          <flexbox-item :span="3" class="type">
             50公斤/袋
           </flexbox-item>
           <flexbox-item :span="6">
-            50公斤/袋
+            <x-number :min="1" :max="99999" :value="1" type="inline" fillable></x-number>
           </flexbox-item>
         </flexbox> 
       </group>
@@ -42,12 +42,25 @@
         <selector :options="zhanList"  v-model="zhan"></selector>
       </group>
     </div>
+     <tabbar class="footer">
+       <flexbox gutter="0">
+          <flexbox-item :span="8" >
+            <x-button type="primary" class="price">
+            <i class="iconfont icon-cart"></i>
+             共￥1234.56 
+            </x-button>
+          </flexbox-item>
+           <flexbox-item :span="4" >
+             <x-button type="primary" class="buy">立即购买</x-button>
+          </flexbox-item>
+       <flexbox>
+    </tabbar>
   </div>
 </template>
 
 <script>
-import {XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group,Cell,Selector} from 'vux'
-
+import {XButton,XHeader,Flexbox,FlexboxItem,Tabbar, TabbarItem,Picker,GroupTitle,Group,Cell,Selector,XNumber} from 'vux'
+import './index.less'
 let num = []
 for (var i = 0; i <= 60; i++) {
   num.push({
@@ -58,7 +71,7 @@ for (var i = 0; i <= 60; i++) {
 
 export default {
   components: {
-    XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group,Cell,Selector
+    XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group,Cell,Selector,XNumber,Tabbar, TabbarItem,
   },
   methods: {
     change (value) {
@@ -77,3 +90,4 @@ export default {
   }
 }
 </script>
+
