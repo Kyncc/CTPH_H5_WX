@@ -1,7 +1,8 @@
 <template>
-  <router-view></router-view>
+    <router-view></router-view>
 </template>
 
 <script>
-  //一个检测
+import './index.less'
 </script>
+

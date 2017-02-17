@@ -3,5 +3,5 @@
 </template>
 
 <script>
-// import './index.less'
+import './index.less'
 </script>

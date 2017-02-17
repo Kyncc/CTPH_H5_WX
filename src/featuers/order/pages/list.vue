@@ -19,11 +19,13 @@
        </div>
         <div class="weui_cell vux-tap-active"> 
           <div class="weui_cell_bd weui_cell_primary">
-            <flexbox>
-              <flexbox-item :span="10"><p>配方肥(18-18-18)等商品</p></flexbox-item>
-              <flexbox-item :span="2"><p style="text-align:right;padding:0 .5rem">￥123</p></flexbox-item>
-            </flexbox>
-            <span class="vux-label-desc">2016/11/21 10:22:37</span>
+            <router-link to="../detail/">
+              <flexbox>
+                <flexbox-item :span="10"><p>配方肥(18-18-18)等商品</p></flexbox-item>
+                <flexbox-item :span="2"><p style="text-align:right;padding:0 .5rem">￥123</p></flexbox-item>
+              </flexbox>
+              <span class="vux-label-desc">2016/11/21 10:22:37</span>
+            </router-link>
           </div>
         </div>
         <div class="weui-form-preview__ft">
