@@ -29,7 +29,8 @@ import Axios from 'axios';
 import {WechatPlugin} from 'vux'
 export default function (userConfig) {
   let wx = WechatPlugin.$wechat;
-  let url = location.href.split('#')[0];
+  // let url = location.href.split('#')[0];
+  let url="http://peifei.qmant.com";
   let defaultConfig = {
     title: '使用爱农田配肥，庄稼长势好多了！',
     desc: '同样种的水稻，同样是种田的老把事，隔壁老王的长势为啥就好这么多？',
@@ -45,7 +46,7 @@ export default function (userConfig) {
   //需要分享的内容
   let wxConfig = Object.assign({}, defaultConfig, userConfig);
   //获取wx分享配置信息
-  Axios.post('http://www.qmant.com/noa/weixin/signature', {
+  Axios.post('http://192.168.5.15:8080/noa/signature', {
     url: url
   })
     .then(function (data) {

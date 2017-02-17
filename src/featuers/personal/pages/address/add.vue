@@ -10,7 +10,9 @@
     <div style="padding-top: 46px;background: #fff;overflow: hidden;">
       <x-input title="  姓名" placeholder="请输入收货人的姓名" v-model="name" is-type="china-name"></x-input>
       <x-input title="联系电话" placeholder="请输入收货人的手机号码" v-model="phone" keyboard="number" is-type="china-mobile"></x-input>
-      <x-textarea required placeholder="请填写收货地址" v-model="address"></x-textarea>
+      <group>
+        <cell title="请选择收货地址" link="/personal/amap/" :inline-desc="address"></cell>
+      </group>
     </div>
     <x-button
       type="primary"
@@ -38,7 +40,7 @@
       return {
         name: '',
         phone: '',
-        address: '',
+        address: window.localStorage.getItem('currentAddress') ? window.localStorage.getItem('currentAddress') : '',
         disable001:true,
       }
     },
@@ -46,6 +48,9 @@
       name: function (val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       }
+    },
+    mounted(){
+      window.localStorage.setItem('lnglat',[118.3601016329, 31.3314392710]);
     }
 
   }
