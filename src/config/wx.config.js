@@ -31,10 +31,10 @@ export default function (userConfig) {
   let wx = WechatPlugin.$wechat;
   let url = location.href.split('#')[0];
   let defaultConfig = {
-    title: '测图配肥',
-    desc: '安徽阡陌网络科技有限公司--测土配肥',
+    title: '使用爱农田配肥，庄稼长势好多了！',
+    desc: '同样种的水稻，同样是种田的老把事，隔壁老王的长势为啥就好这么多？',
     link: url,
-    imgUrl: 'http://www.qmant.com/assets/img/sharebie.jpg',
+    imgUrl: 'http://o9s1f7266.bkt.clouddn.com/ant_logo.png',
     success: function () {
       Vue.$vux.toast.show({
         text: '感谢您的分享！',
@@ -68,21 +68,13 @@ export default function (userConfig) {
         wx.showMenuItems({
           menuList: [
             'menuItem:share:appMessage',
-            'menuItem:share:timeline',
-            'menuItem:share:qq',
-            'menuItem:share:QZone',
-            'menuItem:openWithQQBrowser',
-            'menuItem:openWithSafari'
+            'menuItem:share:timeline'
           ]
         });
         //分享给朋友
         wx.onMenuShareAppMessage(wxConfig);
         //分享到朋友圈
         wx.onMenuShareTimeline(wxConfig);
-        //分享到QQ
-        wx.onMenuShareQQ(wxConfig);
-        //分享到QQ空间
-        wx.onMenuShareQZone(wxConfig);
       });
     })
     .catch(function (error) {
