@@ -28,7 +28,7 @@
             </div>
           </div>
         </div>
-        <div style="border-bottom: 1px solid #ccc;padding-left: 16px;">
+        <div style="border-bottom: 1px solid #ccc;padding-left: 16px;height: 40px;line-height: 40px;box-sizing: border-box;">
           <flexbox>
             <flexbox-item :span="5">
               <div class="selected">
@@ -55,7 +55,11 @@
     <confirm v-model="show" title="删除地址"
              @on-cancel="onCancel"
              @on-confirm="onConfirm">
-      <p style="text-align:center;">您确定删除当前地址吗？删除后不可恢复，请谨慎删除！</p>
+      <p style="text-align:center;">
+        您确定删除当前地址吗？
+        <br>
+        删除后不可恢复，请谨慎删除！
+      </p>
     </confirm>
   </div>
 </template>
