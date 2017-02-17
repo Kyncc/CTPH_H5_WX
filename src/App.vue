@@ -7,12 +7,14 @@
 </template>
 
 <script>
-  import {ViewBox} from 'vux'
+import {ViewBox} from 'vux'
+import store from './store'
 
   export default {
     components: {
       ViewBox
-    }
+    },
+    store
   }
 </script>
 

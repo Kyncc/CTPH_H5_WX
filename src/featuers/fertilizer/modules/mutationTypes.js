@@ -1,0 +1,8 @@
+/** 配肥站*/
+export const FERTILIZER_SHOP = 'FERTILIZER_SHOP'
+/** 申请状态*/
+export const FERTILIZER_APPLY_STATUS = 'FERTILIZER_APPLY_STATUS'
+/** 申请详情*/
+export const FERTILIZER_APPLY_INFO = 'FERTILIZER_APPLY_INFO'
+/** 申请提交完成*/
+export const FERTILIZER_APPLY_FINISH = 'FERTILIZER_APPLY_FINISH'
