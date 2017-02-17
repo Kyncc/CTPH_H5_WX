@@ -57,8 +57,6 @@
 
 <script>
 import { Group, Cell ,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem } from 'vux'
-// import { orderGoodsList } from 'components'
-
 
 export default {
   components: {
