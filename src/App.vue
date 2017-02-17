@@ -27,4 +27,7 @@ html, body {
   background-color: #fbf9fe;
   overflow-x: hidden;
 }
+.weui_tab_bd{
+  padding-bottom:0px !important;
+}
 </style>

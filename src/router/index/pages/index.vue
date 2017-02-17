@@ -5,8 +5,8 @@
     </div>
     <div class="con2">
       <img src="../../../assets/images/index/con2.png" />
-      <router-link to="info" class="link1"></router-link>
-      <router-link to="/personal" class="link2"> </router-link>
+      <router-link to="fertilizer/" class="link1"></router-link>
+      <router-link to="personal/" class="link2"> </router-link>
     </div >
     <div class="con3">
       <img src="../../../assets/images/index/ewm.png" />
@@ -33,9 +33,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.weui_tab_bd{
-  padding-bottom:0px;
-}
-</style>
