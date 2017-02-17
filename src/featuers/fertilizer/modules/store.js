@@ -26,7 +26,7 @@ const mutations = {
     state.apply.base_shop_name = data.base_shop_name
   },
   [types.FERTILIZER_APPLY_INFO](state , data){
-    state.info = data
+    state.apply.info = data
   },
   [types.FERTILIZER_APPLY_FINISH](state){
     state.isReset = true

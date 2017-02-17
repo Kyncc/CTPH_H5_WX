@@ -28,6 +28,8 @@
 
 -	[灯箱-PhotoSwipe](https://github.com/dimsemenov/PhotoSwipe)
 
+-	[loading插件-vue-infinite-loading](https://peachscript.github.io/vue-infinite-loading/#!/events)
+
 ## 工具JS
 
 -	[http请求-Axios](https://github.com/mzabriskie/axios)
