@@ -1,5 +1,5 @@
 import Router from 'vue-router'
-
+//入口
 import index from './router/index/router'
 //路由开始
 import login from './featuers/login/router'
