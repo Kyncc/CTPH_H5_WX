@@ -10,12 +10,12 @@
 import {ViewBox} from 'vux'
 import store from './store'
 
-  export default {
-    components: {
-      ViewBox
-    },
-    store
-  }
+export default {
+  components: {
+    ViewBox
+  },
+  store
+}
 </script>
 
 <style lang="less">

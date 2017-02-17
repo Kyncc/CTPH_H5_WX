@@ -23,18 +23,43 @@ export default {
   computed:{
     ...mapGetters(['FertilizerApply'])
 	},
-  data () {
-    return {
-
-
-    }
-  },
   methods: {
     ...mapActions(['getFertilizerApply']),
     _intoJiFei(type){
        this.getFertilizerApply()
-       
-      // this.$router.push(`info?type=${type}`);
+       .then(()=>{
+         /**
+         *  -1:未申请进去申请
+         *  1:进入等待
+         *  1:进入结果
+         */
+          if(type == '1'){
+            console.log(type);
+             switch(String(this.FertilizerApply.add_apply_status)){
+                case '-1': 
+                  this.$router.push(`info?type=${type}`) 
+                  break;
+                case '0': 
+                  this.$router.push(`wait?type=${type}`) 
+                  break;
+                case '1': 
+                  this.$router.push(`info?type=${type}`) 
+                  break;
+             }
+          }else{
+             switch(String(this.FertilizerApply.base_apply_status)){
+                case '-1': 
+                  this.$router.push(`info?type=${type}`) 
+                  break;
+                case '0': 
+                  this.$router.push(`wait?type=${type}`) 
+                  break;
+                case '1': 
+                  this.$router.push(`info?type=${type}`) 
+                  break;
+             }
+          }
+       });
     }
   }
 }
