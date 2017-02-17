@@ -26,7 +26,6 @@
                 安徽省芜湖市观澜路1号安徽省芜湖市观澜路1号安徽省芜湖市观澜路1号
               </span>
             </div>
-            <div class="weui_cell_ft with_arrow"></div>
           </div>
         </div>
         <div style="border-bottom: 1px solid #ccc;padding-left: 16px;">
@@ -38,13 +37,10 @@
               </div>
             </flexbox-item>
             <flexbox-item :span="3">
-
               <router-link to="address_edit" style="color: #000;">
                 <i class="iconfont icon-edit"></i>
                 编辑
               </router-link>
-
-
             </flexbox-item>
             <flexbox-item :span="3">
               <div @click="showDelete">
@@ -65,7 +61,7 @@
 </template>
 
 <script>
-  import {XButton, XHeader, Flexbox, FlexboxItem, Picker, GroupTitle, Group, Cell, Confirm} from 'vux'
+  import {XButton, XHeader, Flexbox, FlexboxItem, Picker, GroupTitle, Group, Cell, Confirm} from 'vux';
   export default {
     components: {
       XButton, XHeader, Flexbox, FlexboxItem, Picker, GroupTitle, Group, Cell, Confirm
