@@ -3,7 +3,7 @@
     <div>
       <x-header slot="header" :left-options="{showBack: true,backText:'返回'}" style="width:100%;position:absolute;left:0;top:0;z-index:100;" title="个性化配肥">
         <p slot="right">
-          <router-link to="detail">免费测土</router-link>
+          <router-link to="/fertilizer/info">免费测土</router-link>
         </p>
       </x-header>
     </div>
@@ -51,7 +51,7 @@
             </x-button>
           </flexbox-item>
            <flexbox-item :span="4" >
-             <x-button type="primary" class="buy" @click="_buy">立即购买</x-button>
+             <x-button type="primary" class="buy" @click.native="_buy">立即购买</x-button>
           </flexbox-item>
        <flexbox>
     </tabbar>
@@ -71,14 +71,14 @@ for (var i = 0; i <= 60; i++) {
 
 export default {
   components: {
-    XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group,Cell,Selector,XNumber,Tabbar, TabbarItem,
+    XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group,Cell,Selector,XNumber,Tabbar, TabbarItem
   },
   methods: {
     change (value) {
       console.log('new Value', value)
     },
      _buy(){
-      this.$router.replace('order');
+      this.$router.push('/order/personalCart/');
     }
   },
   data () {

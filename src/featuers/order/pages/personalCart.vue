@@ -1,5 +1,5 @@
 <template>
-  <div class="personalOrder">
+  <div class="orderPeronsalCart">
     <x-header 
       slot="header" 
       :left-options="{showBack: true,backText:'返回'}" 
@@ -62,7 +62,7 @@
           </x-button>
         </flexbox-item>
         <flexbox-item :span="4" >
-          <x-button type="primary" class="buy">提交订单</x-button>
+          <x-button type="primary" class="buy" @click.native="_buy">提交订单</x-button>
         </flexbox-item>
       <flexbox>
   </tabbar>
@@ -91,6 +91,9 @@ export default {
     },
     changeTime(){
 
+    },
+    _buy(){
+      this.$router.push("../finish/")
     }
   }
 }

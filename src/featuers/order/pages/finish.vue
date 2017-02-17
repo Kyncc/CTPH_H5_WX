@@ -7,7 +7,7 @@
       @on-click-back="_intoDeatil()"
       title="订单提交成功">
         <p slot="right">
-          <router-link to="list">完成</router-link>
+          <router-link to="../list/">完成</router-link>
         </p>
     </x-header>
     <div style="padding-top:46px;">
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     _intoDeatil(){
-      this.$router.push('detail');
+      this.$router.push('../detail/');
     }
   },
   data () {
