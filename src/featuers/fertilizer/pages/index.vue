@@ -29,15 +29,15 @@ export default {
        this.getFertilizerApply()
        .then(()=>{
          /**
-         *  -1:未申请进去申请
+         *  -1:未申请进入申请
          *  1:进入等待
-         *  1:进入结果
+         *  1:已测进入结果
          */
           if(type == '1'){
             console.log(type);
              switch(String(this.FertilizerApply.add_apply_status)){
                 case '-1': 
-                  this.$router.push(`info?type=${type}`) 
+                  this.$router.replace(`info?type=${type}`) 
                   break;
                 case '0': 
                   this.$router.push(`wait?type=${type}`) 
@@ -49,7 +49,7 @@ export default {
           }else{
              switch(String(this.FertilizerApply.base_apply_status)){
                 case '-1': 
-                  this.$router.push(`info?type=${type}`) 
+                  this.$router.replace(`info?type=${type}`) 
                   break;
                 case '0': 
                   this.$router.push(`wait?type=${type}`) 

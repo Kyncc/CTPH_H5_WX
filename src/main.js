@@ -12,7 +12,7 @@ import AMap from 'vue-amap';
 Vue.use(VueRouter)      //使用路由
 Vue.use(ToastPlugin)    //使用提醒
 Vue.use(LoadingPlugin)  //使用Loading
-Vue.use(AMap)          //高德地图的使用
+Vue.use(AMap)           //高德地图的使用
 AMap.initAMapApiLoader({
   key: 'f01650aa86f4858fa6d5e0b0a850cfa0',
   plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
