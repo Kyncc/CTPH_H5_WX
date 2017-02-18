@@ -58,6 +58,7 @@
           ├── modules       # 数据业务
           ├── pages         # 页面
       ├── login           # 登陆注册
+      ├── map             # 地图
       ├── order           # 订单
       ├── record          # 测土配肥记录
       ├── personal        # 个性化配肥

@@ -8,8 +8,8 @@
     </x-header>
     <div style="padding-top:46px;">
       <group title="请完善个人资料">
-        <x-input name="username" placeholder="姓名"  keyboard="text" v-model="cn_name" is-type="china-name"  ref="cn_name" required></x-input>
         <x-input name="mobile" placeholder="手机号" keyboard="number" v-model="user_phone" is-type="china-mobile" ref="user_phone" required></x-input>
+        <x-input name="username" placeholder="姓名" keyboard="text" v-model="cn_name" is-type="china-name"  ref="cn_name" required></x-input>
       </group>
       <div style="padding:1rem">
         <x-button type="primary" @click.native="_finish">确定</x-button>
