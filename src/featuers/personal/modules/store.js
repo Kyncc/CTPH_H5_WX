@@ -20,7 +20,14 @@ const state = {
     shop_name:'',
     total_deal_price:''
   },
-  waitOrderId:''
+  waitOrderId:'',
+  offline_pay:{
+    bank_account:"",
+    bank_name:"",
+    bankcard_no:"",	
+    seller_phone:"",
+    total_deal_price:""
+  }
 }
 
 const mutations = {
@@ -62,6 +69,13 @@ const mutations = {
     this.order.shop_name = ''
     this.order.total_deal_price = ''
     this.waitOrderId = ''
+  },
+  [types.PERSONAL_ORDER_FINISH](state,data){
+    this.offline_pay.bank_account = data.bank_account
+    this.offline_pay.bank_name = data.bank_name
+    this.offline_pay.bankcard_no = data.bankcard_no
+    this.offline_pay.seller_phone = data.seller_phone
+    this.offline_pay.total_deal_price = data.total_deal_price
   }
 }
 

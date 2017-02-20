@@ -53,11 +53,11 @@
           <flexbox-item :span="8" >
             <x-button type="primary" class="price">
             <i class="iconfont icon-cart"></i>
-             共￥{{total}}
+             ￥{{total}}
             </x-button>
           </flexbox-item>
            <flexbox-item :span="4" >
-             <x-button type="primary" class="buy" @click.native="_buy">立即购买</x-button>
+             <x-button type="primary" class="buy" @click.native="_buy">我要下单</x-button>
           </flexbox-item>
        <flexbox>
     </tabbar>
@@ -138,7 +138,7 @@ export default {
     },
     //增加数量更新价格
     count(){
-      this.total = this.PersonalOrder.product_price * this.count
+      this.total = parseFloat(this.PersonalOrder.product_price * this.count).toFixed(2) 
     }
   }
 }
