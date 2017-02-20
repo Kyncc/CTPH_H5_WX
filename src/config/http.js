@@ -10,7 +10,7 @@ axios.defaults.baseURL = 'http://192.168.5.14:8081/';
 //POST传参序列化
 axios.interceptors.request.use((config) => {
   if(config.method  === 'post'){
-    config.data = qs.stringify(config.data,{arrayFormat:'brackets'});
+    config.data = qs.parse(config.data,{arrayFormat:'brackets'});
   }
   return config
 },(error) =>{
