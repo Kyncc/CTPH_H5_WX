@@ -24,7 +24,7 @@ export const getFertilizerApply = ({ rootState,commit }) => {
       method:'get',
       url: 'api/soil_test/apply_status',
       params:{
-        "SESSION":'bec4eae1-4501-4093-98b6-04a69fdaefec'
+        "SESSION":'430544ba-4bd2-4c18-b943-4479500cdb91'
       }
     })
     .then((response) => {
@@ -47,7 +47,7 @@ export const getFertilizerApplyInfo = ({ rootState,commit }) => {
       method:'get',
       url: 'api/soil_test/last_apply',
       params:{
-        "SESSION":'bec4eae1-4501-4093-98b6-04a69fdaefec'
+        "SESSION":'430544ba-4bd2-4c18-b943-4479500cdb91'
       }
     })
     .then((response) => {

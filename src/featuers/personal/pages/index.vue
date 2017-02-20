@@ -17,16 +17,16 @@
       <group title="配肥信息">
         <group-title style="color:#000">你可以根据土壤得养分情况个性化选择配肥比例</group-title>
         <flexbox style="padding:0 10px;box-sizing:border-box">
-          <flexbox-item>
-            <group-title style="text-align:center" class="vux-1px-b">氮(N)<sub></sub></group-title>
+          <flexbox-item class="selectCol">
+            <group-title class="selectName">氮(N)<sub></sub><i class="icon iconfont icon-select-tb"></i></group-title>
             <picker :data='num' v-model='danNum' @on-change='change'></picker>
           </flexbox-item>
-          <flexbox-item>
-            <group-title style="text-align:center">磷(P<sub>2</sub>O<sub>5</sub>)</group-title>
+          <flexbox-item class="selectCol">
+            <group-title class="selectName">磷(P<sub>2</sub>O<sub>5</sub>)<i class="icon iconfont icon-select-tb"></i></group-title>
             <picker :data='num' v-model='linNum' @on-change='change'></picker>
           </flexbox-item>
-          <flexbox-item>
-            <group-title style="text-align:center">钾(K<sub>2</sub>O)</group-title>
+          <flexbox-item class="selectCol">
+            <group-title class="selectName">钾(K<sub>2</sub>O)<i class="icon iconfont icon-select-tb"></i></group-title>
             <picker :data='num' v-model='jiaNum' @on-change='change'></picker>
           </flexbox-item>
         </flexbox>
@@ -45,7 +45,7 @@
         </flexbox> 
       </group>
       <group title="配肥站">
-        <selector :options="zhanList" v-model="zhan"></selector>
+        <selector :options="shopList" v-model="shop_id"></selector>
       </group>
     </div>
      <tabbar class="footer">
@@ -95,8 +95,8 @@ export default {
     change (value) {
       console.log('new Value', value)
     },
-     _buy(){
-      this.$router.push('/order/personalCart/');
+    _buy(){
+      this.$router.push('cart/');
     }
   },
   computed:{
@@ -108,8 +108,18 @@ export default {
       jiaNum:['18','18'],
       danNum:['18','18'],
       linNum:['18','18'],
-      zhanList:['配肥站1','配肥站2','配肥站3'],
-      zhan:'配肥站3'
+      shopList:[],
+      shop_id:'配肥站3'
+    }
+  },
+   watch: {
+    //测土机构的数据
+    Shop(){
+      this.shopList = [];
+      this.Shop.forEach((value, index, array) => {
+        this.shopList.push({'key':value.shop_id,'value':value.shop_name})
+      });
+      this.shop_id = this.shopList[0].key;
     }
   }
 }
