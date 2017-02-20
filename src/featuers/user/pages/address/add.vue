@@ -8,6 +8,7 @@
     >
     </x-header>
     <div style="padding-top: 46px;background: #fff;overflow: hidden;">
+      <div id="container"></div>
       <x-input title="  姓名" placeholder="请输入收货人的姓名" v-model="name" is-type="china-name"></x-input>
       <x-input title="联系电话" placeholder="请输入收货人的手机号码" v-model="phone" keyboard="number" is-type="china-mobile"></x-input>
       <group>
@@ -55,7 +56,10 @@
               });
               return;
             }
-            this.$vux.toast.show({text: '新增地址成功'});
+            this.$vux.toast.show({
+            	text: '新增地址成功',
+              time:1000
+            });
 //    			清空state中的数据
             that.setUserLnglat({
               "latitude":'',
@@ -87,7 +91,7 @@
         name: '',
         phone: '',
         address:'',
-        disableSubmit:true,
+        disableSubmit:true
       }
     },
     watch: {
@@ -108,12 +112,10 @@
       this.address=(this.InfoLnglat) ? this.InfoLnglat.address_detail : '';
       this.name=(this.InfoLnglat) ? this.InfoLnglat.name : '';
       this.phone=(this.InfoLnglat) ? this.InfoLnglat.phone : '';
-      if(this.InfoLnglat.latitude == ''){
-        that.setUserLnglat({
-          "latitude":'31.3314392710',
-          "longitude":'118.3601016329'
-        });
-      }
+      this.setUserLnglat({
+        "latitude":'31.3314392710',
+        "longitude":'118.3601016329'
+      })
     }
 
   }

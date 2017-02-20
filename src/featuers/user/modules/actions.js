@@ -24,6 +24,10 @@ export const setUserName = ({commit },data) => {
 export const setUserPhone = ({commit },data) => {
   commit(types.INFO_USER_PHONE,data)
 }
+/**设置要修改的地址ID */
+export const setAddressId = ({commit },data) => {
+  commit(types.EDIT_ADDRESS_ID,data)
+}
 //添加地址
 export const addUserAddressData = ({ rootState,commit },data) => {
   Vue.$vux.loading.show({text: '请稍候'})
@@ -35,7 +39,7 @@ export const addUserAddressData = ({ rootState,commit },data) => {
         ...data
       },
       params:{
-        "SESSION":'d5007d19-664c-4e16-a174-8be2d0fe751e',
+        "SESSION":'9368d6cb-ec92-48e6-9faa-67a5bda84ff0',
       }
     })
       .then((response) => {
@@ -52,7 +56,7 @@ export const addUserAddressData = ({ rootState,commit },data) => {
 }
 //获取地址列表
 export const getUserAddressListData = ({commit}) => {
-  Vue.$vux.loading.show({text: '请稍候'})
+  // Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject)=> {
     axios({
       method:'get',
@@ -62,12 +66,87 @@ export const getUserAddressListData = ({commit}) => {
       }
     })
       .then((response) => {
-        Vue.$vux.loading.hide()
+        // Vue.$vux.loading.hide()
         commit(types.GET_USER_ADDRESS_LIST,response.data.data)
         resolve(response)
       })
       .catch((error)=>{
         Vue.$vux.toast.show({text: '提交失败,请重试'})
+        // Vue.$vux.loading.hide()
+        reject(error)
+      })
+  })
+}
+//设为默认地址
+export const setCurrentAddress = ({commit},data) => {
+  Vue.$vux.loading.show({text: '设为默认地址中'})
+  return new Promise((resolve, reject)=> {
+    axios({
+      method:'put',
+      url: '/api/address/defaultaddress',
+      data:{
+        ...data
+      },
+      params:{
+        "SESSION":'9368d6cb-ec92-48e6-9faa-67a5bda84ff0',
+      }
+    })
+      .then((response) => {
+        Vue.$vux.loading.hide()
+        resolve(response)
+      })
+      .catch((error)=>{
+        Vue.$vux.toast.show({text: '设为默认地址失败'})
+        Vue.$vux.loading.hide()
+        reject(error)
+      })
+  })
+}
+//删除地址
+export const deleteAddress = ({commit},data) => {
+  Vue.$vux.loading.show({text: '删除地址中'})
+  return new Promise((resolve, reject)=> {
+    axios({
+      method:'delete',
+      url: '/api/address',
+      data:{
+        ...data
+      },
+      params:{
+        "SESSION":'9368d6cb-ec92-48e6-9faa-67a5bda84ff0',
+      }
+    })
+      .then((response) => {
+        Vue.$vux.loading.hide()
+        resolve(response)
+      })
+      .catch((error)=>{
+        Vue.$vux.toast.show({text: '删除地址失败'})
+        Vue.$vux.loading.hide()
+        reject(error)
+      })
+  })
+}
+//修改地址
+export const editAddress = ({ rootState,commit },data) => {
+  Vue.$vux.loading.show({text: '请稍候'})
+  return new Promise((resolve, reject)=> {
+    axios({
+      method:'put',
+      url: '/api/address',
+      data:{
+        ...data
+      },
+      params:{
+        "SESSION":'9368d6cb-ec92-48e6-9faa-67a5bda84ff0',
+      }
+    })
+      .then((response) => {
+        Vue.$vux.loading.hide()
+        resolve(response)
+      })
+      .catch((error)=>{
+        Vue.$vux.toast.show({text: '修改失败,请重试'})
         Vue.$vux.loading.hide()
         reject(error)
       })

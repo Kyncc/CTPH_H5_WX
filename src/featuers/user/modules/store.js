@@ -11,6 +11,7 @@ const state = {
   address_detail:'',
   phone:'',
   name:'',
+  address_list:[],
 };
 
 const mutations = {
@@ -32,6 +33,9 @@ const mutations = {
   },
   [types.GET_USER_ADDRESS_LIST](state , data){
     state.address_list = data;
+  },
+  [types.EDIT_ADDRESS_ID](state , data){
+    state.address_id = data;
   },
 }
 

@@ -13,3 +13,5 @@ export const INFO_USER_PHONE = 'INFO_USER_PHONE'
 export const ADD_USER_ADDRESS = 'ADD_USER_ADDRESS'
 //获取地址列表
 export const GET_USER_ADDRESS_LIST = 'GET_USER_ADDRESS_LIST'
+//修改的地址ID
+export const EDIT_ADDRESS_ID = 'EDIT_ADDRESS_ID'
