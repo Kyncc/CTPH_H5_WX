@@ -6,7 +6,7 @@
       style="width:100%;position:absolute;left:0;top:0;z-index:100;"
       title="地址选择"
     >
-      <p slot="right" @click="$router.go(-1)">
+      <p slot="right" @click="_finish">
         完成
       </p>
     </x-header>
@@ -64,10 +64,18 @@
       }
     },
     methods: {
-      ...mapActions(['setMapLocation','setMapAdress']),
+      ...mapActions(['setUserLocation','setUserAdress']),
       addMarker:(e) => {
         this.markers=[];
         this.markers.push([e.lnglat.lng, e.lnglat.lat]);
+      },
+      //完成保存数据进入store
+      _finish(){
+        this.setUserLocation({
+          "latitude":this.location[0],
+          "longitude":this.location[1]
+        })
+        this.setUserAdress(this.address_detail)
       }
     },
     created(){
@@ -83,7 +91,6 @@
           this.location = [118.3601016329,31.3314392710]
         }
       })
-
     }
   }
 </script>
