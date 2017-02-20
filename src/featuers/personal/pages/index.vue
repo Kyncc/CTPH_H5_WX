@@ -1,9 +1,15 @@
 <template>
   <div class="personal">
     <div>
-      <x-header slot="header" :left-options="{showBack: true,backText:'返回'}" style="width:100%;position:absolute;left:0;top:0;z-index:100;" title="个性化配肥">
+      <x-header 
+        slot="header" 
+        :left-options="{showBack: true,backText:'首页',preventGoBack:true}" 
+        style="width:100%;position:absolute;left:0;top:0;z-index:100;" 
+        title="个性化配肥"
+        @on-click-back="$router.push('/')"
+      >
         <p slot="right">
-          <router-link to="/fertilizer/info">免费测土</router-link>
+          <router-link to="/fertilizer/">免费测土</router-link>
         </p>
       </x-header>
     </div>
@@ -60,6 +66,8 @@
 
 <script>
 import {XButton,XHeader,Flexbox,FlexboxItem,Tabbar, TabbarItem,Picker,GroupTitle,Group,Cell,Selector,XNumber} from 'vux'
+import { mapActions,mapGetters } from 'vuex'
+
 
 let num = []
 for (var i = 0; i <= 60; i++) {
@@ -73,7 +81,17 @@ export default {
   components: {
     XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group,Cell,Selector,XNumber,Tabbar, TabbarItem
   },
+  beforeRouteEnter(to, from, next){
+    next(vm => {
+      vm.getShop()
+      .then(()=>{
+          
+
+      })
+    })
+  },
   methods: {
+    ...mapActions(['getShop']),
     change (value) {
       console.log('new Value', value)
     },
@@ -81,6 +99,9 @@ export default {
       this.$router.push('/order/personalCart/');
     }
   },
+  computed:{
+    ...mapGetters(['Shop'])
+	},
   data () {
     return {
       num: [num],

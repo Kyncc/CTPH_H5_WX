@@ -34,7 +34,6 @@ export default {
          *  1:已测进入结果
          */
           if(type == '1'){
-            console.log(type);
              switch(String(this.FertilizerApply.add_apply_status)){
                 case '-1': 
                   this.$router.replace(`info?type=${type}`) 

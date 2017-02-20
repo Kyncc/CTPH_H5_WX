@@ -7,7 +7,6 @@ import fertilizer from './featuers/fertilizer/router'
 import record from './featuers/record/router'
 import personal  from './featuers/personal/router' 
 import order  from './featuers/order/router' 
-// import map  from './featuers/map/router' 
 
 let router = new Router({
   mode: 'hash',
@@ -17,8 +16,7 @@ let router = new Router({
     fertilizer,
     record,
     personal,
-    order,
-    // map
+    order
   ]
 });
 
