@@ -1,9 +1,10 @@
 const R_PERSONAL = r => require.ensure([], () => r(require('./pages/index')), '/personal/')
 const R_PERSONAL_LAYOUT = r => require.ensure([], () => r(require('./pages/layout')), '/personal')
-const R_ADDRESS = r => require.ensure([], () => r(require('./pages/address/list')), '/personal/')
-const R_ADDRESS_ADD = r => require.ensure([], () => r(require('./pages/address/add')), '/personal/')
-const R_ADDRESS_EDIT = r => require.ensure([], () => r(require('./pages/address/edit')), '/personal/')
-const R_ADDRESS_AMAP = r => require.ensure([], () => r(require('./pages/address/amap')), '/personal/')
+const R_PERSONAL_CART = r => require.ensure([], () => r(require('./pages/cart')), '/personal/cart/')
+const R_PERSONAL_OFFILINE = r => require.ensure([], () => r(require('./pages/offiline')), '/personal/offiline/')
+
+import modules from './modules/store'
+import store from 'src/store'
 
 export default  {
   path: '/personal',
@@ -15,20 +16,16 @@ export default  {
       component: R_PERSONAL
     },
     {
-      path: 'address_list',
-      component: R_ADDRESS
+      path: 'cart/',
+      component: R_PERSONAL_CART
     },
     {
-      path: 'address_add',
-      component: R_ADDRESS_ADD
-    },
-    {
-      path: 'address_edit',
-      component: R_ADDRESS_EDIT
-    },
-    {
-      path: 'amap',
-      component: R_ADDRESS_AMAP
+      path: 'offiline/',
+      component: R_PERSONAL_OFFILINE
     }
   ]
 }
+
+store.registerModule('personal', {
+  ...modules
+})

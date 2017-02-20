@@ -93,7 +93,7 @@ export default {
 
     },
     _buy(){
-      this.$router.push("../finish/")
+      this.$router.push("../offiline/")
     }
   }
 }
