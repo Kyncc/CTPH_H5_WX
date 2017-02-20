@@ -9,7 +9,7 @@ const state = {
 const actions = {
   /**获得配肥站列表 */
   getShop:({ rootState,commit }) => {
-    return new Promise((resolve, reject)=> { 
+    return new Promise((resolve, reject)=> {
       axios({
         method:'get',
         url: 'noa/shop'
@@ -20,7 +20,7 @@ const actions = {
       })
     })
   }
-} 
+}
 
 const getters = {
   Path:(state,getters,rootState) => {
@@ -36,7 +36,7 @@ const getters = {
     return state.shop
   },
   System:(state,getters,rootState) => {
-    return rootState.tools.system
+    return rootState.common.system
   }
 }
 
