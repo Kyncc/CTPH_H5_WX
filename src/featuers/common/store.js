@@ -27,6 +27,7 @@ const actions = {
         })
       })
     }
+  }
 }
 
 const getters = {
