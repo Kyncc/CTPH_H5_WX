@@ -30,6 +30,9 @@ const mutations = {
   [types.ADD_USER_ADDRESS](state , data){
     state.add_address = data;
   },
+  [types.GET_USER_ADDRESS_LIST](state , data){
+    state.address_list = data;
+  },
 }
 
 export default {

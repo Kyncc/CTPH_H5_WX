@@ -24,7 +24,7 @@ export const setUserName = ({commit },data) => {
 export const setUserPhone = ({commit },data) => {
   commit(types.INFO_USER_PHONE,data)
 }
-
+//添加地址
 export const addUserAddressData = ({ rootState,commit },data) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject)=> {
@@ -41,6 +41,29 @@ export const addUserAddressData = ({ rootState,commit },data) => {
       .then((response) => {
         Vue.$vux.loading.hide()
         commit(types.ADD_USER_ADDRESS)
+        resolve(response)
+      })
+      .catch((error)=>{
+        Vue.$vux.toast.show({text: '提交失败,请重试'})
+        Vue.$vux.loading.hide()
+        reject(error)
+      })
+  })
+}
+//获取地址列表
+export const getUserAddressListData = ({commit}) => {
+  Vue.$vux.loading.show({text: '请稍候'})
+  return new Promise((resolve, reject)=> {
+    axios({
+      method:'get',
+      url: '/api/address',
+      params:{
+        "SESSION":'9368d6cb-ec92-48e6-9faa-67a5bda84ff0',
+      }
+    })
+      .then((response) => {
+        Vue.$vux.loading.hide()
+        commit(types.GET_USER_ADDRESS_LIST,response.data.data)
         resolve(response)
       })
       .catch((error)=>{
