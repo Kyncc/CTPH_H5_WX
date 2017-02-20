@@ -18,6 +18,26 @@ export const getShopPrice = ({ commit,state,rootstate},params) => {
   })
 }
 
+/**或者订制肥规格 */
+export const getPrePay = ({ commit,state,rootstate},params) => {
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'post',
+      url: 'api/h5/orders/prepay',
+      params:{
+        "order_id	":state.waitOrderId
+      },
+    })
+    .then((response) => {
+      commit(types.PERSONAL_SHOP_INFO,response.data.data)
+      resolve(response)
+    })
+  })
+}
+
+
+ 
+
 /**清空订单信息订单信息 */
 export const clearPersonal = ({commit}) => {
   commit(types.PERSONAL_CLEAR)

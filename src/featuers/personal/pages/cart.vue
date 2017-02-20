@@ -9,7 +9,7 @@
     <div style="padding-top:46px;">
       <group title="我的地址">
         <div class="weui_cell vux-tap-active">
-            <div class="weui_cell_hd" style="padding-right:.25rem">
+            <div class="weui_cell_hd" style="padding-right:.5rem">
               <i class="iconfont icon-adress" style="font-size:1.5rem;"></i>
             </div> 
             <div class="weui_cell_bd weui_cell_primary">
@@ -26,29 +26,21 @@
         </div>
       </group>
       <group  title="交货时间" class="goodsTime">
-        <!--<datetime v-model="time" 
-            placeholder="选择交货时间" 
-            :min-year=2017 :max-year=2020 format="YYYY-MM-DD"
-            @on-change="changeTime"
-            title="交货时间" 
-            year-row="{value}年" 
-            month-row="{value}月" 
-            day-row="{value}日" 
-            :start-date="startDate"
-            confirm-text="完成" cancel-text="取消">
-         </datetime>-->
+        <cell title="时间选择" >
+          <input slot="value" class="weui-input" type="date" :min="mintime" v-model="delivery_at">
+        </cell>
       </group>
        <group title="支付方式">
-         <checklist title="" :max=1 required :options="commonList" v-model="pay" @on-change="change"></checklist>
+         <radio title="type" v-model="pay" :options="payList"></radio>
        </group>  
       <group title="商品详情">
-        <p>安徽汇多利农资有限公司</p>
+        <p style="padding:.25rem;text-indent:1em;">{{PersonalOrder.shop_name}}</p>
         <div class="weui_cell "> 
           <div class="weui_cell_bd weui_cell_primary">
             <flexbox>
-              <flexbox-item :span="7"><p>1.配方肥(18-18-18)</p></flexbox-item>
-              <flexbox-item :span="2"><p style="text-align:right;padding:0 .5rem">×1</p></flexbox-item>
-              <flexbox-item :span="3"><p style="text-align:right;padding:0 .5rem">￥123</p></flexbox-item>
+              <flexbox-item :span="6"><p>1.配方肥({{PersonalOrder.n_percent}}-{{PersonalOrder.p_percent}}-{{PersonalOrder.k_percent}})</p></flexbox-item>
+              <flexbox-item :span="2"><p style="text-align:right;padding:0 .5rem">×{{PersonalOrder.buy_amount}}</p></flexbox-item>
+              <flexbox-item :span="4"><p style="text-align:right;padding:0 .5rem">￥{{PersonalOrder.total_deal_price}}</p></flexbox-item>
             </flexbox>
           </div>
         </div>
@@ -58,11 +50,12 @@
       <flexbox :gutter="0">
         <flexbox-item :span="8" >
           <x-button type="primary" class="price">
-            ￥1234.56 
+            <i class="iconfont icon-edit"></i>
+            ￥{{PersonalOrder.total_deal_price}}
           </x-button>
         </flexbox-item>
         <flexbox-item :span="4" >
-          <x-button type="primary" class="buy" @click.native="_buy">提交订单</x-button>
+          <x-button type="primary" class="buy" @click.native="_buy">立即购买</x-button>
         </flexbox-item>
       <flexbox>
   </tabbar>
@@ -70,31 +63,34 @@
 </template>
 
 <script>
-import { Group, Cell ,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Checklist } from 'vux'
-
+import { Group, Cell ,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Radio  } from 'vux'
+import { mapActions,mapGetters } from 'vuex'
+import { dateFormat } from 'vux'
 
 export default {
   components: {
-    Group,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Cell,Checklist
+    Group,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Cell,Radio 
   },
   data () {
     return {
-      commonList: [{key: '1', value: '微信支付'},{key: '2', value: '线下支付'} ],
-      pay:['1'],
-      startDate:'2017-01-20',
-      time:''
+      payList: [{key: '1', value: '微信支付'},{key: '2', value: '线下支付'}],
+      pay:'',
+      time:'',
+      delivery_at:0,
+      mintime:dateFormat(new Date(), 'YYYY-MM-DD')
     }
   },
+  computed:{
+    ...mapGetters(['PersonalOrder']),
+	},
   methods: {
-    change(){
-
-    },
-    changeTime(){
-
-    },
+     ...mapActions(['setPersonalInfoDetail']),
     _buy(){
       this.$router.push("../offiline/")
     }
+  },
+  mounted () {
+    // console.log(this.min)
   }
 }
 </script>
