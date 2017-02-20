@@ -11,3 +11,5 @@ export const INFO_USER_NAME = 'INFO_USER_NAME'
 export const INFO_USER_PHONE = 'INFO_USER_PHONE'
 //提交地址
 export const ADD_USER_ADDRESS = 'ADD_USER_ADDRESS'
+//获取地址列表
+export const GET_USER_ADDRESS_LIST = 'GET_USER_ADDRESS_LIST'

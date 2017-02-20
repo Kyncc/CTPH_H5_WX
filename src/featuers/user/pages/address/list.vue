@@ -66,11 +66,16 @@
 
 <script>
   import {XButton, XHeader, Flexbox, FlexboxItem, Picker, GroupTitle, Group, Cell, Confirm} from 'vux';
+  import { mapActions,mapGetters } from 'vuex'
   export default {
     components: {
       XButton, XHeader, Flexbox, FlexboxItem, Picker, GroupTitle, Group, Cell, Confirm
     },
+//    computed:{
+//      ...mapGetters(['InfoLnglat']),
+//    },
     methods: {
+      ...mapActions(['getUserAddressListData']),
       onCancel () {
         console.log('取消删除地址')
       },
@@ -90,6 +95,9 @@
       return {
         show: false
       }
+    },
+    mounted(){
+    	this.getUserAddressListData();
     }
   }
 </script>
