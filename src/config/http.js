@@ -12,22 +12,22 @@ axios.interceptors.request.use((config) => {
   if(config.method  === 'post'){
     config.data = qs.stringify(config.data,{arrayFormat:'brackets'});
   }
-  return config;
+  return config
 },(error) =>{
   Vue.$vux.toast.show({text: '错误的传参',type:'text'})
-  return Promise.reject(error);
+  return Promise.reject(error)
 });
 
 //code状态码200判断
 axios.interceptors.response.use((res) =>{
   if(res.data.code != '20000'){
-    Vue.$vux.toast.show({text:res.data.message,type:'text'});
-    return Promise.reject(res);
+    Vue.$vux.toast.show({text:res.data.message,type:'text'})
+    return Promise.reject(res)
   }
   return res;
 }, (error) => {
-   Vue.$vux.toast.show({text:'网络异常',type:'text'});
-   return Promise.reject(error);
+   Vue.$vux.toast.show({text:'网络异常',type:'text'})
+   return Promise.reject(error)
 });
 
 export default axios;

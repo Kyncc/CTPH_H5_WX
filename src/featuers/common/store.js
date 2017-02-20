@@ -8,20 +8,27 @@ const state = {
 }
 
 const actions = {
-  /**获得配肥站列表 */
-  getShop:({ rootState,commit }) => {
-    return new Promise((resolve, reject)=> { 
-      axios({
-        method:'get',
-        url: 'noa/shop'
+  /**
+  * 获得配肥站列表 
+  * 如果有数据则中断
+  */
+  getShop:({ state,commit }) => {
+    if(state.shop.length != 0){
+      return 
+    }else{
+      return new Promise((resolve, reject)=> { 
+        axios({
+          method:'get',
+          url: 'noa/shop'
+        })
+        .then((response) => {
+          commit('SHOPLIST',response.data.data)
+          resolve(response)
+        })
       })
-      .then((response) => {
-        commit('SHOPLIST',response.data.data)
-        resolve(response)
-      })
-    })
+    }
   }
-} 
+}
 
 const getters = {
   Path:(state,getters,rootState) => {

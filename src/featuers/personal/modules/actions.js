@@ -8,7 +8,7 @@ export const getShopPrice = ({ commit,state,rootstate},params) => {
       method:'get',
       url: 'noa/fertilizer',
       params:{
-        shop_id:params.shop_id
+        "shop_id":params.shop_id
       }
     })
     .then((response) => {
@@ -19,17 +19,17 @@ export const getShopPrice = ({ commit,state,rootstate},params) => {
 }
 
 /**清空订单信息订单信息 */
-export const clearPersonal = ({commit }) => {
+export const clearPersonal = ({commit}) => {
   commit(types.PERSONAL_CLEAR)
 }
 
 /**完善订单信息 */
-export const setPersonalGoodsDetail = ({ state,commit },data) => {
-  commit(types.PERSONAL_ORDER_GOODSINFO,response.data.data)
+export const setPersonalGoodsDetail = ({ commit },data) => {
+  commit(types.PERSONAL_ORDER_GOODSINFO,data)
 }
 
 /**完善个人收货信息 */
-export const setPersonalInfoDetail = ({ state,commit },data) => {
+export const setPersonalInfoDetail = ({ commit },data) => {
   commit(types.PERSONAL_ORDER_GOODSINFO,response.data.data)
 }
 

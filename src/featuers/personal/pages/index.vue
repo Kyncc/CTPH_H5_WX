@@ -19,28 +19,28 @@
         <flexbox style="padding:0 10px;box-sizing:border-box">
           <flexbox-item class="selectCol">
             <group-title class="selectName">氮(N)<sub></sub><i class="icon iconfont icon-select-tb"></i></group-title>
-            <picker :data='num' v-model='danNum' @on-change='change'></picker>
+            <picker :data='num' v-model='danNum'></picker>
           </flexbox-item>
           <flexbox-item class="selectCol">
             <group-title class="selectName">磷(P<sub>2</sub>O<sub>5</sub>)<i class="icon iconfont icon-select-tb"></i></group-title>
-            <picker :data='num' v-model='linNum' @on-change='change'></picker>
+            <picker :data='num' v-model='linNum'></picker>
           </flexbox-item>
           <flexbox-item class="selectCol">
             <group-title class="selectName">钾(K<sub>2</sub>O)<i class="icon iconfont icon-select-tb"></i></group-title>
-            <picker :data='num' v-model='jiaNum' @on-change='change'></picker>
+            <picker :data='num' v-model='jiaNum'></picker>
           </flexbox-item>
         </flexbox>
       </group>
       <group>
         <flexbox >
           <flexbox-item :span="3" class="price">
-            ￥80
+            ￥{{PersonalOrder.product_price}}
           </flexbox-item>
           <flexbox-item :span="3" class="type">
-            50公斤/袋
+            {{PersonalOrder.product_specification}}
           </flexbox-item>
           <flexbox-item :span="6" >
-            <x-number :min="1" :max="99999" :value="1" type="inline" button-style="round" fillable></x-number>
+            <x-number :min="1" :max="99999" :value="1" type="inline" button-style="round" fillable v-model="count"></x-number>
           </flexbox-item>
         </flexbox> 
       </group>
@@ -53,7 +53,7 @@
           <flexbox-item :span="8" >
             <x-button type="primary" class="price">
             <i class="iconfont icon-cart"></i>
-             共￥1234.56 
+             共￥{{total}}
             </x-button>
           </flexbox-item>
            <flexbox-item :span="4" >
@@ -83,33 +83,39 @@ export default {
   },
   beforeRouteEnter(to, from, next){
     next(vm => {
-      vm.getShop()
-      .then(()=>{
-          
-
-      })
+      let self = vm
+      self.getShop()                        //获取商铺信息
+      if(self.Query.type == 'reset'){       //是否清空数据
+        this.clearPersonal()
+      }
     })
   },
   methods: {
-    ...mapActions(['getShop']),
-    change (value) {
-      console.log('new Value', value)
-    },
+    ...mapActions(['getShop','clearPersonal','getShopPrice','setPersonalGoodsDetail']),
     _buy(){
-      this.$router.push('cart/');
+      this.setPersonalGoodsDetail({
+        "k_percent":this.jiaNum[0],
+        "n_percent":this.danNum[0],
+        "p_percent":this.linNum[0],
+        "total_deal_price":this.total,
+        "buy_amount":this.count
+      })
+      this.$router.push('cart/')
     }
   },
   computed:{
-    ...mapGetters(['Shop'])
+    ...mapGetters(['Shop','Query','PersonalOrder']),
 	},
   data () {
     return {
       num: [num],
+      count:1,
+      total:0,
       jiaNum:['18','18'],
       danNum:['18','18'],
       linNum:['18','18'],
       shopList:[],
-      shop_id:'配肥站3'
+      shop_id:'',
     }
   },
    watch: {
@@ -120,6 +126,19 @@ export default {
         this.shopList.push({'key':value.shop_id,'value':value.shop_name})
       });
       this.shop_id = this.shopList[0].key;
+    },
+    //切换商店更新价格
+    shop_id(){
+      this.getShopPrice({
+          "shop_id":this.shop_id
+      })
+      .then(()=>{
+          this.total = this.PersonalOrder.product_price * this.count
+      })
+    },
+    //增加数量更新价格
+    count(){
+      this.total = this.PersonalOrder.product_price * this.count
     }
   }
 }
