@@ -1,5 +1,5 @@
 <template>
-  <div class="orderPeronsalCart">
+  <div class="peronsalCart">
     <x-header 
       slot="header" 
       :left-options="{showBack: true,backText:'返回'}" 
@@ -26,7 +26,7 @@
         </div>
       </group>
       <group  title="交货时间" class="goodsTime">
-        <datetime v-model="time" 
+        <!--<datetime v-model="time" 
             placeholder="选择交货时间" 
             :min-year=2017 :max-year=2020 format="YYYY-MM-DD"
             @on-change="changeTime"
@@ -36,7 +36,7 @@
             day-row="{value}日" 
             :start-date="startDate"
             confirm-text="完成" cancel-text="取消">
-         </datetime>
+         </datetime>-->
       </group>
        <group title="支付方式">
          <checklist title="" :max=1 required :options="commonList" v-model="pay" @on-change="change"></checklist>
@@ -70,12 +70,12 @@
 </template>
 
 <script>
-import { Datetime,Group, Cell ,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Checklist } from 'vux'
+import { Group, Cell ,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Checklist } from 'vux'
 
 
 export default {
   components: {
-    Group,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Cell,Checklist,Datetime
+    Group,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Cell,Checklist
   },
   data () {
     return {

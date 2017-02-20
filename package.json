@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "fastclick": "^1.0.6",
+    "qs": "^6.3.1",
     "vue": "^2.1.10",
     "vue-amap": "^0.1.6",
     "vue-infinite-loading": "^2.0.0",

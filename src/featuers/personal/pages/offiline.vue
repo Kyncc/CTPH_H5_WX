@@ -1,10 +1,9 @@
 <template>
-  <div class="orderFinish">
+  <div class="personalOffiline">
     <x-header 
       slot="header" 
-      :left-options="{showBack: true,backText:'详情',preventGoBack:true}" 
+      :left-options="{showBack: true,backText:'返回'}" 
       style="width:100%;position:absolute;left:0;top:0;z-index:100;" 
-      @on-click-back="_intoDeatil()"
       title="订单提交成功">
         <p slot="right">
           <router-link to="../list/">完成</router-link>
@@ -43,9 +42,7 @@ export default {
     Group, Cell,XButton,XHeader,Flexbox,FlexboxItem,Box
   },
   methods: {
-    _intoDeatil(){
-      this.$router.push('../detail/');
-    }
+
   },
   data () {
     return {

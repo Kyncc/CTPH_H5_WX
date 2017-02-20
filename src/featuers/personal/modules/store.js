@@ -25,24 +25,25 @@ const state = {
 
 const mutations = {
   [types.PERSONAL_SHOP_INFO](state , data){
-    state.detail.shop_id = data.shop_id
-    state.detail.shop_name = data.shop_name
-    state.detail.product_id = data.product_id
-    state.detail.product_name = data.product_name
-    state.detail.product_price = data.product_price
-    state.detail.product_specification_id = data.product_specification_id
+    state.order.shop_id = data.shop_id
+    state.order.shop_name = data.shop_name
+    state.order.product_id = data.product_id
+    state.order.product_name = data.product_name
+    state.order.product_price = data.product_price
+    state.order.product_specification = data.product_specification
+    state.order.product_specification_id = data.product_specification_id
   },
   [types.PERSONAL_ORDER_GOODSINFO](state , data){
-    state.k_percent = data.k_percent
-    state.n_percent = data.n_percent
-    state.p_percent = data.p_percent
-    state.total_deal_price = data.total_deal_price
-    state.buy_amount = data.buy_amount
+    state.order.k_percent = data.k_percent
+    state.order.n_percent = data.n_percent
+    state.order.p_percent = data.p_percent
+    state.order.total_deal_price = data.total_deal_price
+    state.order.buy_amount = data.buy_amount
   },
   [types.PERSONAL_ORDER_USERINFO](state , data){
-     state.pay_type = data.pay_type
-     state.delivery_at = data.delivery_at
-     state.receiver_address_id = data.receiver_address_id
+     state.order.pay_type = data.pay_type
+     state.order.delivery_at = data.delivery_at
+     state.order.receiver_address_id = data.receiver_address_id
   },
   [types.PERSONAL_CLEAR](state){
     this.order.buy_amount  = ''
