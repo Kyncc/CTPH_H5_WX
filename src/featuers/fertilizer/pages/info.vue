@@ -24,13 +24,12 @@
 </template>
 
 <script>
-import InfiniteLoading from 'vue-infinite-loading'
 import { Group, Cell ,XInput,XButton,Selector,XHeader } from 'vux'
 import { mapActions,mapGetters } from 'vuex'
 
 export default {
   components: {
-    Group,XInput,XButton,Selector,XButton,XHeader,Cell,InfiniteLoading
+    Group,XInput,XButton,Selector,XButton,XHeader,Cell
   },
   data () {
     return {
