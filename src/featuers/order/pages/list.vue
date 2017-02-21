@@ -2,68 +2,73 @@
   <div class="orderDetail">
     <x-header 
       slot="header" 
-      :left-options="{showBack: false,backText:'返回'}" 
+      :left-options="{showBack:false,backText:'返回'}" 
       style="width:100%;position:absolute;left:0;top:0;z-index:100;" 
       title="订单"
     ></x-header>
     <div style="padding-top:46px;">
-      <group>
-       <div class="weui_cell ctph-order-list-header">
-          <div class="weui_cell_bd weui_cell_primary">
-            <img src="http://lorempixel.com/30/30"/>
-            <span>店铺名称 </span> 
-          </div> 
-          <div class="weui_cell_ft"> 
-            <span>等待付款</span>
-          </div>
-       </div>
-        <div class="weui_cell vux-tap-active"> 
-          <div class="weui_cell_bd weui_cell_primary">
-            <router-link to="../detail/">
-              <flexbox>
-                <flexbox-item :span="10"><p>配方肥(18-18-18)等商品</p></flexbox-item>
-                <flexbox-item :span="2"><p style="text-align:right;padding:0 .5rem">￥123</p></flexbox-item>
-              </flexbox>
-              <span class="vux-label-desc">2016/11/21 10:22:37</span>
-            </router-link>
-          </div>
-        </div>
-        <div class="weui-form-preview__ft">
-          <a href="javascript:" class="weui-form-preview__btn weui-form-preview__btn_primary">再来一单</a>
-        </div>
-        <div class="weui-form-preview__ft">
-          <a href="javascript:" class="weui-form-preview__btn weui-form-preview__btn_default">辅助操作</a>
-          <a href="javascript:" class="weui-form-preview__btn weui-form-preview__btn_primary">点击事件</a>
-        </div>
+      <group style="background:#fbf9fe">
+        <template v-for="order in OrderList">
+          <order-list :order="order"></order-list>
+        </template>
       </group>
+
+      <infinite-loading :on-infinite="_onInfinite"  ref="infiniteLoading" spinner="default">
+        <div slot="no-results"><p style="font-size:1rem;padding:1rem;text-align:center;">加载失败,请点我重试</p></div>
+        <div slot="no-more"><p style="font-size:1rem;padding:1rem;text-align:center;">已加载全部订单</p></div>
+      </infinite-loading>
     </div>
+
+    <alert v-model="alertShow" title="提示">
+      <p style="text-align:center;">该订单选择的是银行卡支付，请在爱农田APP上进行支付</p>
+    </alert>
+
+    <confirm v-model="confirmShow" title="提示" @on-cancel="onCancel" @on-confirm="onConfirm">
+      <p style="text-align:center;">您确定要取消订单么?</p>
+    </confirm>
+
   </div>
 </template>
 
 <script>
-import { Group, Cell,XButton,XHeader,Flexbox,FlexboxItem } from 'vux'
-
+import { Group, Cell,XButton,XHeader,Flexbox,FlexboxItem,Alert , Confirm } from 'vux'
+import InfiniteLoading from 'vue-infinite-loading'
+import { mapActions,mapGetters } from 'vuex'
+import OrderList from 'components/orderList'
 
 export default {
   components: {
-    Group,XButton,XHeader,Flexbox,FlexboxItem,Cell
+    Group,XButton,XHeader,Flexbox,FlexboxItem,Cell,OrderList,Alert ,Confirm,InfiniteLoading 
   },
   data () {
     return {
+       alertShow:false,
+       confirmShow:false
+    }
+  },
+  computed:{
+    ...mapGetters(['OrderList']),
+	},
+  methods: {
+    ...mapActions(['getOrderList']),
+     _onInfinite(){
+        this.getOrderList()
+        .then(()=>{
 
+        })
+     },
+    onCancel() {
+      console.log('on cancel')
+    },
+    onConfirm() {
+      console.log('on confirm')
     }
   }
 }
 </script>
 
-<style lang="less" scoped>
-.ctph-order-list-header{
-  font-size:.7rem;
-  line-height:.7rem;
-  .weui_cell_bd{
-    img{float:left;margin-right:.5rem;width:1.5rem;height:1.5rem;border-radius:50%;}
-    span{float:left;height:1.5rem;line-height:1.5rem;}
-  }
+<style scoped>
+.weui_cells{
+  margin:0;
 }
-@import '~vux/src/styles/weui/widget/weui_cell/weui_form/weui-form-preview.less';
 </style>

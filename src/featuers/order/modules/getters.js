@@ -3,4 +3,6 @@ export const OrderFinish = (state) => state.finish
 /** 订单详情*/
 export const OrderDetail = (state) => state.detail
 /** 订单列表*/
-export const OrderList = (state) => state.list
+export const OrderList = (state) => state.list.data
+/** 订单与支付*/
+export const OrderPrePay = (state) => state.prepay

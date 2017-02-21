@@ -5,22 +5,27 @@ import * as actions from './actions'
 const state = {
   finish:{},
   detail:{},
+  prepay:{},
   list:{
-    page:0,
-    num:10,
+    page:1,
+    limit:10,
     data:[{}]
   }
 }
 
 const mutations = {
   [types.ORDER_FINISH](state,data){
-    this.finish = data
+    state.finish = data
   },
   [types.ORDER_DETAIL](state,data){
-    this.detail = data
+    state.detail = data
   },
   [types.ORDER_LIST](state,data){
-    this.list.data = data
+    state.list.data = data.order_list
+    state.list.page ++
+  },
+  [types.ORDER_PREPAY](state,data){
+    state.list.prepay = data
   }
 }
 

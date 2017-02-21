@@ -10,3 +10,5 @@ export const ORDER_CANCEL = 'ORDER_CANCEL'
 export const ORDER_AGAIN_PERSONAL = 'ORDER_AGAIN_PERSONAL'
 /** 订单支付*/
 export const ORDER_PAY = 'ORDER_PAY'
+/** 待支付信息*/
+export const ORDER_PREPAY = 'ORDER_PREPAY'

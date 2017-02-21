@@ -52,18 +52,20 @@
             <cell title="支付方式" :value="OrderDetail.order.pay_type"></cell>
         </group>
 
-        <tabbar>
-          <flexbox>
-            <x-button>再来一单</x-button>
-          <flexbox>
-        </tabbar>
+        
       </template>
 
       <infinite-loading :on-infinite="_onInfinite"  ref="infiniteLoading" spinner="default">
-        <div slot="no-results" >
+        <span slot="no-results" >
           <p style="font-size:1rem;padding:1rem;text-align:center;" @click="_reset">加载失败,请点我重试</p>
-        </div>
+        </span>
       </infinite-loading>
+
+      <tabbar>
+        <flexbox>
+          <x-button>再来一单</x-button>
+        <flexbox>
+      </tabbar>
     </div>
 
   </div>

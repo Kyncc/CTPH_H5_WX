@@ -1,5 +1,5 @@
-import orderGoodsList from './orderGoodsList/index'
+import OrderList from './orderList/index'
 
 module.exports = {
-  orderGoodsList
+  OrderList
 }
