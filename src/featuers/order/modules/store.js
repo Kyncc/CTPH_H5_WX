@@ -9,7 +9,7 @@ const state = {
   list:{
     page:1,
     limit:10,
-    data:[{}]
+    data:[]
   }
 }
 
@@ -20,9 +20,17 @@ const mutations = {
   [types.ORDER_DETAIL](state,data){
     state.detail = data
   },
+  [types.ORDER_DETAIL_CLEAR](state,data){
+    state.detail = []
+  },
   [types.ORDER_LIST](state,data){
-    state.list.data = data.order_list
+    if(data.order_list.length == 0){return;}
+    state.list.data = state.list.data.concat(data.order_list)
     state.list.page ++
+  },
+  [types.ORDER_LIST_RESET](state,data){
+    state.list.data = []
+    state.list.page = 1
   },
   [types.ORDER_PREPAY](state,data){
     state.list.prepay = data
