@@ -54,6 +54,9 @@ export const getOrderList = ({ state,rootState,commit},data) => {
       commit(types.ORDER_LIST,response.data.data) 
       resolve(response)
     })
+    .catch((error)=>{
+      reject(error)
+    })
   })
 }
 
@@ -89,6 +92,11 @@ export const getOrderCancel = ({ state,rootState,commit},data) => {
 /**订单列表情空 */
 export const orderListClear = ({commit}) => {
    commit(types.ORDER_LIST_RESET)
+}
+
+/**订单列表高度 */
+export const setOrderListScroll = ({commit},height) => {
+   commit(types.ORDER_LIST_SCROLL,height)
 }
 
 /**订单详情清空 */

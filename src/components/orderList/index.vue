@@ -72,7 +72,6 @@ export default {
 }
 .components_order_list{
   background:#fff;
-  margin-top:.75rem;
   .weui_cell_ft{
     span{
       border:1px solid @theme-color;

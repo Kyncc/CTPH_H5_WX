@@ -8,6 +8,8 @@ export const ORDER_DETAIL_CLEAR = 'ORDER_DETAIL_CLEAR'
 export const ORDER_LIST = 'ORDER_LIST'
 /** 订单列表清空 */
 export const ORDER_LIST_RESET = 'ORDER_LIST_RESET'
+/** 订单列表高度 */
+export const ORDER_LIST_SCROLL = 'ORDER_LIST_SCROLL'
 /** 取消订单*/
 export const ORDER_CANCEL = 'ORDER_CANCEL'
 /** 再来一单测土配肥*/
