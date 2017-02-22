@@ -4,33 +4,46 @@ import * as types from './mutationTypes'
 
 /**发送短信 */
 export const getRegisterCode = ({ commit },data) => {
-  return new Promise((resolve, reject)=> { 
+  return new Promise((resolve, reject)=> {
     axios({
-      method:'get',
-      url: 'noa/send_code',
+      method:'post',
+      url: '/noa/send_code',
       data:{
-        phone:data.phone
+        ...data
       }
     })
-    .then((response) => {
-      resolve(response)
+    .then((res) => {
+      Vue.$vux.toast.show({text: '发送验证码成功！'})
+      resolve(res)
     })
   })
 }
 
 /**验证短信状态 */
 export const getRegisterCodeResult = ({commit },data) => {
-  return new Promise((resolve, reject)=> { 
+  return new Promise((resolve, reject)=> {
     axios({
       method:'post',
-      url: 'noa/judge_code',
+      url: '/noa/judge_code',
       data:{
-        phone:data.phone,
-        code:data.code
+        ...data
       }
     })
     .then((response) => {
-      commit(types.REGISTER_CODE,data.phone) 
+      if(response.code == 20000){
+        Vue.$vux.toast.show({
+          text: '登录成功，即将跳转到首页！',
+          time:800
+        });
+        this.$router.replace('/')
+      }else{
+        Vue.$vux.toast.show({
+          text: response.message,
+          type:'warn',
+          time:1200
+        })
+      }
+      // commit(types.REGISTER_CODE,data.phone)
       resolve(response)
     })
   })
@@ -38,7 +51,7 @@ export const getRegisterCodeResult = ({commit },data) => {
 
 /**完善信息 */
 export const setUserInfo = ({ state,commit },data) => {
-  return new Promise((resolve, reject)=> { 
+  return new Promise((resolve, reject)=> {
     axios({
       method:'put',
       url: 'api/user',
