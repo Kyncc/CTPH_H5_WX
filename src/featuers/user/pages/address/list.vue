@@ -17,7 +17,7 @@
       <template v-if="!loading">
         <div v-for="address in AddressList">
           <div>
-            <div class="weui_cell vux-tap-active">
+            <div class="weui_cell vux-tap-active" @click="selectAddress(address)">
               <div>
                 <div class="weui_cell_hd"></div>
                 <div class="weui_cell_bd weui_cell_primary">
@@ -47,17 +47,10 @@
                   </div>
                 </flexbox-item>
                 <flexbox-item :span="3">
-
                   <div @click="editAddress(address)">
                     <i class="iconfont icon-edit"></i>
                     编辑
                   </div>
-
-                  <!--<router-link to="address_edit" style="color: #000;">-->
-                    <!--<i class="iconfont icon-edit"></i>-->
-                    <!--编辑-->
-                  <!--</router-link>-->
-
                 </flexbox-item>
                 <flexbox-item :span="3">
                   <div @click="showDelete(address)">
@@ -105,10 +98,10 @@
       XButton, XHeader, Flexbox, FlexboxItem, Picker, GroupTitle, Group, Cell, Confirm,InfiniteLoading
     },
     computed:{
-      ...mapGetters(['AddressList']),
+      ...mapGetters(['AddressList','Query']),
     },
     methods: {
-      ...mapActions(['getUserAddressListData','setCurrentAddress','deleteAddress','setUserLnglat','setUserAddress','setUserName','setUserPhone','setAddressId']),
+      ...mapActions(['getUserAddressListData','setCurrentAddress','deleteAddress','setUserLnglat','setUserAddress','setUserName','setUserPhone','setAddressId','setSelectedAddressId']),
       _onInfinite(){
       this.getUserAddressListData()
           .then(()=>{
@@ -178,6 +171,15 @@
         this.setUserAddress(address.address_detail);
         this.setAddressId(address.receiver_address_id);
         this.$router.replace('/userinfo/address_edit/')
+      },
+//      选择当前的地址
+      selectAddress(address){
+//      	判断是否从下单页面过来选择地址的
+      	if(this.Query && this.Query.type == 'select'){
+          //      	设置当前选中的地址id
+          this.setSelectedAddressId(address);
+          history.go(-1);
+        }
       }
     },
     data () {
@@ -187,17 +189,6 @@
         deleteId:'',
       }
     },
-//    mounted(){
-//    	this.getUserAddressListData()
-//        .then(()=>{
-//          this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
-//          this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
-//          this.loading = true;
-//        })
-//        .catch((error)=>{
-//          this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
-//        })
-//    }
   }
 </script>
 <style>

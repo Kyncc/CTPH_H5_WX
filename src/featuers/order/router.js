@@ -5,7 +5,7 @@ const R_ORDER_OFFILINE = r => require.ensure([], () => r(require('./pages/offili
 
 
 export default  {
-  path: '/order', 
+  path: '/order',
   component:R_ORDER_LAYOUT,
   redirect:'/order/list/',
   children: [
@@ -19,7 +19,7 @@ export default  {
     },
     {
       path: 'offiline/',
-      component: R_ORDER_FINISH
+      component: R_ORDER_OFFILINE
     }
   ]
 }

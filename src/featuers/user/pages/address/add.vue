@@ -2,9 +2,10 @@
   <div>
     <x-header
       slot="header"
-      :left-options="{showBack: true,backText:'返回'}"
+      :left-options="{showBack: true,backText:'返回',preventGoBack:true}"
       style="width:100%;position:absolute;left:0;top:0;z-index:100;"
       title="新建地址"
+      @on-click-back="_back"
     >
     </x-header>
     <div style="padding-top: 46px;background: #fff;overflow: hidden;">
@@ -85,6 +86,10 @@
     			this.disableSubmit=false;
         }
       },
+      //左边的返回
+      _back(){
+        this.$router.replace('/userinfo/address_list/')
+      }
     },
     data () {
       return {
@@ -108,14 +113,9 @@
       }
     },
     mounted(){
-      const that=this;
       this.address=(this.InfoLnglat) ? this.InfoLnglat.address_detail : '';
       this.name=(this.InfoLnglat) ? this.InfoLnglat.name : '';
       this.phone=(this.InfoLnglat) ? this.InfoLnglat.phone : '';
-      this.setUserLnglat({
-        "latitude":'31.3314392710',
-        "longitude":'118.3601016329'
-      })
     }
 
   }

@@ -2,9 +2,10 @@
   <div>
     <x-header
       slot="header"
-      :left-options="{showBack: true,backText:'返回'}"
+      :left-options="{showBack: true,backText:'返回',preventGoBack:true}"
       style="width:100%;position:absolute;left:0;top:0;z-index:100;"
       title="修改地址"
+      @on-click-back="_back"
     >
     </x-header>
     <div style="padding-top: 46px;background: #fff;overflow: hidden;">
@@ -85,6 +86,10 @@
           this.disableSubmit=true;
         }
       },
+      //左边的返回
+      _back(){
+        this.$router.replace('/userinfo/address_list/')
+      }
     },
     computed:{
       ...mapGetters(['InfoLnglat']),

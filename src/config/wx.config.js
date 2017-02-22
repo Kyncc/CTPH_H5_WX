@@ -27,10 +27,11 @@
 import Vue from 'vue';
 import Axios from 'axios';
 import {WechatPlugin} from 'vux'
+import wxBaseConfig from './wx.base';
 export default function (userConfig) {
   let wx = WechatPlugin.$wechat;
   // let url = location.href.split('#')[0];
-  let url="http://peifei.qmant.com";
+  let url=wxBaseConfig.baseUrl;
   let defaultConfig = {
     title: '使用爱农田配肥，庄稼长势好多了！',
     desc: '同样种的水稻，同样是种田的老把事，隔壁老王的长势为啥就好这么多？',
@@ -46,22 +47,22 @@ export default function (userConfig) {
   //需要分享的内容
   let wxConfig = Object.assign({}, defaultConfig, userConfig);
   //获取wx分享配置信息
-  Axios.post('http://192.168.5.15:8080/noa/signature', {
+  Axios.post(wxBaseConfig.apiUrl, {
     url: url
   })
     .then(function (data) {
+      let wxConfigData=data.data.data;
       wx.config({
         debug: false,
-        appId: 'wxf565864b6a1a358d',
-        timestamp: data.data.timestamp,
-        nonceStr: data.data.nonceStr,
-        signature: data.data.signature,
+        appId: wxBaseConfig.appId,
+        timestamp: wxConfigData.timestamp,
+        nonceStr: wxConfigData.nonceStr,
+        signature: wxConfigData.signature,
         jsApiList: [
           'onMenuShareAppMessage',
           'onMenuShareTimeline',
           'showMenuItems',
           'hideAllNonBaseMenuItem',
-          'openLocation'
         ]
       });
       wx.ready(function () {
