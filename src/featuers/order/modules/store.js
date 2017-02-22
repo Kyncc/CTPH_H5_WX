@@ -9,6 +9,7 @@ const state = {
   list:{
     page:1,
     limit:10,
+    height:0,
     data:[]
   }
 }
@@ -31,9 +32,13 @@ const mutations = {
   [types.ORDER_LIST_RESET](state,data){
     state.list.data = []
     state.list.page = 1
+    state.list.height = 0
   },
   [types.ORDER_PREPAY](state,data){
     state.list.prepay = data
+  },
+  [types.ORDER_LIST_SCROLL](state,height){
+    state.list.height = height
   }
 }
 

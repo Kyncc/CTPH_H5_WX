@@ -5,17 +5,21 @@
       :left-options="{showBack:false,backText:'返回'}" 
       style="width:100%;position:absolute;left:0;top:0;z-index:100;" 
       title="订单列表"
-    ></x-header>
+    >
+      <p slot="right" @click="_reset">刷新</p>
+    </x-header>
 
     <div style="padding-top:46px;">
-      <group style="background:#fbf9fe">
+      <div style="background:#fbf9fe">
         <template v-for="(order, index) in OrderList">
-          <order-list :order="order" @on-click-order="_orderDetail(index)"  @on-click-pay="_orderPay(index)" @on-click-cancel="_orderCancel(index)" ></order-list>
+          <group>
+            <order-list :order="order" @on-click-order="_orderDetail(index)" @on-click-pay="_orderPay(index)" @on-click-cancel="_orderCancel(index)" ></order-list>
+          </group>
         </template>
-      </group>
+      </div>
 
       <infinite-loading :on-infinite="_onInfinite"  ref="infiniteLoading" spinner="waveDots">
-        <div slot="no-results"><p style="padding:1rem;text-align:center;">加载失败,请点我重试</p></div>
+        <div slot="no-results"><p style="padding:1rem;text-align:center;" >服务异常</p></div>
         <div slot="no-more"><p style="padding:1rem;text-align:center;">已加载全部订单</p></div>
       </infinite-loading>
     </div>
@@ -35,6 +39,7 @@
        <p>联系电话：</p>
       <span class="vux-close" @click="offilineShow=false"></span>
     </x-dialog>
+
   </div>
 </template>
 
@@ -52,15 +57,23 @@ export default {
     return {
       alertShow:false,
       confirmShow:false,
-      selectOrder:'',
-      offilineShow:false
+      offilineShow:false,
+      selectOrder:''
     }
   },
   computed:{
-    ...mapGetters(['OrderList']),
-	},
+    ...mapGetters(['OrderList','OrderListScroll']),
+  },
+  activated(){
+    this.$nextTick(() => {
+      document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.OrderListScroll
+    })
+  },
+  deactivated(){
+    this.setOrderListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop)
+  },
   methods: {
-    ...mapActions(['getOrderList','getOrderCancel','orderListClear']),
+    ...mapActions(['getOrderList','getOrderCancel','orderListClear','setOrderListScroll']),
      _onInfinite(){
          this.getOrderList()
         .then((res)=>{
@@ -73,17 +86,27 @@ export default {
           this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
         })
      },
+     /** 进入详情*/
     _orderDetail(index){
       this.$router.push(`../detail/${this.OrderList[index].order_id}`)
     },
+    /** 取消订单*/
     _orderCancel(index){
       this.selectOrder = this.OrderList[index].order_id 
       this.confirmShow = true
     },
-     _orderPay(index){
+    /** 订单支付*/
+    _orderPay(index){
+      console.log();
       // this.selectOrder = this.OrderList[index].order_id 
       this.offilineShow = true
     },
+     /** 刷新*/
+    _reset(){
+      this.orderListClear()
+      this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
+    },
+     /** 取消订单*/
     onConfirm(){
       this.getOrderCancel({
         "order_id":this.selectOrder
@@ -119,7 +142,6 @@ export default {
     top:-10px;
     right:10px;
     background:#ccc;
-
   }
 }
 </style>
