@@ -3,7 +3,8 @@ const R_ORDER_LIST = r => require.ensure([], () => r(require('./pages/list')), '
 const R_ORDER_DETAIL = r => require.ensure([], () => r(require('./pages/detail')), '/order/detail/')
 const R_ORDER_OFFILINE = r => require.ensure([], () => r(require('./pages/offiline')), '/order/offiline/')
 
-
+import modules from './modules/store'
+import store from 'src/store'
 export default  {
   path: '/order',
   component:R_ORDER_LAYOUT,
@@ -14,7 +15,7 @@ export default  {
       component: R_ORDER_LIST
     },
     {
-      path: 'detail/',
+      path: 'detail/:id',
       component: R_ORDER_DETAIL
     },
     {
@@ -23,3 +24,7 @@ export default  {
     }
   ]
 }
+
+store.registerModule('order', {
+  ...modules
+});

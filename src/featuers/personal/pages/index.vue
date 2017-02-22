@@ -44,7 +44,7 @@
           </flexbox-item>
         </flexbox> 
       </group>
-      <group title="配肥站">
+      <group title="配肥站" style="padding-bottom:4rem">
         <selector :options="shopList" v-model="shop_id"></selector>
       </group>
     </div>

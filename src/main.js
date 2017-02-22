@@ -19,7 +19,7 @@ Vue.use(AlertPlugin)    //alert的使用
 AMap.initAMapApiLoader({
   key: 'f01650aa86f4858fa6d5e0b0a850cfa0',
   plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
-});
+})
 
 //路由和store同步
 sync(store, router)
