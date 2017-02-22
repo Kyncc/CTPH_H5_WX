@@ -24,7 +24,7 @@ export const getFertilizerApply = ({ rootState,commit }) => {
       method:'get',
       url: 'api/soil_test/apply_status',
       params:{
-        "SESSION":'430544ba-4bd2-4c18-b943-4479500cdb91'
+        "SESSION":rootState.common.session
       }
     })
     .then((response) => {
@@ -46,7 +46,7 @@ export const getFertilizerApplyInfo = ({ rootState,commit }) => {
       method:'get',
       url: 'api/soil_test/last_apply',
       params:{
-        "SESSION":'430544ba-4bd2-4c18-b943-4479500cdb91'
+        "SESSION":rootState.common.session
       }
     })
     .then((response) => {

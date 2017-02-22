@@ -43,7 +43,7 @@ export const addUserAddressData = ({ rootState,commit },data) => {
         ...data
       },
       params:{
-        "SESSION":'966dbeac-dbb3-49d7-9738-324d69fccba0',
+        "SESSION":rootState.common.session,
       }
     })
       .then((response) => {
@@ -59,14 +59,14 @@ export const addUserAddressData = ({ rootState,commit },data) => {
   })
 }
 //获取地址列表
-export const getUserAddressListData = ({commit}) => {
+export const getUserAddressListData = ({commit,rootState}) => {
   // Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject)=> {
     axios({
       method:'get',
       url: '/api/address',
       params:{
-        "SESSION":'966dbeac-dbb3-49d7-9738-324d69fccba0',
+        "SESSION":rootState.common.session,
       }
     })
       .then((response) => {
@@ -82,7 +82,7 @@ export const getUserAddressListData = ({commit}) => {
   })
 }
 //设为默认地址
-export const setCurrentAddress = ({commit},data) => {
+export const setCurrentAddress = ({commit,rootState},data) => {
   Vue.$vux.loading.show({text: '设为默认地址中'})
   return new Promise((resolve, reject)=> {
     axios({
@@ -92,7 +92,7 @@ export const setCurrentAddress = ({commit},data) => {
         ...data
       },
       params:{
-        "SESSION":'eb63a011-c2fc-45e3-8d41-c08df640d870',
+        "SESSION":rootState.common.session,
       }
     })
       .then((response) => {
@@ -107,7 +107,7 @@ export const setCurrentAddress = ({commit},data) => {
   })
 }
 //删除地址
-export const deleteAddress = ({commit},data) => {
+export const deleteAddress = ({commit,rootState},data) => {
   Vue.$vux.loading.show({text: '删除地址中'})
   return new Promise((resolve, reject)=> {
     axios({
@@ -117,7 +117,7 @@ export const deleteAddress = ({commit},data) => {
         ...data
       },
       params:{
-        "SESSION":'966dbeac-dbb3-49d7-9738-324d69fccba0',
+        "SESSION":rootState.common.session,
       }
     })
       .then((response) => {
@@ -142,7 +142,7 @@ export const editAddress = ({ rootState,commit },data) => {
         ...data
       },
       params:{
-        "SESSION":'966dbeac-dbb3-49d7-9738-324d69fccba0',
+        "SESSION":rootState.common.session,
       }
     })
       .then((response) => {
