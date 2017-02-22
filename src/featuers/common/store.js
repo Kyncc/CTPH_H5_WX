@@ -3,7 +3,7 @@ import axios from 'config/http'
 
 const state = {
   shop:[],    //配肥站
-  session:'71967c7f-3ba9-4d6b-a877-bfe96dcddd69',
+  session:'8a83db9a-346f-474d-8cb3-6db1f6b9abf5',
   system:(/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) ? 'IOS' : 'Android')
 }
 

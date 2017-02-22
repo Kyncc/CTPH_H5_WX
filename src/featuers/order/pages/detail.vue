@@ -1,5 +1,5 @@
 <template>
-  <div class="orderDetail">
+  <view-box ref="viewBox" class="orderDetail">
     <x-header 
       slot="header" 
       :left-options="{showBack: true,backText:'返回'}" 
@@ -9,12 +9,10 @@
     <div style="padding-top:46px;padding-bottom:50px;">
 
       <template v-if = "OrderDetail.order">
-        <template v-if="OrderDetail.order.order_status == 0">
-          <group title="取消原因">
-            <cell title="取消方" :value="OrderDetail.order.cancelled_type | cancelled_type"></cell>
-            <cell title="取消原因" :value="OrderDetail.order.cancelled_reason"></cell>
-          </group>
-        </template>
+        <group v-if="OrderDetail.order.order_status == 0" title="取消原因">
+          <cell title="取消方" :value="OrderDetail.order.cancelled_type | cancelled_type"></cell>
+          <cell title="取消原因" :value="OrderDetail.order.cancelled_reason"></cell>
+        </group>
 
         <group title="收货信息">
           <cell title="收货人" :value="OrderDetail.order.receiver_name"></cell>
@@ -24,16 +22,12 @@
           <cell title="收货地址" :value="OrderDetail.order.receiver_address_detail"></cell>
           <cell title="交货时间" :value="OrderDetail.order.send_at"></cell>
         </group>
-
         <group title="订单明细">
-          <template v-for="order in OrderDetail.order_detail">
-            <div class="weui_cell vux-tap-active"> 
+            <div class="weui_cell"  v-for="order in OrderDetail.order_detail"> 
               <div class="weui_cell_bd weui_cell_primary">
                 <flexbox>
                   <flexbox-item :span="7">
-                    <p>{{order.product_name}}
-                    <template v-if="order.npk_scale">({{order.npk_scale}})</template>
-                    </p>
+                    <p>{{order.product_name}}<b v-if="order.npk_scale">({{order.npk_scale}})</b></p>
                   </flexbox-item>
                   <flexbox-item :span="2"><p style="text-align:right;padding:0 .5rem">×{{order.buy_amount}}</p></flexbox-item>
                   <flexbox-item :span="3"><p style="text-align:right;padding:0 .5rem">￥{{order.product_price}}</p></flexbox-item>
@@ -41,7 +35,6 @@
                 <span class="vux-label-desc">{{order.product_specification}}</span>
               </div>
             </div>
-          </template> 
           <cell :value="'总计:￥'+OrderDetail.order.total_deal_price"></cell>
         </group>
 
@@ -70,17 +63,17 @@
 
     </div>
 
-  </div>
+  </view-box>
 </template>
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
-import { Group, Cell ,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem } from 'vux'
+import { Group, Cell ,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,ViewBox } from 'vux'
 import { mapActions,mapGetters } from 'vuex'
 
 export default {
   components: {
-    Group,XInput ,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Cell,InfiniteLoading
+    Group,XInput ,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Cell,InfiniteLoading,ViewBox
   },
   beforeRouteEnter(to, from, next){
     next(vm => {

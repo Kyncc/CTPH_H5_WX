@@ -1,23 +1,22 @@
 <template>
-  <div class="orderList">
+  <view-box ref="viewBox" class="orderList">
     <x-header 
       slot="header" 
       :left-options="{showBack:false,backText:'返回'}" 
       style="width:100%;position:absolute;left:0;top:0;z-index:100;" 
-      title="订单列表"
-    >
+      title="订单列表">
       <p slot="right" @click="_reset">刷新</p>
     </x-header>
 
     <div style="padding-top:46px;">
       <div style="background:#fbf9fe">
-        <template v-for="(order, index) in OrderList">
+        <div v-for="(order,index) in OrderList">
           <group>
-            <order-list :order="order" @on-click-order="_orderDetail(index)" @on-click-pay="_orderPay(index)" @on-click-cancel="_orderCancel(index)" ></order-list>
+            <order-list :order="order" @on-click-order="_orderDetail(index)" @on-click-pay="_orderPay(index)" @on-click-cancel="_orderCancel(index)">
+            </order-list>
           </group>
-        </template>
+        </div>
       </div>
-
       <infinite-loading :on-infinite="_onInfinite"  ref="infiniteLoading" spinner="waveDots">
         <div slot="no-results"><p style="padding:1rem;text-align:center;" >服务异常</p></div>
         <div slot="no-more"><p style="padding:1rem;text-align:center;">已加载全部订单</p></div>
@@ -33,25 +32,26 @@
     </confirm>
 
     <x-dialog v-model="offilineShow" class="dialog" :hideOnBlur="true">
-       <p class="dialog-title">您可以和商家当面支付现金完成支付，或者根据以下信息进行转账。</p>
-       <p>账号：</p>
-       <p>户名：</p>
-       <p>联系电话：</p>
+        <p class="dialog-title">您可以和商家当面支付现金完成支付，或者根据以下信息进行转账。</p>
+        <p>账号：</p>
+        <p>户名：</p>
+        <p>联系电话：</p>
       <span class="vux-close" @click="offilineShow=false"></span>
     </x-dialog>
 
-  </div>
+  </view-box>
+
 </template>
 
 <script>
-import { Group, Cell,XButton,XHeader,Flexbox,FlexboxItem,Alert , Confirm,XDialog } from 'vux'
+import { Group, Cell,XButton,XHeader,Flexbox,FlexboxItem,Alert , Confirm,XDialog,ViewBox } from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import OrderList from 'components/orderList'
 import { mapActions,mapGetters } from 'vuex'
 
 export default {
   components: {
-    Group,XButton,XHeader,Flexbox,FlexboxItem,Cell,OrderList,Alert ,Confirm,InfiniteLoading,XDialog 
+    Group,XButton,XHeader,Flexbox,FlexboxItem,Cell,OrderList,Alert ,Confirm,InfiniteLoading,XDialog,ViewBox 
   },
   data () {
     return {
@@ -65,12 +65,12 @@ export default {
     ...mapGetters(['OrderList','OrderListScroll']),
   },
   activated(){
-    this.$nextTick(() => {
-      document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.OrderListScroll
-    })
+    // this.$nextTick(() => {
+      // document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.OrderListScroll
+    // })
   },
   deactivated(){
-    this.setOrderListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop)
+    // this.setOrderListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop)
   },
   methods: {
     ...mapActions(['getOrderList','getOrderCancel','orderListClear','setOrderListScroll']),
