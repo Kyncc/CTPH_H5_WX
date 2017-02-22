@@ -1,23 +1,15 @@
 <template>
   <div style="height:100%;">
-      <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import {ViewBox} from 'vux'
-  import store from './store'
-  import 'config/common.less'
-
-  export default {
-    components: {
-      ViewBox
-    },
-    store
-  }
+import 'config/common.less'
+export default {}
 </script>
 
 <style lang="less">
-@import '~vux/src/styles/reset.less';
-@import '~vux/src/styles/1px.less';
+  @import '~vux/src/styles/reset.less';
+  @import '~vux/src/styles/1px.less';
 </style>

@@ -46,16 +46,16 @@ export const addUserAddressData = ({ rootState,commit },data) => {
         "SESSION":rootState.common.session,
       }
     })
-      .then((response) => {
-        Vue.$vux.loading.hide()
-        commit(types.ADD_USER_ADDRESS)
-        resolve(response)
-      })
-      .catch((error)=>{
-        Vue.$vux.toast.show({text: error.data.message})
-        Vue.$vux.loading.hide()
-        reject(error)
-      })
+    .then((response) => {
+      Vue.$vux.loading.hide()
+      commit(types.ADD_USER_ADDRESS)
+      resolve(response)
+    })
+    .catch((error)=>{
+      Vue.$vux.toast.show({text: error.data.message})
+      Vue.$vux.loading.hide()
+      reject(error)
+    })
   })
 }
 //获取地址列表
@@ -69,16 +69,16 @@ export const getUserAddressListData = ({commit,rootState}) => {
         "SESSION":rootState.common.session,
       }
     })
-      .then((response) => {
-        // Vue.$vux.loading.hide()
-        commit(types.GET_USER_ADDRESS_LIST,response.data.data)
-        resolve(response)
-      })
-      .catch((error)=>{
-        Vue.$vux.toast.show({text: '提交失败,请重试'})
-        // Vue.$vux.loading.hide()
-        reject(error)
-      })
+    .then((response) => {
+      // Vue.$vux.loading.hide()
+      commit(types.GET_USER_ADDRESS_LIST,response.data.data)
+      resolve(response)
+    })
+    .catch((error)=>{
+      Vue.$vux.toast.show({text: '提交失败,请重试'})
+      // Vue.$vux.loading.hide()
+      reject(error)
+    })
   })
 }
 //设为默认地址
@@ -95,15 +95,15 @@ export const setCurrentAddress = ({commit,rootState},data) => {
         "SESSION":rootState.common.session,
       }
     })
-      .then((response) => {
-        Vue.$vux.loading.hide()
-        resolve(response)
-      })
-      .catch((error)=>{
-        Vue.$vux.toast.show({text: '设为默认地址失败'})
-        Vue.$vux.loading.hide()
-        reject(error)
-      })
+    .then((response) => {
+      Vue.$vux.loading.hide()
+      resolve(response)
+    })
+    .catch((error)=>{
+      Vue.$vux.toast.show({text: '设为默认地址失败'})
+      Vue.$vux.loading.hide()
+      reject(error)
+    })
   })
 }
 //删除地址
@@ -120,15 +120,15 @@ export const deleteAddress = ({commit,rootState},data) => {
         "SESSION":rootState.common.session,
       }
     })
-      .then((response) => {
-        Vue.$vux.loading.hide()
-        resolve(response)
-      })
-      .catch((error)=>{
-        Vue.$vux.toast.show({text: '删除地址失败'})
-        Vue.$vux.loading.hide()
-        reject(error)
-      })
+    .then((response) => {
+      Vue.$vux.loading.hide()
+      resolve(response)
+    })
+    .catch((error)=>{
+      Vue.$vux.toast.show({text: '删除地址失败'})
+      Vue.$vux.loading.hide()
+      reject(error)
+    })
   })
 }
 //修改地址

@@ -30,6 +30,9 @@ const actions = {
   },
   setSession:({ commit },data) => {
     commit('SESSION',data)
+  },
+  clearSession:({ commit }) => {
+    commit('CLEARSESSION')
   }
 }
 
@@ -57,6 +60,10 @@ const mutations = {
   },
   'SESSION'(state, data) {
     state.session = data
+  },
+  'CLEARSESSION'(state, data) {
+     localStorage.removeItem('token')
+     state.token = null
   }
 }
 

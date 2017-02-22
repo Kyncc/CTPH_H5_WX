@@ -3,6 +3,7 @@ const R_ADDRESS = r => require.ensure([], () => r(require('./pages/address/list'
 const R_ADDRESS_ADD = r => require.ensure([], () => r(require('./pages/address/add')), '/userinfo/')
 const R_ADDRESS_EDIT = r => require.ensure([], () => r(require('./pages/address/edit')), '/userinfo/')
 const R_ADDRESS_AMAP = r => require.ensure([], () => r(require('./pages/address/amap')), '/userinfo/')
+
 import modules from './modules/store'
 import store from 'src/store'
 export default  {
