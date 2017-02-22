@@ -3,7 +3,7 @@
 
     <div class="weui_cell ctph-order-list-header">
       <div class="weui_cell_bd weui_cell_primary">
-        <img :src="order.product_image" src="" />
+        <img :src="order.product_image ? order.product_image : 'http://o9s1f7266.bkt.clouddn.com/ant_logo.png?imageView2/2/w/30/h/30'"  />
         <span>{{order.shop_name}}</span>
       </div> 
       <div class="weui_cell_ft">

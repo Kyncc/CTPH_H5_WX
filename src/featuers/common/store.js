@@ -14,6 +14,7 @@ const actions = {
   */
   getShop:({ state,commit }) => {
     if(state.shop.length != 0){
+      commit('SHOPLIST',state.shop)
       return 
     }else{
       return new Promise((resolve, reject)=> { 

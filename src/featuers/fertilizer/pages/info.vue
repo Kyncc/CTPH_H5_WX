@@ -47,13 +47,17 @@ export default {
       }
     }
   },
-  beforeRouteEnter(to, from, next){
-    next(vm => {
-      vm.getFertilizerShop()
-    })
-  },
+  // filters: {
+  //   crop_id(id){
+  //     switch(id){
+  //       case 0 : return '单季稻'
+  //       case 1 : return '早稻'
+  //       case 2 : return '晚稻'
+  //     }
+  //   }
+  // },
   computed:{
-    ...mapGetters(['FertilizerShop']),
+    ...mapGetters(['Shop']),
     //输入的验证
     disable(){
       return (this.$refs.crop_type.valid &&  this.$refs.last_yeid.valid)
@@ -61,16 +65,23 @@ export default {
 	},
   watch: {
     //测土机构的数据
-    FertilizerShop(){
+    Shop(){
       this.shopList = [];
-      this.FertilizerShop.forEach((value, index, array) => {
+      this.Shop.forEach((value, index, array) => {
         this.shopList.push({'key':value.shop_id,'value':value.shop_name})
       });
-      this.shop_id = this.shopList[0].key;
     }
   },
+  beforeRouteEnter(to, from, next){
+    next(vm => {
+      vm.getShop()
+      .then(()=>{
+        vm.shop_id = vm.shopList[0].key
+      })
+    })
+  },
   methods:{
-    ...mapActions(['postFertilizerApply','getFertilizerShop']),
+    ...mapActions(['postFertilizerApply','getShop']),
     _finish(){
       if(!this.disable){
         this.$vux.toast.show({text: '参数不正确',type:'warn',time:'1000'})

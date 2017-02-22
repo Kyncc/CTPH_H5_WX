@@ -10,7 +10,7 @@ import personal from './featuers/personal/router'
 import order from './featuers/order/router'
 import user from './featuers/user/router'
 
-Vue.use(Router)      //使用路由
+Vue.use(Router)
 
 let router = new Router({
   mode: 'hash',

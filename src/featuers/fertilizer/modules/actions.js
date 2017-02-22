@@ -2,20 +2,6 @@ import Vue from 'vue'
 import axios from 'config/http'
 import * as types from './mutationTypes'
 
-/**获取配肥站列表 */
-export const getFertilizerShop = ({ rootState,commit }) => {
-  return new Promise((resolve, reject)=> { 
-    axios({
-      method:'get',
-      url: 'noa/shop'
-    })
-    .then((response) => {
-      commit(types.FERTILIZER_SHOP,response.data.data)
-      resolve(response)
-    })
-  })
-}
-
 /**获取申请状态 */
 export const getFertilizerApply = ({ rootState,commit }) => {
   Vue.$vux.loading.show({text: '请稍候'})
@@ -72,6 +58,9 @@ export const postFertilizerApply = ({ rootState,commit },data) => {
         "crop_type":data.crop_type,
         "last_yeid":data.last_yeid,
         "shop_id":data.shop_id
+      },
+      params:{
+        "SESSION":rootState.common.session
       }
     })
     .then((response) => {
@@ -80,7 +69,6 @@ export const postFertilizerApply = ({ rootState,commit },data) => {
       resolve(response)
     })
     .catch((error)=>{
-      Vue.$vux.toast.show({text: '提交失败,请重试'})
       Vue.$vux.loading.hide()
       reject(error)
     })

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+import qs from 'qs'
 import store from 'src/store'
 
 axios.defaults.timeout = 5000;
