@@ -6,7 +6,7 @@ const R_ORDER_OFFILINE = r => require.ensure([], () => r(require('./pages/offili
 import modules from './modules/store'
 import store from 'src/store'
 export default  {
-  path: '/order', 
+  path: '/order',
   component:R_ORDER_LAYOUT,
   redirect:'/order/list/',
   children: [

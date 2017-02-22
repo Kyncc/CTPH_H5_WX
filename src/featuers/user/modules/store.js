@@ -37,6 +37,9 @@ const mutations = {
   [types.EDIT_ADDRESS_ID](state , data){
     state.address_id = data;
   },
+  [types.SELECTED_ADDRESS_ID](state , data){
+    state.selected_address = data;
+  },
 }
 
 export default {

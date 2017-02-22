@@ -28,6 +28,10 @@ export const setUserPhone = ({commit },data) => {
 export const setAddressId = ({commit },data) => {
   commit(types.EDIT_ADDRESS_ID,data)
 }
+/**设置当前选中的地址ID */
+export const setSelectedAddressId = ({commit },data) => {
+  commit(types.SELECTED_ADDRESS_ID,data)
+}
 //添加地址
 export const addUserAddressData = ({ rootState,commit },data) => {
   Vue.$vux.loading.show({text: '请稍候'})
@@ -62,7 +66,7 @@ export const getUserAddressListData = ({commit}) => {
       method:'get',
       url: '/api/address',
       params:{
-        "SESSION":'9368d6cb-ec92-48e6-9faa-67a5bda84ff0',
+        "SESSION":'eb63a011-c2fc-45e3-8d41-c08df640d870',
       }
     })
       .then((response) => {
@@ -88,7 +92,7 @@ export const setCurrentAddress = ({commit},data) => {
         ...data
       },
       params:{
-        "SESSION":'9368d6cb-ec92-48e6-9faa-67a5bda84ff0',
+        "SESSION":'eb63a011-c2fc-45e3-8d41-c08df640d870',
       }
     })
       .then((response) => {
@@ -113,7 +117,7 @@ export const deleteAddress = ({commit},data) => {
         ...data
       },
       params:{
-        "SESSION":'9368d6cb-ec92-48e6-9faa-67a5bda84ff0',
+        "SESSION":'eb63a011-c2fc-45e3-8d41-c08df640d870',
       }
     })
       .then((response) => {
@@ -138,7 +142,7 @@ export const editAddress = ({ rootState,commit },data) => {
         ...data
       },
       params:{
-        "SESSION":'9368d6cb-ec92-48e6-9faa-67a5bda84ff0',
+        "SESSION":'eb63a011-c2fc-45e3-8d41-c08df640d870',
       }
     })
       .then((response) => {
