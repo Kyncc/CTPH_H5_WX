@@ -27,6 +27,9 @@ const actions = {
         })
       })
     }
+  },
+  setSession:({ commit },data) => {
+    commit('SESSION',data)
   }
 }
 
@@ -51,6 +54,9 @@ const getters = {
 const mutations = {
   'SHOPLIST'(state, data) {
     state.shop = data
+  },
+  'SESSION'(state, data) {
+    state.session = data
   }
 }
 

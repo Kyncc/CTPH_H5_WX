@@ -33,7 +33,6 @@ export const getFertilizerApply = ({ rootState,commit }) => {
       resolve(response)
     })
     .catch((error)=>{
-       Vue.$vux.toast.show({text: '接口异常'})
        Vue.$vux.loading.hide()
        reject(error)
     })

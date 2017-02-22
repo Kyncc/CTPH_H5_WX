@@ -38,7 +38,6 @@
         <p>联系电话：</p>
       <span class="vux-close" @click="offilineShow=false"></span>
     </x-dialog>
-
   </view-box>
 
 </template>
@@ -70,6 +69,7 @@ export default {
     // })
   },
   deactivated(){
+    
     // this.setOrderListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop)
   },
   methods: {

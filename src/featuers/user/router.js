@@ -28,6 +28,7 @@ export default  {
     }
   ]
 }
+
 store.registerModule('userinfo', {
   ...modules
 });

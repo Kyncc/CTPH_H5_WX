@@ -1,8 +1,6 @@
 <template>
   <div style="height:100%;">
       <router-view></router-view>
-   <!--<view-box ref="viewBox">
-    </view-box>-->
   </div>
 </template>
 

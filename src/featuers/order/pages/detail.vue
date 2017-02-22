@@ -8,7 +8,7 @@
     ></x-header>
     <div style="padding-top:46px;padding-bottom:50px;">
 
-      <template v-if = "OrderDetail.order">
+      <div v-if = "OrderDetail.order">
         <group v-if="OrderDetail.order.order_status == 0" title="取消原因">
           <cell title="取消方" :value="OrderDetail.order.cancelled_type | cancelled_type"></cell>
           <cell title="取消原因" :value="OrderDetail.order.cancelled_reason"></cell>
@@ -22,6 +22,7 @@
           <cell title="收货地址" :value="OrderDetail.order.receiver_address_detail"></cell>
           <cell title="交货时间" :value="OrderDetail.order.send_at"></cell>
         </group>
+        
         <group title="订单明细">
             <div class="weui_cell"  v-for="order in OrderDetail.order_detail"> 
               <div class="weui_cell_bd weui_cell_primary">
@@ -53,8 +54,7 @@
           <cell title="下单时间" :value="OrderDetail.order.created_at"></cell>
           <cell title="支付方式" :value="OrderDetail.order.pay_type | pay_type"></cell>
         </group>
-
-      </template>
+      </div>
 
       <infinite-loading :on-infinite="_onInfinite"  ref="infiniteLoading" spinner="default">
         <div slot="no-results"><p style="padding:1rem;text-align:center;" @click="_reset">加载失败,请点我重试</p></div>

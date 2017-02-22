@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import axios from 'axios'
-import qs from 'qs'
 
 axios.defaults.timeout = 5000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
@@ -16,7 +15,7 @@ axios.interceptors.request.use((config) => {
 },(error) =>{
   Vue.$vux.toast.show({text: '错误的传参',type:'text'})
   return Promise.reject(error)
-});
+})
 
 //code状态码200判断
 axios.interceptors.response.use((res) =>{
@@ -26,8 +25,16 @@ axios.interceptors.response.use((res) =>{
   }
   return res;
 }, (error) => {
-   Vue.$vux.toast.show({text:'网络异常',type:'text'})
+  if(error.response){
+    switch (error.response.status){
+      case 401:
+        window.location.href = `http://${window.document.location.host}/#/login/`
+        break
+      default:
+        Vue.$vux.toast.show({text:'网络异常',type:'text'})
+    }
+  }
    return Promise.reject(error)
-});
+})
 
 export default axios;

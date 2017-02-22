@@ -1,6 +1,19 @@
 const R_INDEX = r => require.ensure([], () => r(require('./pages/index')), '/')
 
-export default  {
-  path: '/', 
-  component:R_INDEX
-}
+import store from '../../store'
+export default [
+  {
+    'path': '/', 
+    'component':R_INDEX
+  },
+  {
+    //将OPENID注入session
+    path: '/home/:id/', redirect: to => {
+      store.dispatch({
+        type: 'setSession',
+        amount: to.params.id
+      })
+      return '/'
+    }
+  }
+]
