@@ -61,11 +61,11 @@
             });
           }
         },
-        plugin:  [{
+        plugin: [{
           pName: 'ToolBar',
           position: 'LT',
-          offset: [10,20],
-          liteStyle:'true',
+          offset: [10, 20],
+          liteStyle: 'true',
         }],
       }
     },
@@ -74,8 +74,32 @@
     },
     methods: {
       ...mapActions(['setUserLnglat', 'setUserAddress']),
+//      转换为高德经纬度
+      toGaode: function (lnglat) {
+        let currentLnglat = lnglat;
+        let x_pi = currentLnglat[0] * currentLnglat[1] / 180.0;
+        let x = currentLnglat[0] - 0.0065, y = currentLnglat[1] - 0.006;
+        let z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_pi);
+        let theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_pi);
+        let lng = z * Math.cos(theta);
+        let lat = z * Math.sin(theta);
+        currentLnglat = [lng, lat];
+        return currentLnglat
+      },
+//      转换为百度经纬度
+      toBaidu: function (lnglat) {
+        let currentLnglat = lnglat;
+        let x_pi = currentLnglat[0] * currentLnglat[1] / 180.0;
+        let x = currentLnglat[0], y = currentLnglat[1];
+        let z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * x_pi);
+        let theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
+        let bd_lon = z * Math.cos(theta) + 0.0065;
+        let bd_lat = z * Math.sin(theta) + 0.006;
+        currentLnglat = [bd_lon, bd_lat];
+        return currentLnglat
+      },
       addMarker: function (e) {
-        let currentLnglat=[e.lnglat.lng, e.lnglat.lat];
+        let currentLnglat = [e.lnglat.lng, e.lnglat.lat];
         this.setMapMarker(currentLnglat)
       },
       setMapMarker: function (currentLnglat) {
@@ -85,8 +109,8 @@
         //设置地图当前的marker
         this.markers[0] = currentLnglat;
         this.setUserLnglat({
-          "latitude": currentLnglat[1],
-          "longitude": currentLnglat[0]
+          "latitude": this.toBaidu(currentLnglat)[1],
+          "longitude": this.toBaidu(currentLnglat)[0]
         });
         //获取经纬度的地址
         this.geocoder.getAddress(currentLnglat, function (status, result) {
@@ -139,11 +163,12 @@
           })
           .catch(function () {
             currentLnglat = [118.360344, 31.329557];
+
             that.setMapMarker(currentLnglat);
           });
       } else {
 //      	有经纬度得时候
-        currentLnglat = [that.InfoLnglat.longitude, that.InfoLnglat.latitude];
+        currentLnglat = this.toGaode([that.InfoLnglat.longitude, that.InfoLnglat.latitude]);
         that.setMapMarker(currentLnglat);
       }
     }

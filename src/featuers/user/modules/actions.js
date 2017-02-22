@@ -43,7 +43,7 @@ export const addUserAddressData = ({ rootState,commit },data) => {
         ...data
       },
       params:{
-        "SESSION":'9368d6cb-ec92-48e6-9faa-67a5bda84ff0',
+        "SESSION":'966dbeac-dbb3-49d7-9738-324d69fccba0',
       }
     })
       .then((response) => {
@@ -52,7 +52,7 @@ export const addUserAddressData = ({ rootState,commit },data) => {
         resolve(response)
       })
       .catch((error)=>{
-        Vue.$vux.toast.show({text: '提交失败,请重试'})
+        Vue.$vux.toast.show({text: error.data.message})
         Vue.$vux.loading.hide()
         reject(error)
       })
@@ -66,7 +66,7 @@ export const getUserAddressListData = ({commit}) => {
       method:'get',
       url: '/api/address',
       params:{
-        "SESSION":'eb63a011-c2fc-45e3-8d41-c08df640d870',
+        "SESSION":'966dbeac-dbb3-49d7-9738-324d69fccba0',
       }
     })
       .then((response) => {
@@ -117,7 +117,7 @@ export const deleteAddress = ({commit},data) => {
         ...data
       },
       params:{
-        "SESSION":'eb63a011-c2fc-45e3-8d41-c08df640d870',
+        "SESSION":'966dbeac-dbb3-49d7-9738-324d69fccba0',
       }
     })
       .then((response) => {
@@ -142,7 +142,7 @@ export const editAddress = ({ rootState,commit },data) => {
         ...data
       },
       params:{
-        "SESSION":'eb63a011-c2fc-45e3-8d41-c08df640d870',
+        "SESSION":'966dbeac-dbb3-49d7-9738-324d69fccba0',
       }
     })
       .then((response) => {
