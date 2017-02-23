@@ -66,12 +66,16 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['OrderList','OrderListScroll','OrderPrePay']),
+    ...mapGetters(['OrderList','OrderListScroll','OrderPrePay','Query'])
   },
   activated(){
-    this.$nextTick(() => {
-      document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.OrderListScroll
-    })
+    // if(this.Query.type == 'reset'){
+      // this._reset()
+    // }else{
+      this.$nextTick(() => {
+        document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.OrderListScroll
+      })
+    // }
   },
   methods: {
     ...mapActions(['getOrderList','getOrderCancel','orderListClear','setOrderListScroll','getOrderPrePay']),

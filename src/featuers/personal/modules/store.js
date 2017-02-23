@@ -52,6 +52,9 @@ const mutations = {
      state.order.delivery_at = data.delivery_at
      state.order.receiver_address_id = data.receiver_address_id
   },
+  [types.PERSONAL_WAIT_ORDERID](state , data){
+     state.waitOrderId = data
+  },
   [types.PERSONAL_CLEAR](state){
     this.order.buy_amount  = ''
     this.order.delivery_at = ''

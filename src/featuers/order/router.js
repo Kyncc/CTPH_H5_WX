@@ -19,7 +19,7 @@ export default  {
       component: R_ORDER_DETAIL
     },
     {
-      path: 'offiline/',
+      path: 'offiline/:id/',
       component: R_ORDER_OFFILINE
     }
   ]

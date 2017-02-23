@@ -49,7 +49,7 @@ export const postPersonalOrder = ({ commit,state,rootState},params) => {
       }
     })
     .then((response) => {
-      // commit(types.PERSONAL_SHOP_INFO,response.data.data)
+      commit(types.PERSONAL_WAIT_ORDERID,response.data.data.order_id)
       resolve(response)
     })
   })
