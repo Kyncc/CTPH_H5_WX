@@ -3,21 +3,21 @@ import axios from 'config/http'
 
 const state = {
   shop:[],    //配肥站
-  session:'d53dbab6-15c8-4f32-914d-fdc9f2220a02',
+  session:'',
   system:(/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) ? 'IOS' : 'Android')
 }
 
 const actions = {
   /**
-  * 获得配肥站列表 
+  * 获得配肥站列表
   * 如果有数据则中断
   */
   getShop:({ state,commit }) => {
     if(state.shop.length != 0){
       commit('SHOPLIST',state.shop)
-      return 
+      return
     }else{
-      return new Promise((resolve, reject)=> { 
+      return new Promise((resolve, reject)=> {
         axios({
           method:'get',
           url: 'noa/shop'
