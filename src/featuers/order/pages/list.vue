@@ -18,7 +18,7 @@
         </div>
       </div>
       <infinite-loading :on-infinite="_onInfinite"  ref="infiniteLoading" spinner="waveDots">
-        <div slot="no-results"><p style="padding:1rem;text-align:center;" >服务异常</p></div>
+        <div slot="no-results"><p style="padding:1rem;text-align:center;">服务异常</p></div>
         <div slot="no-more"><p style="padding:1rem;text-align:center;">已加载全部订单</p></div>
       </infinite-loading>
     </div>
@@ -71,13 +71,9 @@ export default {
     ...mapGetters(['OrderList','OrderListScroll','OrderPrePay','Query'])
   },
   activated(){
-    // if(this.Query.type == 'reset'){
-      // this._reset()
-    // }else{
-      this.$nextTick(() => {
-        document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.OrderListScroll
-      })
-    // }
+    this.$nextTick(() => {
+      document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.OrderListScroll
+    })
   },
   methods: {
     ...mapActions(['getOrderList','getOrderCancel','orderListClear','setOrderListScroll','getOrderPrePay']),

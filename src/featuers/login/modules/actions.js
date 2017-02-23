@@ -13,7 +13,7 @@ export const getRegisterCode = ({ commit },data) => {
       }
     })
     .then((res) => {
-      Vue.$vux.toast.show({text: '发送验证码成功！'})
+      Vue.$vux.toast.show({text: '发送成功！',type:'success'})
       resolve(res)
     })
   })

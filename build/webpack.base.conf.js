@@ -19,6 +19,9 @@ let webpackConfig = {
       config.build.assetsPublicPath :
       config.dev.assetsPublicPath
   },
+  externals: {
+    'moment': true
+  },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     modules: [
@@ -30,7 +33,8 @@ let webpackConfig = {
       'src': resolve('src'),
       'assets': resolve('src/assets'),
       'components': resolve('src/components'),
-      'config': resolve('src/config')
+      'config': resolve('src/config'),
+      'moment': "moment/min/moment-with-locales.min.js"
     }
   },
   module: {

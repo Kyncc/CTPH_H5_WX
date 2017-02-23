@@ -63,14 +63,14 @@
 </template>
 
 <script>
-import { Group, Cell ,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Radio,ViewBox  } from 'vux'
+import { Group, Cell ,XInput,XButton,XHeader,Tabbar,Flexbox,FlexboxItem,Radio,ViewBox  } from 'vux'
 import { mapActions,mapGetters } from 'vuex'
 import { dateFormat } from 'vux'
 import moment from 'moment'
 
 export default {
   components: {
-    Group,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Cell,Radio,ViewBox 
+    Group,XInput,XButton,XHeader,Tabbar,Flexbox,FlexboxItem,Cell,Radio,ViewBox 
   },
   data () {
     return {

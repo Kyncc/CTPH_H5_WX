@@ -63,11 +63,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less" scoped>
-.weui_btn_primary:not(.weui_btn_disabled):active{
-  background-color:@theme-color !important;
-  border-color:@theme-color;
-  color:#fff;
-}
-</style>

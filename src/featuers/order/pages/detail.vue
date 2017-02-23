@@ -19,8 +19,9 @@
           <cell title="电话" >
             <a :href="'tel:'+OrderDetail.order.receiver_phone" slot="default">{{OrderDetail.order.receiver_phone}}</a>
           </cell>
-          <cell title="收货地址" :value="OrderDetail.order.receiver_address_detail"></cell>
-          <cell title="交货时间" :value="OrderDetail.order.send_at"></cell>
+          <cell title="收货地址："></cell>
+          <p style="padding:0 15px 10px;color:#888">{{OrderDetail.order.receiver_address_detail}}</p>
+          <cell title="交货时间" :value="OrderDetail.order.send_at" ></cell>
         </group>
         
         <group title="订单明细">
