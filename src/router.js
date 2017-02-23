@@ -41,7 +41,7 @@ router.beforeEach((to, from, next) => {
     store.dispatch({
       type: 'clearSession'
     })
-    window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf565864b6a1a358d&redirect_uri=http%3a%2f%2fpeifei.qmant.com%2fnoa%2ftoken%3fpage%3dhttp%3a%2f%2fwww.qmant.com%2fhome%2f&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
+    window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf565864b6a1a358d&redirect_uri=http%3a%2f%2fpeifei.qmant.com%2fnoa%2ftoken%3fpage%3dhttp%3a%2f%2fpeifei.qmant.com&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
   }
 })
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="personalOffiline">
+  <view-box class="personalOffiline">
     <x-header 
       slot="header" 
       :left-options="{showBack: true,backText:'返回'}" 
@@ -31,7 +31,7 @@
         </cell>
       </group>
     </div>
-  </div>
+  </view-box>
 </template>
 
 <script>

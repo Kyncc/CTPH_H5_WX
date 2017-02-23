@@ -1,5 +1,5 @@
 <template>
-  <div class="peronsalCart">
+  <view-box class="peronsalCart">
     <x-header 
       slot="header" 
       :left-options="{showBack: true,backText:'返回'}" 
@@ -27,7 +27,7 @@
       </group>
       <group  title="交货时间" class="goodsTime">
         <cell title="时间选择" >
-          <input slot="value" class="weui-input" type="date" :min="mintime" v-model="delivery_at">
+          <input slot="value" style="height:30px"  type="date" :min="mintime" v-model="delivery_at">
         </cell>
       </group>
        <group title="支付方式">
@@ -59,24 +59,24 @@
         </flexbox-item>
       <flexbox>
   </tabbar>
-  </div>
+  </view-box>
 </template>
 
 <script>
-import { Group, Cell ,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Radio  } from 'vux'
+import { Group, Cell ,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Radio,ViewBox  } from 'vux'
 import { mapActions,mapGetters } from 'vuex'
 import { dateFormat } from 'vux'
+import moment from 'moment'
 
 export default {
   components: {
-    Group,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Cell,Radio 
+    Group,XInput,XButton,XHeader,Tabbar, TabbarItem,Flexbox,FlexboxItem,Cell,Radio,ViewBox 
   },
   data () {
     return {
       payList: [{key: '1', value: '微信支付'},{key: '2', value: '线下支付'}],
-      pay:'',
-      time:'',
-      delivery_at:0,
+      pay:null,
+      delivery_at:null,
       mintime:dateFormat(new Date(), 'YYYY-MM-DD')
     }
   },
@@ -84,13 +84,34 @@ export default {
     ...mapGetters(['PersonalOrder']),
 	},
   methods: {
-     ...mapActions(['setPersonalInfoDetail']),
+     ...mapActions(['setPersonalInfoDetail','postPersonalOrder']),
     _buy(){
-      this.$router.push("../offiline/")
+      if(!this._valid()) return 
+      this.setPersonalInfoDetail({
+        "pay_type":this.pay,
+        "delivery_at":this.delivery_at,
+        "receiver_address_id":52
+      })
+       this.postPersonalOrder()
+      .then(()=>{
+
+
+      })
+
+
+    },
+    //验证提交订单的正确性
+    _valid(){
+      if(!moment().isBefore(this.delivery_at)){
+        this.$vux.toast.show({text:'发货时间不能小于今天',type:'warn',time:'1000'})
+        return false
+      }
+      if(!this.pay){
+        this.$vux.toast.show({text:'请选择支付方式',type:'warn',time:'1000'})
+        return false
+      }
+      return true
     }
-  },
-  mounted () {
-    // console.log(this.min)
   }
 }
 </script>

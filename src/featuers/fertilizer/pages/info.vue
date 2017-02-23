@@ -1,5 +1,5 @@
 <template>
-  <div class="fertilizerInfo">
+  <view-box class="fertilizerInfo">
     <x-header 
       slot="header" 
       title="测土配肥"
@@ -20,16 +20,16 @@
         <x-button type="primary" action-type="button" @click.native="_finish">确定</x-button>
       </div>
     </div>
-  </div>
+  </view-box>
 </template>
 
 <script>
-import { Group, Cell ,XInput,XButton,Selector,XHeader } from 'vux'
+import { Group, Cell ,XInput,XButton,Selector,XHeader,ViewBox } from 'vux'
 import { mapActions,mapGetters } from 'vuex'
 
 export default {
   components: {
-    Group,XInput,XButton,Selector,XButton,XHeader,Cell
+    Group,XInput,XButton,Selector,XButton,XHeader,Cell,ViewBox
   },
   data () {
     return {
@@ -47,15 +47,6 @@ export default {
       }
     }
   },
-  // filters: {
-  //   crop_id(id){
-  //     switch(id){
-  //       case 0 : return '单季稻'
-  //       case 1 : return '早稻'
-  //       case 2 : return '晚稻'
-  //     }
-  //   }
-  // },
   computed:{
     ...mapGetters(['Shop']),
     //输入的验证
@@ -66,10 +57,10 @@ export default {
   watch: {
     //测土机构的数据
     Shop(){
-      this.shopList = [];
       this.Shop.forEach((value, index, array) => {
         this.shopList.push({'key':value.shop_id,'value':value.shop_name})
-      });
+      })
+      shop_id = this.shopList[0].key
     }
   },
   beforeRouteEnter(to, from, next){

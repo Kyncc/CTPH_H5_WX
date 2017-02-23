@@ -76,7 +76,7 @@ export default {
   methods: {
     ...mapActions(['getOrderList','getOrderCancel','orderListClear','setOrderListScroll','getOrderPrePay']),
      _onInfinite(){
-         this.getOrderList()
+        this.getOrderList()
         .then((res)=>{
           if(res.data.data.order_list.length < 10 ){
             this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
