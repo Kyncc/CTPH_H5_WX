@@ -34,11 +34,21 @@ export const getRegisterCodeResult = ({rootState,commit },data) => {
     })
     .then((response) => {
       if(response.code == 20000){
-        Vue.$vux.toast.show({
-          text: '登录成功，即将跳转到首页！',
-          time:800
-        });
-        this.$router.replace('/')
+        //1是未完善 0是已完善
+        if(response.data.is_load_first == 1){
+          Vue.$vux.toast.show({
+            text: '登录成功，即将跳转到完善信息页面！',
+            time:800
+          });
+          this.$router.replace('/login/info/')
+        }else{
+          Vue.$vux.toast.show({
+            text: '登录成功，即将跳转到首页！',
+            time:800
+          });
+          this.$router.replace('/')
+        }
+
       }else{
         Vue.$vux.toast.show({
           text: response.message,
