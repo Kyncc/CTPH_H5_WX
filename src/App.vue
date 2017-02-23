@@ -1,6 +1,8 @@
 <template>
   <div style="height:100%;">
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 

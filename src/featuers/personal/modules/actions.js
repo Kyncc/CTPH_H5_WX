@@ -35,6 +35,27 @@ export const getPrePay = ({ commit,state,rootstate},params) => {
   })
 }
 
+/**或者订制肥规格 */
+export const postPersonalOrder = ({ commit,state,rootState},params) => {
+  return new Promise((resolve, reject)=> { 
+    axios({
+      method:'post',
+      url: 'api/h5/orders/add_custom_made_fertilizer',
+      data:{
+        ...state.order
+      },
+      params:{
+        "SESSION":rootState.common.session
+      }
+    })
+    .then((response) => {
+      // commit(types.PERSONAL_SHOP_INFO,response.data.data)
+      resolve(response)
+    })
+  })
+}
+
+
 
  
 
@@ -50,7 +71,7 @@ export const setPersonalGoodsDetail = ({ commit },data) => {
 
 /**完善个人收货信息 */
 export const setPersonalInfoDetail = ({ commit },data) => {
-  commit(types.PERSONAL_ORDER_GOODSINFO,response.data.data)
+  commit(types.PERSONAL_ORDER_USERINFO,data)
 }
 
 

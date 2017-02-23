@@ -1,5 +1,5 @@
 <template>
-  <div class="fertilizerWait">
+  <view-box class="fertilizerWait">
     <x-header 
       slot="header" 
       :left-options="{showBack: true,backText:'返回'}" 
@@ -27,17 +27,17 @@
           <div slot="no-more"></div>
         </infinite-loading>
      </div>
-  </div>
+  </view-box>
 </template>
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
-import { Group, Cell ,XInput,XButton,XHeader,GroupTitle } from 'vux'
+import { Group, Cell ,XInput,XButton,XHeader,GroupTitle,ViewBox } from 'vux'
 import { mapActions,mapGetters } from 'vuex'
 
 export default {
   components: {
-    Group,XInput,XButton,Cell,XHeader,GroupTitle,InfiniteLoading
+    Group,XInput,XButton,Cell,XHeader,GroupTitle,InfiniteLoading,ViewBox
   },
   filters: {
     crop_id(id){

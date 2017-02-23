@@ -1,5 +1,5 @@
 <template>
-  <div class="personal">
+  <view-box  class="personal">
     <div>
       <x-header 
         slot="header" 
@@ -61,11 +61,11 @@
           </flexbox-item>
        <flexbox>
     </tabbar>
-  </div>
+  </view-box>
 </template>
 
 <script>
-import {XButton,XHeader,Flexbox,FlexboxItem,Tabbar, TabbarItem,Picker,GroupTitle,Group,Cell,Selector,XNumber} from 'vux'
+import {XButton,XHeader,Flexbox,FlexboxItem,Tabbar, ViewBox,TabbarItem,Picker,GroupTitle,Group,Cell,Selector,XNumber} from 'vux'
 import { mapActions,mapGetters } from 'vuex'
 
 
@@ -79,7 +79,7 @@ for (var i = 0; i <= 60; i++) {
 
 export default {
   components: {
-    XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group,Cell,Selector,XNumber,Tabbar, TabbarItem
+    XButton,XHeader,Flexbox,FlexboxItem,Picker,GroupTitle,Group,Cell,Selector,XNumber,Tabbar, TabbarItem,ViewBox
   },
   beforeRouteEnter(to, from, next){
     next(vm => {
@@ -121,7 +121,6 @@ export default {
    watch: {
     //测土机构的数据
     Shop(){
-      this.shopList = [];
       this.Shop.forEach((value, index, array) => {
         this.shopList.push({'key':value.shop_id,'value':value.shop_name})
       });
