@@ -35,7 +35,7 @@ const mutations = {
     state.list.height = 0
   },
   [types.ORDER_PREPAY](state,data){
-    state.list.prepay = data
+    state.prepay = data
   },
   [types.ORDER_LIST_SCROLL](state,height){
     state.list.height = height

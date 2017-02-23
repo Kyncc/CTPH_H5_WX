@@ -25,10 +25,13 @@ export const getOrderDetail = ({ rootState,commit},data) => {
 export const getOrderPrePay = ({ state,rootState,commit},data) => {
   return new Promise((resolve, reject)=> { 
     axios({
-      method:'get',
+      method:'post',
       url: '/api/h5/orders/prepay',
       data:{
-        "order_id":rootState.route.params.id,
+        "order_id":data.order_id,
+      },
+      params:{
+        "SESSION":rootState.common.session
       }
     })
     .then((response) => {

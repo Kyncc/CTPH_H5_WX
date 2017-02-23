@@ -63,6 +63,7 @@ export default function (userConfig) {
           'onMenuShareTimeline',
           'showMenuItems',
           'hideAllNonBaseMenuItem',
+          'chooseWXPay'
         ]
       });
       wx.ready(function () {

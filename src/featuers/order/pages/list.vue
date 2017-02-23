@@ -23,21 +23,26 @@
       </infinite-loading>
     </div>
 
+    <!--易支付的提示-->
     <alert v-model="alertShow" title="提示">
       <p style="text-align:center;">该订单选择的是银行卡支付，请在爱农田APP上进行支付</p>
     </alert>
 
+    <!--取消订单的提示-->
     <confirm v-model="confirmShow" title="提示"  @on-confirm="onConfirm">
       <p style="text-align:center;">您确定要取消订单么?</p>
     </confirm>
 
-    <x-dialog v-model="offilineShow" class="dialog" :hideOnBlur="true">
-        <p class="dialog-title">您可以和商家当面支付现金完成支付，或者根据以下信息进行转账。</p>
-        <p>账号：</p>
-        <p>户名：</p>
-        <p>联系电话：</p>
-      <span class="vux-close" @click="offilineShow=false"></span>
-    </x-dialog>
+    <!--线下支付的提示-->
+    <alert v-model="offilineShow" title="提示">
+      <p style="text-align:center;padding-bottom:.5rem">您可以和商家当面支付现金完成支付，或者根据以下信息进行转账</p>
+      <template v-if = "OrderPrePay.offline_pay">
+        <p style="text-align:left;padding:.25rem 0">账号：<b>{{OrderPrePay.offline_pay.bankcard_no}}</b></p>
+        <p style="text-align:left;padding:.25rem 0">户名：<b>{{OrderPrePay.offline_pay.bank_name}}</b></p>
+        <p style="text-align:left;padding-top:.25rem">联系电话：<b><a :href="'tel:'+OrderPrePay.offline_pay.seller_phone" slot="default">{{OrderPrePay.offline_pay.seller_phone}}</a> </b></p>
+      </template>
+    </alert>
+
   </view-box>
 
 </template>
@@ -61,19 +66,15 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['OrderList','OrderListScroll']),
+    ...mapGetters(['OrderList','OrderListScroll','OrderPrePay']),
   },
   activated(){
-    // this.$nextTick(() => {
-      // document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.OrderListScroll
-    // })
-  },
-  deactivated(){
-    
-    // this.setOrderListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop)
+    this.$nextTick(() => {
+      document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop = this.OrderListScroll
+    })
   },
   methods: {
-    ...mapActions(['getOrderList','getOrderCancel','orderListClear','setOrderListScroll']),
+    ...mapActions(['getOrderList','getOrderCancel','orderListClear','setOrderListScroll','getOrderPrePay']),
      _onInfinite(){
          this.getOrderList()
         .then((res)=>{
@@ -88,6 +89,8 @@ export default {
      },
      /** 进入详情*/
     _orderDetail(index){
+      //保存高度
+      this.setOrderListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop)
       this.$router.push(`../detail/${this.OrderList[index].order_id}`)
     },
     /** 取消订单*/
@@ -97,9 +100,35 @@ export default {
     },
     /** 订单支付*/
     _orderPay(index){
-      console.log();
-      // this.selectOrder = this.OrderList[index].order_id 
-      this.offilineShow = true
+      if(this.OrderList[index].pay_type === 1){
+        this.alertShow = true
+        return
+      }
+      this.selectOrder = this.OrderList[index].order_id 
+      this.getOrderPrePay({
+        'order_id':this.selectOrder
+      })
+      .then(()=>{
+        //线下支付
+        if(this.OrderList[index].pay_type === 3){
+            this.offilineShow = true
+        }else{
+          let self = this
+          wx.chooseWXPay({
+              timestamp: this.getOrderPrePay.weixin_pay.timestamp, 
+              nonceStr: this.getOrderPrePay.weixin_pay.noncestr, 
+              package: `prepay_id=${this.getOrderPrePay.weixin_pay.prepayid}`, 
+              signType: 'MD5',
+              paySign: this.getOrderPrePay.weixin_pay.sign,
+              success: function(res) {
+                self._reset()
+              },
+              cancel: function(res) {
+                alert("您已经取消支付！")
+              }
+          })
+        }
+      })
     },
      /** 刷新*/
     _reset(){
