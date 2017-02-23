@@ -51,8 +51,10 @@
 import { Group, Cell,XButton,XHeader,Flexbox,FlexboxItem,Alert , Confirm,XDialog,ViewBox } from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import OrderList from 'components/orderList'
+import Wechat from 'config/wx.config'
 import { mapActions,mapGetters } from 'vuex'
 
+Wechat()
 export default {
   components: {
     Group,XButton,XHeader,Flexbox,FlexboxItem,Cell,OrderList,Alert ,Confirm,InfiniteLoading,XDialog,ViewBox 
