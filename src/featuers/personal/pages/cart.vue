@@ -74,17 +74,17 @@ export default {
   },
   data () {
     return {
-      payList: [{key: '1', value: '微信支付'},{key: '2', value: '线下支付'}],
+      payList: [{key: '2', value: '微信支付'},{key: '3', value: '线下支付'}],
       pay:null,
       delivery_at:null,
       mintime:dateFormat(new Date(), 'YYYY-MM-DD')
     }
   },
   computed:{
-    ...mapGetters(['PersonalOrder']),
+    ...mapGetters(['PersonalOrder','OrderPrePay','PersonalWaitOrderId']),
 	},
   methods: {
-     ...mapActions(['setPersonalInfoDetail','postPersonalOrder']),
+     ...mapActions(['setPersonalInfoDetail','postPersonalOrder','getOrderPrePay']),
     _buy(){
       if(!this._valid()) return 
       this.setPersonalInfoDetail({
@@ -92,13 +92,26 @@ export default {
         "delivery_at":this.delivery_at,
         "receiver_address_id":52
       })
-       this.postPersonalOrder()
-      .then(()=>{
+      //发起支付
+      this.postPersonalOrder()
+      .then((res)=>{
+        this.getOrderPrePay({
+            "order_id":res.data.data.order_id
+        })
+        .then(()=>{
+            //线下支付
+            if(this.OrderPrePay.pay_type === 3){
+              this.$router.replace(`/order/offiline/${this.PersonalWaitOrderId}/`)
+              return
+            }
+            //微信支付
+            if(this.OrderPrePay.pay_type === 2){
 
 
+
+            }
+        })
       })
-
-
     },
     //验证提交订单的正确性
     _valid(){
@@ -112,6 +125,7 @@ export default {
       }
       return true
     }
+    //线下支付的跳转
   }
 }
 </script>
