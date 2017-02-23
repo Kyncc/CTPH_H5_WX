@@ -23,6 +23,7 @@ export const getOrderDetail = ({ rootState,commit},data) => {
 
 /**获取预支付 */
 export const getOrderPrePay = ({ state,rootState,commit},data) => {
+   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
@@ -36,8 +37,14 @@ export const getOrderPrePay = ({ state,rootState,commit},data) => {
     })
     .then((response) => {
       commit(types.ORDER_PREPAY,response.data.data) 
+      Vue.$vux.loading.hide()
       resolve(response)
     })
+    .catch((error)=>{
+      reject(error)
+      Vue.$vux.loading.hide()
+    })
+
   })
 }
 
