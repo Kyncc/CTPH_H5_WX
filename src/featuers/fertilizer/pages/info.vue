@@ -33,7 +33,7 @@ export default {
   },
   data () {
     return {
-      cropList:[{key: '0', value: '单季稻'}, {key: '1', value: '早稻'}, {key: '2', value: '晚稻'}],
+      cropList:[{key: '2', value: '单季稻'}, {key: '3', value: '早稻'}, {key: '4', value: '晚稻'}],
       shopList:[],
       last_yeid:"",
       crop_type:'',
@@ -48,7 +48,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['Shop']),
+    ...mapGetters(['Shop','Query']),
     //输入的验证
     disable(){
       return (this.$refs.crop_type.valid &&  this.$refs.last_yeid.valid)
@@ -60,7 +60,7 @@ export default {
       this.Shop.forEach((value, index, array) => {
         this.shopList.push({'key':value.shop_id,'value':value.shop_name})
       })
-      shop_id = this.shopList[0].key
+      this.shop_id = this.shopList[0].key
     }
   },
   beforeRouteEnter(to, from, next){
@@ -87,8 +87,8 @@ export default {
       .then((res)=>{
         this.$vux.toast.show({text: '提交成功'})
         setTimeout(()=>{
-          this.$router.replace('/fertilizer/wait/')
-        },2000)
+          this.$router.replace(`/fertilizer/wait/${this.Query.type}/`)
+        },1000)
       })
     },
     //左边的返回

@@ -1,24 +1,24 @@
 <template>
-  <div class="fertilizerIndex">
+  <view-box class="fertilizerIndex">
     <div class="con1">
       <img src="../../../assets/images/fertilizer/bg.jpg" />
     </div>
     <div class="footer">
       <flexbox :gutter="0">
-        <flexbox-item style="box-sizing:border-box;padding:.25rem;" :span="6"><x-button type="primary" plain @click.native="_intoJiFei(1)">我要追肥</x-button></flexbox-item>
-        <flexbox-item style="box-sizing:border-box;padding:.25rem;" :span="6"><x-button type="primary" plain @click.native="_intoJiFei(2)">我要基肥</x-button></flexbox-item>
+        <flexbox-item style="box-sizing:border-box;padding:.25rem;" :span="6"><x-button type="primary" plain @click.native="_intoJiFei(1)">免费测追肥</x-button></flexbox-item>
+        <flexbox-item style="box-sizing:border-box;padding:.25rem;" :span="6"><x-button type="primary" plain @click.native="_intoJiFei(2)">免费测基肥</x-button></flexbox-item>
       </flexbox>
     </div>
-  </div>
+  </view-box>
 </template>
 
 <script>
-import {XButton,Flexbox,FlexboxItem} from 'vux'
+import {XButton,Flexbox,FlexboxItem,ViewBox} from 'vux'
 import { mapActions,mapGetters } from 'vuex'
 
 export default {
   components: {
-    XButton,Flexbox,FlexboxItem
+    XButton,Flexbox,FlexboxItem,ViewBox
   },
   computed:{
     ...mapGetters(['FertilizerApply'])
@@ -39,10 +39,10 @@ export default {
                   this.$router.replace(`info?type=${type}`) 
                   break;
                 case '0': 
-                  this.$router.push(`wait?type=${type}`) 
+                  this.$router.push(`wait/${type}/`) 
                   break;
                 case '1': 
-                  this.$router.push(`info?type=${type}`) 
+                  this.$router.push(`wait/${type}/`) 
                   break;
              }
           }else{
@@ -51,10 +51,10 @@ export default {
                   this.$router.replace(`info?type=${type}`) 
                   break;
                 case '0': 
-                  this.$router.push(`wait?type=${type}`) 
+                  this.$router.push(`wait/${type}/`) 
                   break;
                 case '1': 
-                  this.$router.push(`info?type=${type}`) 
+                  this.$router.push(`wait/${type}/`) 
                   break;
              }
           }

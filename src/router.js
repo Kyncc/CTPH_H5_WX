@@ -26,12 +26,12 @@ let router = new Router({
 })
 
 // 页面刷新时，重新赋值session
-if (window.localStorage.getItem('session')){
-   store.dispatch({
-      type: 'setSession',
-      amount: window.localStorage.getItem('session')
-   })
-}
+// if (window.localStorage.getItem('session')){
+//    store.dispatch({
+//       type: 'setSession',
+//       amount: window.localStorage.getItem('session')
+//    })
+// }
 
 //是否有OPENID若没有则跳到授权
 router.beforeEach((to, from, next) => {

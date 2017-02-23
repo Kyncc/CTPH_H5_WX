@@ -48,7 +48,6 @@ export const getRegisterCodeResult = ({rootState,commit },data) => {
           });
           this.$router.replace('/')
         }
-
       }else{
         Vue.$vux.toast.show({
           text: response.message,

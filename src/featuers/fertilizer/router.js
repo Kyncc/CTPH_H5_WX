@@ -20,7 +20,7 @@ export default {
       component: R_FERTILIZER_INFO
     },
     {
-      path: 'wait',
+      path: 'wait/:type/',
       component: R_FERTILIZER_WAIT
     }
   ]

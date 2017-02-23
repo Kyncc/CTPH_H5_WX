@@ -3,7 +3,8 @@ import axios from 'config/http'
 
 const state = {
   shop:[],    //配肥站
-  session:'d53dbab6-15c8-4f32-914d-fdc9f2220a02',
+  session:'bade3cfc-6104-4947-bcd7-e03b391d12fd',
+  // session:'',
   system:(/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) ? 'IOS' : 'Android')
 }
 
@@ -30,7 +31,7 @@ const actions = {
     }
   },
   setSession:({ commit },data) => {
-    commit('SESSION',data)
+    commit('SESSION',data.amount)
   },
   clearSession:({ commit }) => {
     commit('CLEARSESSION')

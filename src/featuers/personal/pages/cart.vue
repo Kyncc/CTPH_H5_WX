@@ -116,7 +116,7 @@ export default {
     //验证提交订单的正确性
     _valid(){
       if(!moment().isBefore(this.delivery_at)){
-        this.$vux.toast.show({text:'发货时间不能小于今天',type:'warn',time:'1000'})
+        this.$vux.toast.show({text:'发货时间要大于今天',type:'warn',time:'1000'})
         return false
       }
       if(!this.pay){

@@ -10,6 +10,7 @@ export const getFertilizerApply = ({ rootState,commit }) => {
       method:'get',
       url: 'api/soil_test/apply_status',
       params:{
+
         "SESSION":rootState.common.session
       }
     })
@@ -32,6 +33,7 @@ export const getFertilizerApplyInfo = ({ rootState,commit }) => {
       method:'get',
       url: 'api/soil_test/last_apply',
       params:{
+        "apply_type":rootState.route.params.type,
         "SESSION":rootState.common.session
       }
     })

@@ -42,11 +42,17 @@ export default {
   filters: {
     crop_id(id){
       switch(id){
-        case 0 : return '单季稻'
-        case 1 : return '早稻'
-        case 2 : return '晚稻'
+        case 2 : return '单季稻'
+        case 3 : return '早稻'
+        case 4 : return '晚稻'
       }
     }
+  },
+  beforeRouteEnter(to, from, next){
+    next(vm => {
+      vm.getFertilizerApplyInfo()
+      vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+    })
   },
   computed:{
     ...mapGetters(['FertilizerApplyInfo'])
