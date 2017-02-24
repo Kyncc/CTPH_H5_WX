@@ -5,7 +5,9 @@ import store from 'src/store'
 
 axios.defaults.timeout = 5000
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-axios.defaults.baseURL = ''
+axios.defaults.baseURL = 'http://192.168.5.14:8080/'
+// axios.defaults.baseURL = ''
+
 
 //POST传参序列化
 axios.interceptors.request.use((config) => {
@@ -29,7 +31,7 @@ axios.interceptors.response.use((res) =>{
   if(error.response){
     switch (error.response.status){
       case 401:
-        window.location.href = `http://${window.document.location.host}/#/login/`
+        window.location.href = `http://${window.document.location.host}/login/`
         break
       default:
         Vue.$vux.toast.show({text:'网络异常',type:'text'})

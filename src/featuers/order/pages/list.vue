@@ -48,13 +48,14 @@
 </template>
 
 <script>
-import { Group, Cell,XButton,XHeader,Flexbox,FlexboxItem,Alert , Confirm,XDialog,ViewBox } from 'vux'
+import { Group, Cell,XButton,XHeader,Flexbox,FlexboxItem,Alert , Confirm,XDialog,ViewBox,WechatPlugin } from 'vux'
 import InfiniteLoading from 'vue-infinite-loading'
 import OrderList from 'components/orderList'
 import Wechat from 'config/wx.config'
 import { mapActions,mapGetters } from 'vuex'
 
 Wechat()
+let wx = WechatPlugin.$wechat
 export default {
   components: {
     Group,XButton,XHeader,Flexbox,FlexboxItem,Cell,OrderList,Alert ,Confirm,InfiniteLoading,XDialog,ViewBox 
@@ -110,18 +111,18 @@ export default {
       this.getOrderPrePay({
         'order_id':this.selectOrder
       })
-      .then(()=>{
+      .then((res)=>{
         //线下支付
         if(this.OrderList[index].pay_type === 3){
             this.offilineShow = true
         }else{
           let self = this
           wx.chooseWXPay({
-              timestamp: this.getOrderPrePay.weixin_pay.timestamp, 
-              nonceStr: this.getOrderPrePay.weixin_pay.noncestr, 
-              package: `prepay_id=${this.getOrderPrePay.weixin_pay.prepayid}`, 
+              timestamp: res.data.data.weixin_pay.timestamp, 
+              nonceStr: res.data.data.weixin_pay.noncestr, 
+              package: `prepay_id=${res.data.data.weixin_pay.prepayid}`, 
               signType: 'MD5',
-              paySign: this.getOrderPrePay.weixin_pay.sign,
+              paySign: res.data.data.weixin_pay.sign,
               success: function(res) {
                 self._reset()
               },
