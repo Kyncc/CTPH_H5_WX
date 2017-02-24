@@ -7,7 +7,6 @@
       title="订单列表">
       <p slot="right" @click="_reset">刷新</p>
     </x-header>
-
     <div style="padding-top:46px;">
       <div style="background:#fbf9fe">
         <div v-for="(order,index) in OrderList">
@@ -94,7 +93,7 @@ export default {
     _orderDetail(index){
       //保存高度
       this.setOrderListScroll(document.getElementsByClassName("vux-fix-safari-overflow-scrolling")[0].scrollTop)
-      this.$router.push(`../detail/${this.OrderList[index].order_id}`)
+      this.$router.push(`../detail/${this.OrderList[index].order_id}/`)
     },
     /** 取消订单*/
     _orderCancel(index){

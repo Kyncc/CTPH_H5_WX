@@ -15,7 +15,7 @@ export default  {
       component: R_ORDER_LIST
     },
     {
-      path: 'detail/:id',
+      path: 'detail/:id/',
       component: R_ORDER_DETAIL
     },
     {

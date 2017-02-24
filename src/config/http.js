@@ -5,7 +5,7 @@ import store from 'src/store'
 
 axios.defaults.timeout = 5000
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-axios.defaults.baseURL =  (process.env == 'development' ? 'http://192.168.5.14:8080/' :  'http://peifei.qmant.com/')
+axios.defaults.baseURL =  (process.env.NODE_ENV == 'development' ? 'http://192.168.5.14:8080/' :  'http://peifei.qmant.com/')
 
 //POST传参序列化
 axios.interceptors.request.use((config) => {
