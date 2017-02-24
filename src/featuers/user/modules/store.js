@@ -12,7 +12,8 @@ const state = {
   phone:'',
   name:'',
   address_list:[],
-};
+  selected_address:[]
+}
 
 const mutations = {
   [types.INFO_USER_LOCATION](state , data){
@@ -33,6 +34,8 @@ const mutations = {
     state.longitude = ''
     state.latitude = ''
     state.address_detail = ''
+    state.name = ''
+    state.phone = ''
   },
   [types.GET_USER_ADDRESS_LIST](state , data){
     state.address_list = data;
@@ -42,7 +45,7 @@ const mutations = {
   },
   [types.SELECTED_ADDRESS_ID](state , data){
     state.selected_address = data;
-  },
+  }
 }
 
 export default {

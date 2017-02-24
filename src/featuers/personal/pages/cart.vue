@@ -9,18 +9,24 @@
     <div style="padding-top:46px;">
       <group title="我的地址">
         <div class="weui_cell vux-tap-active">
-            <div class="weui_cell_hd" style="padding-right:.5rem">
+            <div class="weui_cell_hd" style="padding-right:1rem">
               <i class="iconfont icon-adress" style="font-size:1.5rem;"></i>
             </div> 
-            <div class="weui_cell_bd weui_cell_primary">
-              <p class="adressUser">
-                  <span>好好</span>
-                  <span>18315507973</span>
-                  <span class="default">[默认地址]</span>
-              </p> 
-              <span class="vux-label-desc">
-                  北京市北京东城区QQ
-              </span>
+            <div class="weui_cell_bd weui_cell_primary" @click="_intoAddress">
+              <template v-if = 'AddressSelect'>
+                <p class="adressUser">
+                  <span>{{AddressSelect.receiver_name}}</span>
+                  <span>{{AddressSelect.receiver_phone}}</span>
+                </p> 
+                <span class="vux-label-desc ellipsis" >
+                    {{AddressSelect.address_detail}}
+                </span>
+              </template>
+              <template v-else >
+                <p class="adressUser">
+                  您还未填写过收货地址
+                </p> 
+              </template>
             </div> 
             <div class="weui_cell_ft with_arrow"> </div> 
         </div>
@@ -86,27 +92,31 @@ export default {
   },
   beforeRouteEnter(to, from, next){
     next(vm => {
-      vm.getUserAddressListData()
-      // vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+      if(vm.AddressList['user_id'] == undefined){
+        vm.getUserAddressListData()
+      }
     })
   },
   computed:{
-    ...mapGetters(['PersonalOrder','OrderPrePay','PersonalWaitOrderId','AddressList']),
+    ...mapGetters(['PersonalOrder','OrderPrePay','PersonalWaitOrderId','AddressList','AddressSelect']),
 	},
   methods: {
      ...mapActions(['setPersonalInfoDetail','postPersonalOrder','getOrderPrePay','getUserAddressListData']),
+     _intoAddress(){
+      this.$router.push('/userinfo/address_list/?type=select')
+     }, 
     _buy(){
       if(!this._valid()) return 
       this.setPersonalInfoDetail({
         "pay_type":this.pay,
         "delivery_at":this.delivery_at,
-        "receiver_address_id":52
+        "receiver_address_id":this.AddressSelect.receiver_address_id
       })
       //发起支付
       this.postPersonalOrder()
       .then((res)=>{
         this.getOrderPrePay({
-            "order_id":res.data.data.order_id
+          "order_id":res.data.data.order_id
         })
         .then((res)=>{
             //线下支付
@@ -142,6 +152,10 @@ export default {
       }
       if(!this.pay){
         this.$vux.toast.show({text:'请选择支付方式',type:'warn',time:'1000'})
+        return false
+      }
+      if((typeof this.AddressSelect) == 'undefined'){
+        this.$vux.toast.show({text:'收货地址不能为空',type:'warn',time:'1000'})
         return false
       }
       return true

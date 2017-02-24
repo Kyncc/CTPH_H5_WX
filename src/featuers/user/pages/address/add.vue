@@ -2,17 +2,16 @@
   <view-box class="peronsalCart">
     <x-header
       slot="header"
-      :left-options="{showBack: true,backText:'返回',preventGoBack:true}"
+      :left-options="{showBack: true,backText:'返回'}"
       style="width:100%;position:absolute;left:0;top:0;z-index:100;"
       title="新建地址"
-      @on-click-back="_back"
     >
     </x-header>
     <div style="padding-top: 46px;">
       <group>
         <x-input title="  姓名" placeholder="请输入收货人的姓名" v-model="name" is-type="china-name" ref="name" required ></x-input>
         <x-input title="联系电话" placeholder="请输入收货人的手机号码" v-model="phone" keyboard="number" is-type="china-mobile" ref="phone" required></x-input>
-        <cell title="请选择收货地址" is-link :inline-desc="address" @click.native = "_intoAdd" ></cell>
+        <cell title="请选择收货地址" is-link :inline-desc="address" @click.native = "_intoAdd"></cell>
       </group>
     </div>
     <x-button
@@ -62,7 +61,7 @@
         })
         .then((res)=>{
           setTimeout(()=>{
-            this.$router.replace('/userinfo/address_list/')
+            history.back()
           },1000)
         })
       },
@@ -77,9 +76,6 @@
           return false
         }
         return true 
-      },
-      _back(){
-        this.$router.replace('/userinfo/address_list/')
       }
     },
     data () {
@@ -94,6 +90,3 @@
     }
   }
 </script>
-<style>
-  @import "add.less";
-</style>

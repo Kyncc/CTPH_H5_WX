@@ -164,7 +164,7 @@
         this.setUserPhone(address.receiver_phone);
         this.setUserAddress(address.address_detail);
         this.setAddressId(address.receiver_address_id);
-        this.$router.replace('/userinfo/address_edit/')
+        this.$router.push('/userinfo/address_edit/')
       },
 //      选择当前的地址
       selectAddress(address){

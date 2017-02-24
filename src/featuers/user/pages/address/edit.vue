@@ -2,10 +2,9 @@
   <div>
     <x-header
       slot="header"
-      :left-options="{showBack: true,backText:'返回',preventGoBack:true}"
+      :left-options="{showBack: true,backText:'返回'}"
       style="width:100%;position:absolute;left:0;top:0;z-index:100;"
       title="修改地址"
-      @on-click-back="_back"
     >
     </x-header>
     <div style="padding-top: 46px;background: #fff;overflow: hidden;">
@@ -68,7 +67,7 @@
             that.setUserAddress('');
             that.setAddressId('')
             setTimeout(()=>{
-              this.$router.replace('/userinfo/address_list/')
+              history.back()
             },1000)
           })
       },
@@ -87,9 +86,7 @@
         }
       },
       //左边的返回
-      _back(){
-        this.$router.replace('/userinfo/address_list/')
-      }
+      
     },
     computed:{
       ...mapGetters(['InfoLnglat']),
@@ -127,6 +124,3 @@
 
   }
 </script>
-<style>
-  @import "add.less";
-</style>

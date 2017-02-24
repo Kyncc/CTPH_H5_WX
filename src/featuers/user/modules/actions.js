@@ -34,8 +34,6 @@ export const setSelectedAddressId = ({commit },data) => {
 }
 
 
-
-
 //添加地址
 export const addUserAddressData = ({ rootState,commit },data) => {
   Vue.$vux.loading.show({text: '请稍候'})
@@ -75,9 +73,10 @@ export const addUserAddressData = ({ rootState,commit },data) => {
 }
 
 
+
+
 //获取地址列表
-export const getUserAddressListData = ({commit,rootState}) => {
-  // Vue.$vux.loading.show({text: '请稍候'})
+export const getUserAddressListData = ({commit,rootState,state}) => {
   return new Promise((resolve, reject)=> {
     axios({
       method:'get',
@@ -87,17 +86,25 @@ export const getUserAddressListData = ({commit,rootState}) => {
       }
     })
     .then((response) => {
-      // Vue.$vux.loading.hide()
+      // response.data.data.forEach((value, index, array) => {
+      //   if(value.is_default){
+      //       commit(types.SELECTED_ADDRESS_ID,value)
+      //       return
+      //   }
+      // })
       commit(types.GET_USER_ADDRESS_LIST,response.data.data)
       resolve(response)
     })
     .catch((error)=>{
       Vue.$vux.toast.show({text: '提交失败,请重试'})
-      // Vue.$vux.loading.hide()
       reject(error)
     })
   })
 }
+
+
+
+
 //设为默认地址
 export const setCurrentAddress = ({commit,rootState},data) => {
   Vue.$vux.loading.show({text: '设为默认地址中'})
@@ -123,6 +130,7 @@ export const setCurrentAddress = ({commit,rootState},data) => {
     })
   })
 }
+
 //删除地址
 export const deleteAddress = ({commit,rootState},data) => {
   Vue.$vux.loading.show({text: '删除地址中'})
@@ -148,6 +156,7 @@ export const deleteAddress = ({commit,rootState},data) => {
     })
   })
 }
+
 //修改地址
 export const editAddress = ({ rootState,commit },data) => {
   Vue.$vux.loading.show({text: '请稍候'})
@@ -162,18 +171,14 @@ export const editAddress = ({ rootState,commit },data) => {
         "SESSION":rootState.common.session,
       }
     })
-      .then((response) => {
-        Vue.$vux.loading.hide()
-        resolve(response)
-      })
-      .catch((error)=>{
-        Vue.$vux.toast.show({text: '修改失败,请重试'})
-        Vue.$vux.loading.hide()
-        reject(error)
-      })
+    .then((response) => {
+      Vue.$vux.loading.hide()
+      resolve(response)
+    })
+    .catch((error)=>{
+      Vue.$vux.toast.show({text: '修改失败,请重试'})
+      Vue.$vux.loading.hide()
+      reject(error)
+    })
   })
 }
-
-
-
-

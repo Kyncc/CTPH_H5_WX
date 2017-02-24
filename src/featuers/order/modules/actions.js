@@ -20,7 +20,6 @@ export const getOrderDetail = ({ rootState,commit},data) => {
   })
 }
 
-
 /**获取预支付 */
 export const getOrderPrePay = ({ state,rootState,commit},data) => {
    Vue.$vux.loading.show({text: '请稍候'})
