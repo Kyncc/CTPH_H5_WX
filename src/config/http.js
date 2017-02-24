@@ -9,7 +9,7 @@ axios.defaults.baseURL =  (process.env.NODE_ENV == 'development' ? 'http://192.1
 
 //POST传参序列化
 axios.interceptors.request.use((config) => {
-  if(config.method  === 'post'){
+  if(config.method  === 'post' || config.method  === 'put' ){
     config.data = qs.parse(config.data,{arrayFormat:'brackets'});
   }
   return config
@@ -29,7 +29,7 @@ axios.interceptors.response.use((res) =>{
   if(error.response){
     switch (error.response.status){
       case 401:
-        window.location.href = `http://${window.document.location.host}/login/`
+        window.location.href = `http://${window.document.location.host}/?#/login/`
         break
       default:
         Vue.$vux.toast.show({text:'网络异常',type:'text'})

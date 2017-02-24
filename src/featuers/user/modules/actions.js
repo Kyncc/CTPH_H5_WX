@@ -32,6 +32,10 @@ export const setAddressId = ({commit },data) => {
 export const setSelectedAddressId = ({commit },data) => {
   commit(types.SELECTED_ADDRESS_ID,data)
 }
+
+
+
+
 //添加地址
 export const addUserAddressData = ({ rootState,commit },data) => {
   Vue.$vux.loading.show({text: '请稍候'})
@@ -48,16 +52,29 @@ export const addUserAddressData = ({ rootState,commit },data) => {
     })
     .then((response) => {
       Vue.$vux.loading.hide()
+      if(response.data.code != 20000){
+        this.$vux.toast.show({
+          type:'warn',
+          text: response.data.message
+        })
+        return;
+      }
       commit(types.ADD_USER_ADDRESS)
+      Vue.$vux.toast.show({
+        text: '新增地址成功',
+        time:1000
+      })
       resolve(response)
     })
     .catch((error)=>{
-      Vue.$vux.toast.show({text: error.data.message})
+      Vue.$vux.toast.show({text:error.data.message,type:"text"})
       Vue.$vux.loading.hide()
       reject(error)
     })
   })
 }
+
+
 //获取地址列表
 export const getUserAddressListData = ({commit,rootState}) => {
   // Vue.$vux.loading.show({text: '请稍候'})

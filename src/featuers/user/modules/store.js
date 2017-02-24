@@ -29,7 +29,10 @@ const mutations = {
     state.phone = data;
   },
   [types.ADD_USER_ADDRESS](state , data){
-    state.add_address = data;
+    state.add_address = data
+    state.longitude = ''
+    state.latitude = ''
+    state.address_detail = ''
   },
   [types.GET_USER_ADDRESS_LIST](state , data){
     state.address_list = data;

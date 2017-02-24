@@ -63,10 +63,14 @@
 </template>
 
 <script>
-import { Group, Cell ,XInput,XButton,XHeader,Tabbar,Flexbox,FlexboxItem,Radio,ViewBox  } from 'vux'
+import { Group,Cell,XInput,XButton,XHeader,Tabbar,Flexbox,FlexboxItem,Radio,ViewBox,WechatPlugin} from 'vux'
 import { mapActions,mapGetters } from 'vuex'
 import { dateFormat } from 'vux'
 import moment from 'moment'
+import Wechat from 'config/wx.config'
+
+Wechat()
+let wx = WechatPlugin.$wechat
 
 export default {
   components: {
@@ -77,14 +81,20 @@ export default {
       payList: [{key: '2', value: '微信支付'},{key: '3', value: '线下支付'}],
       pay:null,
       delivery_at:null,
-      mintime:dateFormat(new Date(), 'YYYY-MM-DD')
+      mintime:dateFormat(new Date(),'YYYY-MM-DD')
     }
   },
+  beforeRouteEnter(to, from, next){
+    next(vm => {
+      vm.getUserAddressListData()
+      // vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+    })
+  },
   computed:{
-    ...mapGetters(['PersonalOrder','OrderPrePay','PersonalWaitOrderId']),
+    ...mapGetters(['PersonalOrder','OrderPrePay','PersonalWaitOrderId','AddressList']),
 	},
   methods: {
-     ...mapActions(['setPersonalInfoDetail','postPersonalOrder','getOrderPrePay']),
+     ...mapActions(['setPersonalInfoDetail','postPersonalOrder','getOrderPrePay','getUserAddressListData']),
     _buy(){
       if(!this._valid()) return 
       this.setPersonalInfoDetail({
@@ -98,7 +108,7 @@ export default {
         this.getOrderPrePay({
             "order_id":res.data.data.order_id
         })
-        .then(()=>{
+        .then((res)=>{
             //线下支付
             if(this.OrderPrePay.pay_type === 3){
               this.$router.replace(`/order/offiline/${this.PersonalWaitOrderId}/`)
@@ -106,9 +116,20 @@ export default {
             }
             //微信支付
             if(this.OrderPrePay.pay_type === 2){
-
-
-
+              let self = this
+              wx.chooseWXPay({
+                  timestamp: res.data.data.weixin_pay.timestamp, 
+                  nonceStr: res.data.data.weixin_pay.noncestr, 
+                  package: `prepay_id=${res.data.data.weixin_pay.prepayid}`, 
+                  signType: 'MD5',
+                  paySign: res.data.data.weixin_pay.sign,
+                  success: function(res) {
+                    self.$router.replace(`/order/list/`)
+                  },
+                  cancel: function(res) {
+                    alert("您已经取消支付！")
+                  }
+              })
             }
         })
       })
@@ -125,7 +146,6 @@ export default {
       }
       return true
     }
-    //线下支付的跳转
   }
 }
 </script>

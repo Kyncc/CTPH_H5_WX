@@ -95,8 +95,8 @@ export default {
     pay_type(state){
       switch(state){
         case 1 : return '易支付';
-        case 2 : return '微信支付';
-        case 3 : return '线下支付';
+        case 2 : return '线下支付';
+        case 3 : return '微信支付';
       }
     },
     cancelled_type(state){

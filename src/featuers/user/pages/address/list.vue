@@ -9,68 +9,63 @@
       <p slot="right">
         <router-link to="/userinfo/address_add">
           新增
-          <i class="iconfont icon-chenggong"></i>
         </router-link>
       </p>
     </x-header>
-    <div style="padding-top: 46px;background: #fff;">
-      <template v-if="!loading">
-        <div v-for="address in AddressList">
-          <div>
-            <div class="weui_cell vux-tap-active" @click="selectAddress(address)">
-              <div>
-                <div class="weui_cell_hd"></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                  <p>
-                    {{address.receiver_name}} &nbsp;{{address.receiver_phone}}
-                  </p>
-                  <span class="vux-label-desc">
-                {{address.address_detail}}
-              </span>
-                </div>
+    <div style="padding-top: 46px;">
+      <div v-for="address in AddressList">
+        <div>
+          <div class="weui_cell vux-tap-active" @click="selectAddress(address)">
+            <div>
+              <div class="weui_cell_hd"></div>
+              <div class="weui_cell_bd weui_cell_primary">
+                <p>
+                  {{address.receiver_name}} &nbsp;{{address.receiver_phone}}
+                </p>
+                <span class="vux-label-desc">
+              {{address.address_detail}}
+            </span>
               </div>
             </div>
-            <div style="border-bottom: 1px solid #ccc;padding-left: 16px;height: 40px;line-height: 40px;box-sizing: border-box;">
-              <flexbox>
-                <flexbox-item :span="5">
-                  <div v-if="address.is_default == false">
-                    <div @click="setDefaultAddress(address)">
-                      <i class="iconfont icon-chenggong"></i>
-                      设为默认
-                    </div>
+          </div>
+          <div style="border-bottom: 1px solid #ccc;padding-left: 16px;height: 40px;line-height: 40px;box-sizing: border-box;">
+            <flexbox>
+              <flexbox-item :span="5">
+                <div v-if="address.is_default == false">
+                  <div @click="setDefaultAddress(address)">
+                    <i class="iconfont icon-chenggong"></i>
+                    设为默认
                   </div>
-                  <div v-else>
-                    <div class="selected">
-                      <i class="iconfont icon-chenggong"></i>
-                      默认地址
-                    </div>
+                </div>
+                <div v-else>
+                  <div class="selected">
+                    <i class="iconfont icon-chenggong"></i>
+                    默认地址
                   </div>
-                </flexbox-item>
-                <flexbox-item :span="3">
-                  <div @click="editAddress(address)">
-                    <i class="iconfont icon-edit"></i>
-                    编辑
-                  </div>
-                </flexbox-item>
-                <flexbox-item :span="3">
-                  <div @click="showDelete(address)">
-                    <i class="iconfont icon-iconfontdelete" style="font-size: 20px;"></i>
-                    删除
-                  </div>
-                </flexbox-item>
-              </flexbox>
-            </div>
+                </div>
+              </flexbox-item>
+              <flexbox-item :span="3">
+                <div @click="editAddress(address)">
+                  <i class="iconfont icon-edit"></i>
+                  编辑
+                </div>
+              </flexbox-item>
+              <flexbox-item :span="3">
+                <div @click="showDelete(address)">
+                  <i class="iconfont icon-iconfontdelete" style="font-size: 20px;"></i>
+                  删除
+                </div>
+              </flexbox-item>
+            </flexbox>
           </div>
         </div>
-      </template>
+      </div>
       <infinite-loading :on-infinite="_onInfinite"  ref="infiniteLoading" spinner="default">
         <div slot="no-results" >
           <p style="font-size:1rem;padding:1rem;text-align:center;" @click="_reset">加载失败,请点我重试</p>
         </div>
         <div slot="no-more" >
-          <div v-if="AddressList.length > 0">
-
-          </div>
+          <div v-if="AddressList.length > 0"></div>
           <div v-else>
             <p style="font-size:1rem;padding:1rem;text-align:center;">没有地址，请先添加地址</p>
           </div>
@@ -105,10 +100,8 @@
       _onInfinite(){
       this.getUserAddressListData()
           .then(()=>{
-
             this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
             this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
-            this.loading = false;
           })
           .catch((error)=>{
             this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
@@ -133,7 +126,8 @@
             this.deleteId='';
           this.$vux.toast.show({
           	text: '删除地址地址成功',
-            time:1000
+            time:1000,
+            type:'success'
           });
           this._onInfinite();
         })
@@ -185,10 +179,9 @@
     data () {
       return {
         show: false,
-        loading:true,
         deleteId:'',
       }
-    },
+    }
   }
 </script>
 <style>

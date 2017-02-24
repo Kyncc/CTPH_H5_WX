@@ -56,7 +56,6 @@
         }, 1000);
       },
       startLogin(){
-
         if(this.code.length != 6){
           this.$vux.toast.show({text: '错误的验证码',type:'warn',time:'1000'})
           return

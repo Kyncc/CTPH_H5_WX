@@ -19,10 +19,10 @@ export default  {
       path: 'info/',
       component: R_LOGIN_INFO
     },
-    {
-      path: 'map/',
-      component: R_LOGIN_MAP
-    }
+    // {
+    //   path: 'map/',
+    //   component: R_LOGIN_MAP
+    // }
   ]
 }
 

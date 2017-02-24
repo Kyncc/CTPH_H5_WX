@@ -13,7 +13,7 @@ import user from './featuers/user/router'
 Vue.use(Router)
 
 let router = new Router({
-  mode: 'history',
+  mode: 'hash',
   routes: [
     ...index,
     login,

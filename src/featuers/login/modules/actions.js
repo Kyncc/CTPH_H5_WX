@@ -62,23 +62,26 @@ export const getRegisterCodeResult = ({rootState,commit },data) => {
 }
 
 /**完善信息 */
-export const setUserInfo = ({ state,commit },data) => {
+export const setUserInfo = ({ state,commit,rootState },data) => {
   return new Promise((resolve, reject)=> {
     axios({
       method:'put',
       url: 'api/user',
       data:{
         "user":{
-           "address_detail":state.address_detail,
+           "address_detail":rootState.userinfo.address_detail,
            "cn_name":data.cn_name,
-           "latitude":state.latitude,
-           "longitude":state.longitude,
-           "user_id":'',
-           "user_phone":state.phone
+           "latitude":rootState.userinfo.latitude,
+           "longitude":rootState.userinfo.longitude,
+           "user_phone":data.user_phone
         }
+      },
+      params:{
+        "SESSION":rootState.common.session
       }
     })
     .then((response) => {
+      
       resolve(response)
     })
   })

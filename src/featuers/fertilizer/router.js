@@ -16,7 +16,7 @@ export default {
       component: R_FERTILIZER
     },
     {
-      path: 'info',
+      path: 'info/',
       component: R_FERTILIZER_INFO
     },
     {
