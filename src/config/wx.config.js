@@ -66,6 +66,7 @@ export default function (userConfig) {
           'chooseWXPay'
         ]
       });
+      
       wx.ready(function () {
         wx.hideAllNonBaseMenuItem();
         wx.showMenuItems({

@@ -16,11 +16,11 @@ export default  {
       component: R_LOGIN
     },
     {
-      path: 'info',
+      path: 'info/',
       component: R_LOGIN_INFO
     },
     {
-      path: 'map',
+      path: 'map/',
       component: R_LOGIN_MAP
     }
   ]

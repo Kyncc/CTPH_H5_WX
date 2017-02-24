@@ -37,7 +37,7 @@
     },
     methods: {
       ...mapActions(['setUserLnglat','setUserAddress','setUserName','setUserPhone','addUserAddressData']),
-    	submit(){
+      submit(){
         const that=this;
 //        提交数据
         this.addUserAddressData({
@@ -53,22 +53,22 @@
             if(res.data.code != 20000){
               this.$vux.toast.show({
                 type:'warn',
-              	text: res.data.message
+                text: res.data.message
               });
               return;
             }
             this.$vux.toast.show({
-            	text: '新增地址成功',
+              text: '新增地址成功',
               time:1000
             });
 //    			清空state中的数据
-            that.setUserLnglat({
+            this.setUserLnglat({
               "latitude":'',
               "longitude":''
             });
-            that.setUserName('');
-            that.setUserPhone('');
-            that.setUserAddress('');
+            this.setUserName('');
+            this.setUserPhone('');
+            this.setUserAddress('');
             setTimeout(()=>{
               this.$router.replace('/userinfo/address_list/')
             },1000)
@@ -76,14 +76,14 @@
       },
 //      检测提交按钮是否可以点击
       checkSubmit(){
-    		if(
+        if(
           (this.InfoLnglat.name != '')
           &&
           (this.InfoLnglat.phone != '')
           &&
           (this.InfoLnglat.address_detail != '')
         ){
-    			this.disableSubmit=false;
+          this.disableSubmit=false;
         }
       },
       //左边的返回
