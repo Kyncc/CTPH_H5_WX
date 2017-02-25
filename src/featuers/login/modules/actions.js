@@ -20,16 +20,13 @@ export const getRegisterCode = ({ commit },data) => {
 }
 
 /**验证短信状态 */
-export const getRegisterCodeResult = ({rootState,commit },data) => {
+export const getRegisterCodeResult = ({commit },data) => {
   return new Promise((resolve, reject)=> {
     axios({
       method:'post',
       url: '/noa/judge_code',
       data:{
         ...data
-      },
-      params:{
-        "SESSION":rootState.common.session,
       }
     })
     .then((response) => {
@@ -75,9 +72,6 @@ export const setUserInfo = ({ state,commit,rootState },data) => {
            "longitude":rootState.userinfo.longitude,
            "user_phone":data.user_phone
         }
-      },
-      params:{
-        "SESSION":rootState.common.session
       }
     })
     .then((response) => {

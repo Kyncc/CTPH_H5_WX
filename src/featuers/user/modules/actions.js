@@ -33,9 +33,8 @@ export const setSelectedAddressId = ({commit },data) => {
   commit(types.SELECTED_ADDRESS_ID,data)
 }
 
-
 //添加地址
-export const addUserAddressData = ({ rootState,commit },data) => {
+export const addUserAddressData = ({ commit },data) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject)=> {
     axios({
@@ -43,9 +42,6 @@ export const addUserAddressData = ({ rootState,commit },data) => {
       url: '/api/address',
       data:{
         ...data
-      },
-      params:{
-        "SESSION":rootState.common.session,
       }
     })
     .then((response) => {
@@ -72,26 +68,14 @@ export const addUserAddressData = ({ rootState,commit },data) => {
   })
 }
 
-
-
-
 //获取地址列表
-export const getUserAddressListData = ({commit,rootState,state}) => {
+export const getUserAddressListData = ({commit}) => {
   return new Promise((resolve, reject)=> {
     axios({
       method:'get',
-      url: '/api/address',
-      params:{
-        "SESSION":rootState.common.session,
-      }
+      url: '/api/address'
     })
     .then((response) => {
-      // response.data.data.forEach((value, index, array) => {
-      //   if(value.is_default){
-      //       commit(types.SELECTED_ADDRESS_ID,value)
-      //       return
-      //   }
-      // })
       commit(types.GET_USER_ADDRESS_LIST,response.data.data)
       resolve(response)
     })
@@ -106,7 +90,7 @@ export const getUserAddressListData = ({commit,rootState,state}) => {
 
 
 //设为默认地址
-export const setCurrentAddress = ({commit,rootState},data) => {
+export const setCurrentAddress = ({commit},data) => {
   Vue.$vux.loading.show({text: '设为默认地址中'})
   return new Promise((resolve, reject)=> {
     axios({
@@ -114,9 +98,6 @@ export const setCurrentAddress = ({commit,rootState},data) => {
       url: '/api/address/defaultaddress',
       data:{
         ...data
-      },
-      params:{
-        "SESSION":rootState.common.session,
       }
     })
     .then((response) => {

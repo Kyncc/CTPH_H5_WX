@@ -3,15 +3,12 @@ import axios from 'config/http'
 import * as types from './mutationTypes'
 
 /**获取申请状态 */
-export const getFertilizerApply = ({ rootState,commit }) => {
+export const getFertilizerApply = ({ commit }) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
-      url: 'api/soil_test/apply_status',
-      params:{
-        "SESSION":rootState.common.session
-      }
+      url: 'api/soil_test/apply_status'
     })
     .then((response) => {
       Vue.$vux.loading.hide()
@@ -32,8 +29,7 @@ export const getFertilizerApplyInfo = ({ rootState,commit }) => {
       method:'get',
       url: 'api/soil_test/last_apply',
       params:{
-        "apply_type":rootState.route.params.type,
-        "SESSION":rootState.common.session
+        "apply_type":rootState.route.params.type
       }
     })
     .then((response) => {
@@ -59,9 +55,6 @@ export const postFertilizerApply = ({ rootState,commit },data) => {
         "crop_type":data.crop_type,
         "last_yeid":data.last_yeid,
         "shop_id":data.shop_id
-      },
-      params:{
-        "SESSION":rootState.common.session
       }
     })
     .then((response) => {

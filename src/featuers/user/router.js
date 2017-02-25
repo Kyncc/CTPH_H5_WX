@@ -2,7 +2,6 @@ const R_USER_LAYOUT = r => require.ensure([], () => r(require('./pages/layout'))
 const R_ADDRESS = r => require.ensure([], () => r(require('./pages/address/list')), '/userinfo/')
 const R_ADDRESS_ADD = r => require.ensure([], () => r(require('./pages/address/add')), '/userinfo/')
 const R_ADDRESS_EDIT = r => require.ensure([], () => r(require('./pages/address/edit')), '/userinfo/')
-const R_ADDRESS_LIST = r => require.ensure([], () => r(require('./pages/address/select')), '/userinfo/')
 const R_ADDRESS_AMAP = r => require.ensure([], () => r(require('./pages/address/amap')), '/userinfo/')
 
 import modules from './modules/store'
@@ -23,10 +22,6 @@ export default  {
     {
       path: 'address_edit',
       component: R_ADDRESS_EDIT
-    },
-    {
-      path: '/address/select/',
-      component: R_ADDRESS_LIST
     },
     {
       path: 'amap',

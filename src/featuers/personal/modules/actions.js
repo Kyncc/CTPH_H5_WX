@@ -1,8 +1,8 @@
 import axios from 'config/http'
 import * as types from './mutationTypes'
 
-/**或者订制肥规格 */
-export const getShopPrice = ({ commit,state,rootstate},params) => {
+/**获取订制肥价格 */
+export const getShopPrice = ({ commit},params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
@@ -18,15 +18,15 @@ export const getShopPrice = ({ commit,state,rootstate},params) => {
   })
 }
 
-/**或者订制肥规格 */
-export const getPrePay = ({ commit,state,rootstate},params) => {
+/**预付接口 */
+export const getPrePay = ({ commit,state},params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
       url: 'api/h5/orders/prepay',
       params:{
         "order_id	":state.waitOrderId
-      },
+      }
     })
     .then((response) => {
       commit(types.PERSONAL_SHOP_INFO,response.data.data)
@@ -35,17 +35,14 @@ export const getPrePay = ({ commit,state,rootstate},params) => {
   })
 }
 
-/**或者订制肥规格 */
-export const postPersonalOrder = ({ commit,state,rootState},params) => {
+/**下单 */
+export const postPersonalOrder = ({ commit,state},params) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
       url: 'api/h5/orders/add_custom_made_fertilizer',
       data:{
         ...state.order
-      },
-      params:{
-        "SESSION":rootState.common.session
       }
     })
     .then((response) => {
@@ -55,9 +52,6 @@ export const postPersonalOrder = ({ commit,state,rootState},params) => {
   })
 }
 
-
-
- 
 
 /**清空订单信息订单信息 */
 export const clearPersonal = ({commit}) => {

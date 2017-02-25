@@ -12,6 +12,7 @@ axios.interceptors.request.use((config) => {
   if(config.method  === 'post' || config.method  === 'put' ){
     config.data = qs.parse(config.data,{arrayFormat:'brackets'});
   }
+  config.params = (Object.assign(config.params,{"SESSION":store.state.common.session}))
   return config
 },(error) =>{
   Vue.$vux.toast.show({text: '错误的传参',type:'text'})
@@ -38,4 +39,4 @@ axios.interceptors.response.use((res) =>{
    return Promise.reject(error)
 })
 
-export default axios;
+export default axios

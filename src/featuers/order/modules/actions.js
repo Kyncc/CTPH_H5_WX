@@ -3,14 +3,13 @@ import axios from 'config/http'
 import * as types from './mutationTypes'
 
 /**获取订单详情 */
-export const getOrderDetail = ({ rootState,commit},data) => {
+export const getOrderDetail = ({commit},data) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
       url: '/api/h5/orders/detail',
       params:{
-        "order_id":rootState.route.params.id,
-        "SESSION":rootState.common.session
+        "order_id":rootState.route.params.id
       }
     })
     .then((response) => {
@@ -21,7 +20,7 @@ export const getOrderDetail = ({ rootState,commit},data) => {
 }
 
 /**获取预支付 */
-export const getOrderPrePay = ({ state,rootState,commit},data) => {
+export const getOrderPrePay = ({commit},data) => {
    Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject)=> { 
     axios({
@@ -29,9 +28,6 @@ export const getOrderPrePay = ({ state,rootState,commit},data) => {
       url: '/api/h5/orders/prepay',
       data:{
         "order_id":data.order_id,
-      },
-      params:{
-        "SESSION":rootState.common.session
       }
     })
     .then((response) => {
@@ -48,15 +44,14 @@ export const getOrderPrePay = ({ state,rootState,commit},data) => {
 }
 
 /**获取订单列表 */
-export const getOrderList = ({ state,rootState,commit},data) => {
+export const getOrderList = ({ state,commit},data) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
       url: '/api/h5/orders/list',
       params:{
         "limit":state.list.limit,
-        "page":state.list.page,
-        "SESSION":rootState.common.session
+        "page":state.list.page
       }
     })
     .then((response) => {
@@ -70,15 +65,12 @@ export const getOrderList = ({ state,rootState,commit},data) => {
 }
 
 /**取消订单 */
-export const getOrderCancel = ({ state,rootState,commit},data) => {
+export const getOrderCancel = ({ state,commit},data) => {
   Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject)=> { 
     axios({
       method:'post',
       url: '/api/h5/orders/cancel',
-      params:{
-        "SESSION":rootState.common.session
-      },
       data:{
         "cancelled_reason":"其他",
         "order_id":data.order_id

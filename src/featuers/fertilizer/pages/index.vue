@@ -36,7 +36,7 @@ export default {
           if(type == '1'){
              switch(String(this.FertilizerApply.add_apply_status)){
                 case '-1': 
-                  this.$router.replace(`info?type=${type}`) 
+                  this.$router.push(`info?type=${type}`) 
                   break;
                 case '0': 
                   this.$router.push(`wait/${type}/`) 
@@ -48,7 +48,7 @@ export default {
           }else{
              switch(String(this.FertilizerApply.base_apply_status)){
                 case '-1': 
-                  this.$router.replace(`info?type=${type}`) 
+                  this.$router.push(`info?type=${type}`) 
                   break;
                 case '0': 
                   this.$router.push(`wait/${type}/`) 

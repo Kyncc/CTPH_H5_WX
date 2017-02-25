@@ -4,8 +4,7 @@
       slot="header" 
       title="测土配肥"
       style="width:100%;position:absolute;left:0;top:0;z-index:100;" 
-      :left-options="{showBack: true,backText:'返回',preventGoBack:true}" 
-      @on-click-back="_back"
+      :left-options="{showBack: true,backText:'返回'}" 
     ></x-header>
     <div style="padding-top:46px;">
       <group title="完善信息后会为您提供免费的测土服务">
@@ -90,10 +89,6 @@ export default {
           this.$router.replace(`/fertilizer/wait/${this.Query.type}/`)
         },1000)
       })
-    },
-    //左边的返回
-    _back(){
-      this.$router.replace('/fertilizer/')
     }
   }
 }
