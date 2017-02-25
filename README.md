@@ -1,6 +1,8 @@
 # 测土配肥Webapp
 
-> 🤞基于Vue2.0x 全家桶微信项目🤞
+> 🤞Vue2.0x 全家桶微信项目🤞
+
+![二维码](http://okkula0y9.bkt.clouddn.com/qrcode_for_gh_355765ab0094_430.jpg)
 
 ## 环境编译
 
@@ -26,16 +28,11 @@
 
 -	[图片懒加载-Vue-lazyload](https://github.com/hilongjw/vue-lazyload)
 
--	[灯箱-PhotoSwipe](https://github.com/dimsemenov/PhotoSwipe)
-
 -	[loading插件-vue-infinite-loading](https://peachscript.github.io/vue-infinite-loading/#!/events)
 
 ## 工具JS
 
 -	[http请求-Axios](https://github.com/mzabriskie/axios)
-
--	[微信JS-SDK](https://www.npmjs.com/package/weixin-js-sdk)
-
 
 ## 目录结构
 ----------
