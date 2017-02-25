@@ -5,8 +5,8 @@
     </div>
     <div class="footer">
       <flexbox :gutter="0">
-        <flexbox-item style="box-sizing:border-box;padding:.25rem;" :span="6"><x-button type="primary" plain @click.native="_intoJiFei(1)">免费测追肥</x-button></flexbox-item>
-        <flexbox-item style="box-sizing:border-box;padding:.25rem;" :span="6"><x-button type="primary" plain @click.native="_intoJiFei(2)">免费测基肥</x-button></flexbox-item>
+        <flexbox-item style="box-sizing:border-box;padding:.25rem;" :span="6"><x-button type="primary" plain @click.native="_intoJiFei(2)">免费测追肥</x-button></flexbox-item>
+        <flexbox-item style="box-sizing:border-box;padding:.25rem;" :span="6"><x-button type="primary" plain @click.native="_intoJiFei(1)">免费测基肥</x-button></flexbox-item>
       </flexbox>
     </div>
   </view-box>
@@ -26,6 +26,7 @@ export default {
   methods: {
     ...mapActions(['getFertilizerApply']),
     _intoJiFei(type){
+      console.log(type)
        this.getFertilizerApply()
        .then(()=>{
          /**
@@ -34,7 +35,7 @@ export default {
          *  1:已测进入结果
          */
           if(type == '1'){
-             switch(String(this.FertilizerApply.add_apply_status)){
+             switch(String(this.FertilizerApply.base_apply_status)){
                 case '-1': 
                   this.$router.push(`info?type=${type}`) 
                   break;
@@ -46,7 +47,7 @@ export default {
                   break;
              }
           }else{
-             switch(String(this.FertilizerApply.base_apply_status)){
+             switch(String(this.FertilizerApply.add_apply_status)){
                 case '-1': 
                   this.$router.push(`info?type=${type}`) 
                   break;

@@ -10,8 +10,8 @@
         <div v-if="FertilizerApplyInfo.crop_name">
           <group-title style="text-align:center">预约成功,测土机构将主动联系您</br>测土后会为您提供免费的施肥配方建议</group-title>
           <group>
-            <cell title="种植作物" :value="FertilizerApplyInfo.crop_id | crop_id"></cell>
-            <cell title="作物品种" :value="FertilizerApplyInfo.crop_name"></cell>
+            <cell title="种植作物" :value="FertilizerApplyInfo.crop_name"></cell>
+            <cell title="作物品种" :value="FertilizerApplyInfo.crop_type"></cell>
             <cell title="上季产量" :value="FertilizerApplyInfo.last_yeid"></cell>
             <cell title="测土机构" :value="FertilizerApplyInfo.shop_name"></cell>
           </group>
@@ -50,7 +50,7 @@ export default {
   },
   beforeRouteEnter(to, from, next){
     next(vm => {
-      vm.getFertilizerApplyInfo()
+      // vm.getFertilizerApplyInfo()
       vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
     })
   },
