@@ -56,7 +56,8 @@ export const addUserAddressData = ({ commit },data) => {
       commit(types.ADD_USER_ADDRESS)
       Vue.$vux.toast.show({
         text: '新增地址成功',
-        time:1000
+        time:1000,
+        type:"success"
       })
       resolve(response)
     })
@@ -80,18 +81,14 @@ export const getUserAddressListData = ({commit}) => {
       resolve(response)
     })
     .catch((error)=>{
-      Vue.$vux.toast.show({text: '提交失败,请重试'})
       reject(error)
     })
   })
 }
 
-
-
-
 //设为默认地址
 export const setCurrentAddress = ({commit},data) => {
-  Vue.$vux.loading.show({text: '设为默认地址中'})
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject)=> {
     axios({
       method:'put',
@@ -101,11 +98,11 @@ export const setCurrentAddress = ({commit},data) => {
       }
     })
     .then((response) => {
-      Vue.$vux.loading.hide()
+       Vue.$vux.loading.hide()
       resolve(response)
     })
     .catch((error)=>{
-      Vue.$vux.toast.show({text: '设为默认地址失败'})
+      Vue.$vux.toast.show({text: '设为失败','time':'1000','type':'warn'})
       Vue.$vux.loading.hide()
       reject(error)
     })
@@ -114,16 +111,13 @@ export const setCurrentAddress = ({commit},data) => {
 
 //删除地址
 export const deleteAddress = ({commit,rootState},data) => {
-  Vue.$vux.loading.show({text: '删除地址中'})
+  Vue.$vux.loading.show({text: '请稍候'})
   return new Promise((resolve, reject)=> {
     axios({
       method:'delete',
       url: '/api/address',
       data:{
         ...data
-      },
-      params:{
-        "SESSION":rootState.common.session,
       }
     })
     .then((response) => {
@@ -131,7 +125,7 @@ export const deleteAddress = ({commit,rootState},data) => {
       resolve(response)
     })
     .catch((error)=>{
-      Vue.$vux.toast.show({text: '删除地址失败'})
+      Vue.$vux.toast.show({text: '删除失败','time':'1000','type':'warn'})
       Vue.$vux.loading.hide()
       reject(error)
     })
@@ -147,9 +141,6 @@ export const editAddress = ({ rootState,commit },data) => {
       url: '/api/address',
       data:{
         ...data
-      },
-      params:{
-        "SESSION":rootState.common.session,
       }
     })
     .then((response) => {
@@ -157,7 +148,7 @@ export const editAddress = ({ rootState,commit },data) => {
       resolve(response)
     })
     .catch((error)=>{
-      Vue.$vux.toast.show({text: '修改失败,请重试'})
+      Vue.$vux.toast.show({text: '修改失败','time':'1000','type':'warn'})
       Vue.$vux.loading.hide()
       reject(error)
     })

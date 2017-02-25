@@ -79,5 +79,9 @@
       height:8rem;
     }
   }
+  .weui_vcode .weui_icon_clear:before {
+    top: -6px;
+    position: relative;
+  }
 }
 </style>

@@ -3,7 +3,7 @@ import axios from 'config/http'
 import * as types from './mutationTypes'
 
 /**获取订单详情 */
-export const getOrderDetail = ({commit},data) => {
+export const getOrderDetail = ({commit,rootState},data) => {
   return new Promise((resolve, reject)=> { 
     axios({
       method:'get',
@@ -36,8 +36,8 @@ export const getOrderPrePay = ({commit},data) => {
       resolve(response)
     })
     .catch((error)=>{
-      reject(error)
       Vue.$vux.loading.hide()
+      reject(error)
     })
 
   })
@@ -83,7 +83,6 @@ export const getOrderCancel = ({ state,commit},data) => {
       resolve(response)
     })
     .catch((error)=>{
-      Vue.$vux.toast.show({text: '提交失败,请重试'})
       Vue.$vux.loading.hide()
       reject(error)
     })

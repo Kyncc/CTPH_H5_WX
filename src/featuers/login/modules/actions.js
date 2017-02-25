@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import axios from 'config/http'
 import * as types from './mutationTypes'
+import router from '../../../router'
 
 /**发送短信 */
 export const getRegisterCode = ({ commit },data) => {
@@ -30,20 +31,12 @@ export const getRegisterCodeResult = ({commit },data) => {
       }
     })
     .then((response) => {
-      if(response.code == 20000){
+      if(response.data.code == 20000){
         //1是未完善 0是已完善
         if(response.data.is_load_first == 1){
-          Vue.$vux.toast.show({
-            text: '登录成功，即将跳转到完善信息页面！',
-            time:800
-          });
-          this.$router.replace('/login/info/')
+          router.replace('/login/info/')
         }else{
-          Vue.$vux.toast.show({
-            text: '登录成功，即将跳转到首页！',
-            time:800
-          });
-          this.$router.replace('/')
+          router.replace('/')
         }
       }else{
         Vue.$vux.toast.show({
@@ -52,7 +45,6 @@ export const getRegisterCodeResult = ({commit },data) => {
           time:1200
         })
       }
-      // commit(types.REGISTER_CODE,data.phone)
       resolve(response)
     })
   })

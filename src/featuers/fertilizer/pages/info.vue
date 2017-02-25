@@ -36,7 +36,7 @@ export default {
       shopList:[],
       last_yeid:"",
       crop_type:'',
-      crop_id:'0',
+      crop_id:'2',
       shop_id:'',
       isNum:(value)=>{
         return {

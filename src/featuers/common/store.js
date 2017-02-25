@@ -2,9 +2,8 @@ import Vue from 'vue'
 import axios from 'config/http'
 
 const state = {
-  shop:[],    //配肥站
-  session:'c3ac528a-77d9-491e-a6ba-e928273bf40f',
-  // session:'',
+  shop:[],
+  session:(process.env.NODE_ENV == 'development' ? 'oAnmJxGlT4abb37tB96ZJtqOgD7Y' : ''),
   system:(/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) ? 'IOS' : 'Android')
 }
 
