@@ -133,7 +133,8 @@
         currentLnglat = [118.360344, 31.329557];
         this.setMapMarker(currentLnglat);
         let wx = this.$wechat;
-        let url = wxBaseConfig.baseUrl;
+//        let url = wxBaseConfig.baseUrl;
+        let url = location.href.split('#')[0];
         //获取wx配置信息
         this.$http.post(wxBaseConfig.apiUrl, {
           url: url
