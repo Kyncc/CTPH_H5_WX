@@ -36,8 +36,9 @@
     <alert v-model="offilineShow" title="提示">
       <p style="text-align:center;padding-bottom:.5rem">您可以和商家当面支付现金完成支付，或者根据以下信息进行转账</p>
       <template v-if = "OrderPrePay.offline_pay">
+        <p style="text-align:left;padding:.25rem 0">银行名：<b>{{OrderPrePay.offline_pay.bank_name}}</b></p>
         <p style="text-align:left;padding:.25rem 0">账号：<b>{{OrderPrePay.offline_pay.bankcard_no}}</b></p>
-        <p style="text-align:left;padding:.25rem 0">户名：<b>{{OrderPrePay.offline_pay.bank_name}}</b></p>
+        <p style="text-align:left;padding:.25rem 0">户名：<b>{{OrderPrePay.offline_pay.bank_account}}</b></p>
         <p style="text-align:left;padding-top:.25rem">联系电话：<b><a :href="'tel:'+OrderPrePay.offline_pay.seller_phone" slot="default">{{OrderPrePay.offline_pay.seller_phone}}</a> </b></p>
       </template>
     </alert>

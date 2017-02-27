@@ -5,7 +5,7 @@
         slot="header" 
         :left-options="{showBack: true,backText:'首页',preventGoBack:true}" 
         style="width:100%;position:absolute;left:0;top:0;z-index:100;" 
-        title="个性化配肥"
+        title="定制化配肥"
         @on-click-back="$router.push('/')"
       >
         <p slot="right">
