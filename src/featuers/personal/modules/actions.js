@@ -52,7 +52,6 @@ export const postPersonalOrder = ({ commit,state},params) => {
   })
 }
 
-
 /**清空订单信息订单信息 */
 export const clearPersonal = ({commit}) => {
   commit(types.PERSONAL_CLEAR)

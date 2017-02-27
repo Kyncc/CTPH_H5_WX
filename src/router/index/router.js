@@ -8,7 +8,7 @@ export default [
     children: [
       {
         path: 'index/',
-        redirect:'/'
+        redirect:'/login/'
       }
     ]
   },

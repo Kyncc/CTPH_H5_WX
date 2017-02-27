@@ -8,7 +8,7 @@
       </div> 
       <div class="weui_cell_ft">
         <span v-if="order.order_status === 1">待付款</span>
-        <span v-else-if="order.order_status === 2">待生产</span>
+        <span v-else-if="order.order_status === 2">待发货</span>
         <span v-else-if="order.order_status === 3">待发货</span>
         <span v-else-if="order.order_status === 4">已发货</span>
         <span v-else>已取消</span>

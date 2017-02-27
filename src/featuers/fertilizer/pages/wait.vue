@@ -51,6 +51,7 @@ export default {
   beforeRouteEnter(to, from, next){
     next(vm => {
       // vm.getFertilizerApplyInfo()
+      vm.clearApplyInfo()
       vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
     })
   },
@@ -58,7 +59,7 @@ export default {
     ...mapGetters(['FertilizerApplyInfo'])
 	},
   methods: {
-    ...mapActions(['getFertilizerApplyInfo']),
+    ...mapActions(['getFertilizerApplyInfo','clearApplyInfo']),
     _onInfinite(){
       this.getFertilizerApplyInfo()
       .then(()=>{

@@ -34,6 +34,9 @@ const mutations = {
     state.add_shop_name = ''
     state.base_apply_status = ''
     state.base_shop_name = ''
+  },
+  [types.FERTILIZER_APPLY_CLEAR](state){
+    state.apply.info = []
   }
 }
 

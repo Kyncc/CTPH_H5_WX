@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="header">
-      <img class="logo" src="http://o9s1f7266.bkt.clouddn.com/ant_logo.png?imageView2/2/w/200/h/200">
+      <img class="logo" src="http://o9s1f7266.bkt.clouddn.com/ant_logo.png?imageView2/0/format/webp/w/200/h/200">
     </div>
     <group class="weui_cells_form">
       <x-input name="mobile" placeholder="手机号" keyboard="number" v-model="mobile" is-type="china-mobile" required  ref="user_phone"></x-input>

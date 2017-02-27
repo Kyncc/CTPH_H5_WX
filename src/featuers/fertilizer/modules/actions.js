@@ -68,3 +68,8 @@ export const postFertilizerApply = ({ rootState,commit },data) => {
     })
   })
 }
+
+/**清除申请信息 */
+export const clearApplyInfo = ({ commit }) => {
+  commit(types.FERTILIZER_APPLY_CLEAR)
+}

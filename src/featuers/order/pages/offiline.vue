@@ -23,9 +23,9 @@
       </group>
       <group>
         <box gap=".5rem">您可以和商家当面支付现金</box>
-        <cell title="银行">{{OrderPrePay.offline_pay.bank_account}}</cell>
+        <cell title="银行">{{OrderPrePay.offline_pay.bank_name}}</cell>
         <cell title="账号">{{OrderPrePay.offline_pay.bankcard_no}}</cell>
-        <cell title="户名">{{OrderPrePay.offline_pay.total_deal_price}}</cell>
+        <cell title="户名">{{OrderPrePay.offline_pay.bank_account}}</cell>
         <cell title="联系电话">
           <a slot="value" :href="'tel:'+OrderPrePay.offline_pay.seller_phone" >{{OrderPrePay.offline_pay.seller_phone}}</a>
         </cell>
