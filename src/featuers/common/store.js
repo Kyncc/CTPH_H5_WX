@@ -3,7 +3,7 @@ import axios from 'config/http'
 
 const state = {
   shop:[],
-  session:(process.env.NODE_ENV == 'development' ? 'oAnmJxGlT4abb37tB96ZJtqOgD7Y' : ''),
+  session:(process.env.NODE_ENV == 'development' ? '' : ''),
   system:(/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) ? 'IOS' : 'Android')
 }
 

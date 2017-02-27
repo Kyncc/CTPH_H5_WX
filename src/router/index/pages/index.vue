@@ -20,7 +20,8 @@
 <script>
 import {XButton,XHeader} from 'vux'
 import './index.less'
-
+import Wechat from 'config/wx.config'
+Wechat()
 export default {
   components: {
     XButton,XHeader
