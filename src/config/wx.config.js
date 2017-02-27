@@ -38,7 +38,7 @@ export default function (userConfig) {
   let defaultConfig = {
     title: '使用爱农田配肥，庄稼长势好多了！',
     desc: '同样种的水稻，同样是种田的老把事，隔壁老王的长势为啥就好这么多？',
-    link: url,
+    link: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf565864b6a1a358d&redirect_uri=http%3a%2f%2fpeifei.qmant.com%2fnoa%2ftoken%3fpage%3dhttp%3a%2f%2fpeifei.qmant.com/index&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect',
     imgUrl: 'http://o9s1f7266.bkt.clouddn.com/ant_logo.png',
     success: function () {
       Vue.$vux.toast.show({
@@ -56,7 +56,7 @@ export default function (userConfig) {
     .then(function (data) {
       let wxConfigData=data.data.data;
       wx.config({
-        debug: true,
+        debug: false,
         appId: wxBaseConfig.appId,
         timestamp: wxConfigData.timestamp,
         nonceStr: wxConfigData.nonceStr,
