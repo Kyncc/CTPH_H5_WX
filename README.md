@@ -24,7 +24,7 @@
 
 -	[手机UI库-Vux](https://vux.li/#/zh-CN/README?id=-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8webpack)
 
--	[地图-Vue-amap](https://elemefe.github.io/vue-amap/#/docs/map)
+-	[高德地图-Vue-amap](https://elemefe.github.io/vue-amap/#/docs/map)
 
 -	[图片懒加载-Vue-lazyload](https://github.com/hilongjw/vue-lazyload)
 
@@ -55,7 +55,7 @@
           ├── modules       # 数据业务
           ├── pages         # 页面
       ├── login           # 登陆注册
-      ├── map             # 地图
+      ├── user            # 个人
       ├── order           # 订单
       ├── record          # 测土配肥记录
       ├── personal        # 个性化配肥
