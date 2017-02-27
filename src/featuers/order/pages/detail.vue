@@ -21,7 +21,7 @@
           </cell>
           <cell title="收货地址："></cell>
           <p style="padding:0 15px 10px;color:#888">{{OrderDetail.order.receiver_address_detail}}</p>
-          <cell title="期望发货时间" :value="OrderDetail.order_detail[0].delivery_at" ></cell>
+          <cell  title="期望发货时间" :value="OrderDetail.order_detail[0].delivery_at" ></cell>
         </group>
         
         <group title="订单明细">
@@ -54,7 +54,7 @@
           <cell title="订单状态" :value="OrderDetail.order.order_status | order_status"></cell>
           <cell title="下单时间" :value="OrderDetail.order.created_at"></cell>
           <cell title="支付方式" :value="OrderDetail.order.pay_type | pay_type"></cell>
-          <cell title="交货时间" :value="OrderDetail.order.send_at"></cell>
+          <cell v-if="OrderDetail.order.send_at" title="交货时间" :value="OrderDetail.order.send_at"></cell>
         </group>
       </div>
 
