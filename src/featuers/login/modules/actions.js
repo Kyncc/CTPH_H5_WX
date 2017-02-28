@@ -33,7 +33,7 @@ export const getRegisterCodeResult = ({commit },data) => {
     .then((response) => {
       if(response.data.code == 20000){
         //1是未完善 0是已完善
-        if(response.data.is_load_first == 1){
+        if(response.data.data.is_load_first == 1){
           router.replace('/login/info/')
         }else{
           router.replace('/')
@@ -67,7 +67,6 @@ export const setUserInfo = ({ state,commit,rootState },data) => {
       }
     })
     .then((response) => {
-      
       resolve(response)
     })
   })

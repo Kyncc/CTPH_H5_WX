@@ -105,6 +105,16 @@ export default {
   },
   computed:{
     ...mapGetters(['Shop','Query','PersonalOrder']),
+    shop_id(){
+      return (this.shopList[0] ? this.shopList[0].key : '')
+    },
+    shopList(){
+      let shopList = []
+      this.Shop.forEach((value, index, array) => {
+        shopList.push({'key':value.shop_id,'value':value.shop_name})
+      })
+      return shopList;
+    }
 	},
   data () {
     return {
@@ -113,20 +123,10 @@ export default {
       total:0,
       jiaNum:['18','18'],
       danNum:['18','18'],
-      linNum:['18','18'],
-      shopList:[],
-      shop_id:'',
+      linNum:['18','18']
     }
   },
    watch: {
-    //测土机构的数据
-    Shop(){
-      this.Shop.forEach((value, index, array) => {
-        this.shopList.push({'key':value.shop_id,'value':value.shop_name})
-      });
-      this.shop_id = this.shopList[0].key;
-    },
-    //切换商店更新价格
     shop_id(){
       this.getShopPrice({
           "shop_id":this.shop_id

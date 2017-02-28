@@ -77,8 +77,8 @@
 </script>
 
 <style scroped>
-.weui_cells{
-  margin-top:0
+.peronsalCart .weui_cells{
+  margin-top:0px !important
 }
 </style>
 
