@@ -6,7 +6,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import {ToastPlugin,LoadingPlugin,WechatPlugin,AjaxPlugin,AlertPlugin} from 'vux'
-import AMap from 'vue-amap';
+import AMap from 'vue-amap'
 
 Vue.use(ToastPlugin)    //使用提醒
 Vue.use(LoadingPlugin)  //使用Loading

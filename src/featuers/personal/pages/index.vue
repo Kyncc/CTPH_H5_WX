@@ -6,8 +6,7 @@
         :left-options="{showBack: true,backText:'首页',preventGoBack:true}" 
         style="width:100%;position:absolute;left:0;top:0;z-index:100;" 
         title="定制化配肥"
-        @on-click-back="$router.push('/')"
-      >
+        @on-click-back="$router.push('/')">
         <p slot="right">
           <router-link to="/fertilizer/">免费测土</router-link>
         </p>
@@ -15,7 +14,7 @@
     </div>
     <div style="padding-top:46px;">
       <group title="配肥信息">
-        <group-title style="color:#000">你可以根据土壤得养分情况个性化选择配肥比例</group-title>
+        <group-title style="color:#000">你可以根据土壤养分情况个性化选择配肥比例</group-title>
         <flexbox style="padding:0 10px;box-sizing:border-box">
           <flexbox-item class="selectCol">
             <group-title class="selectName">氮(N)<sub></sub><i class="icon iconfont icon-select-tb"></i></group-title>
@@ -32,19 +31,21 @@
         </flexbox>
       </group>
       <group>
-        <flexbox >
-          <flexbox-item :span="3" class="price">
-            ￥{{PersonalOrder.product_price}}
-          </flexbox-item>
-          <flexbox-item :span="3" class="type">
-            {{PersonalOrder.product_specification}}
-          </flexbox-item>
-          <flexbox-item :span="6" >
-            <x-number :min="1" :max="99999" :value="1" type="inline" button-style="round" fillable v-model="count"></x-number>
-          </flexbox-item>
-        </flexbox> 
+      <div style="padding:0 .5rem">
+          <flexbox>
+            <flexbox-item :span="3" class="price">
+              ￥{{PersonalOrder.product_price}}
+            </flexbox-item>
+            <flexbox-item :span="3" class="type">
+              {{PersonalOrder.product_specification}}
+            </flexbox-item>
+            <flexbox-item :span="6" >
+              <x-number :min="1" :max="99999" :value="1" type="inline" button-style="round" fillable v-model="count"></x-number>
+            </flexbox-item>
+          </flexbox> 
+        </div>
       </group>
-      <group title="配肥站" style="padding-bottom:4rem">
+      <group title="配肥站" style="padding-bottom:1.5rem">
         <selector :options="shopList" v-model="shop_id"></selector>
       </group>
     </div>

@@ -8,28 +8,27 @@
     ></x-header>
     <div style="padding-top:46px;">
       <group title="我的地址">
-        <div class="weui_cell vux-tap-active">
-            <div class="weui_cell_hd" style="padding-right:1rem">
-              <i class="iconfont icon-adress" style="font-size:1.5rem;"></i>
-            </div> 
-            <div class="weui_cell_bd weui_cell_primary" @click="_intoAddress">
+        <Cell is-link>
+           <div slot="icon" style="padding-right:1rem">
+             <i class="iconfont icon-adress" style="font-size:1.5rem;"></i>
+           </div> 
+           <div slot="default" @click="_intoAddress">
               <template v-if = 'AddressSelect'>
                 <p class="adressUser">
-                  <span>{{AddressSelect.receiver_name}}</span>
-                  <span>{{AddressSelect.receiver_phone}}</span>
+                  {{AddressSelect.receiver_name}}
+                  {{AddressSelect.receiver_phone}}
                 </p> 
                 <span class="vux-label-desc ellipsis" >
-                    {{AddressSelect.address_detail}}
+                  {{AddressSelect.address_detail}}
                 </span>
               </template>
-              <template v-else >
+              <template v-else>
                 <p class="adressUser">
                   您还未填写过收货地址
                 </p> 
               </template>
-            </div> 
-            <div class="weui_cell_ft with_arrow"> </div> 
-        </div>
+           </div> 
+        </Cell>
       </group>
       <group  title="交货时间" class="goodsTime">
         <cell title="时间选择" >
@@ -40,16 +39,14 @@
          <radio title="type" v-model="pay" :options="payList"></radio>
        </group>  
       <group title="商品详情">
-        <p style="padding:.25rem;text-indent:1em;">{{PersonalOrder.shop_name}}</p>
-        <div class="weui_cell "> 
-          <div class="weui_cell_bd weui_cell_primary">
-            <flexbox>
+         <Cell :title = 'PersonalOrder.shop_name'></Cell>
+         <Cell>
+            <flexbox slot="child">
               <flexbox-item :span="6"><p>1.配方肥({{PersonalOrder.n_percent}}-{{PersonalOrder.p_percent}}-{{PersonalOrder.k_percent}})</p></flexbox-item>
               <flexbox-item :span="2"><p style="text-align:right;padding:0 .5rem">×{{PersonalOrder.buy_amount}}</p></flexbox-item>
-              <flexbox-item :span="4"><p style="text-align:right;padding:0 .5rem">￥{{PersonalOrder.total_deal_price}}</p></flexbox-item>
+              <flexbox-item :span="3"><p style="text-align:right;padding:0 .5rem">￥{{PersonalOrder.total_deal_price}}</p></flexbox-item>
             </flexbox>
-          </div>
-        </div>
+         </Cell>
       </group>
     </div>
     <tabbar class="footer">
