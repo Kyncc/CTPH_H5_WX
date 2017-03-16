@@ -5,8 +5,8 @@
     </div>
     <div class="footer">
       <flexbox :gutter="0">
-        <flexbox-item style="box-sizing:border-box;padding:.25rem;" :span="6"><x-button type="primary" plain @click.native="_intoJiFei(2)">免费测追肥</x-button></flexbox-item>
-        <flexbox-item style="box-sizing:border-box;padding:.25rem;" :span="6"><x-button type="primary" plain @click.native="_intoJiFei(1)">免费测基肥</x-button></flexbox-item>
+        <flexbox-item style="box-sizing:border-box;padding:.25rem;" :span="6"><x-button type="primary" plain @click.native="_intoJiFei(2)">基肥免费测土</x-button></flexbox-item>
+        <flexbox-item style="box-sizing:border-box;padding:.25rem;" :span="6"><x-button type="primary" plain @click.native="_intoJiFei(1)">追肥免费测土</x-button></flexbox-item>
       </flexbox>
     </div>
   </view-box>

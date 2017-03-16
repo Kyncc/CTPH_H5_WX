@@ -68,7 +68,6 @@ let webpackConfig = {
   }
 }
 
-
 module.exports = vuxLoader.merge(webpackConfig, {
   plugins: [
     {

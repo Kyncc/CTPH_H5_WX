@@ -10,4 +10,3 @@ export const AddressSelect = (state) => {
     return state.address_list[0]
   }
 }
-  
