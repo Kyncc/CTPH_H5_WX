@@ -60,7 +60,7 @@
         <flexbox-item :span="4" >
           <x-button type="primary" class="buy" @click.native="_buy">立即购买</x-button>
         </flexbox-item>
-      <flexbox>
+      </flexbox>
   </tabbar>
   </view-box>
 </template>

@@ -50,7 +50,7 @@
     <tabbar>
        <flexbox>
          <x-button>再来一单</x-button>
-       <flexbox>
+       </flexbox>
     </tabbar>
   </div>
 </template>
