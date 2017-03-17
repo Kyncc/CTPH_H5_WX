@@ -31,7 +31,7 @@
         <div class="weui_cells_title">
           <p style="text-align:center">
             以上信息由 谷兆测土配方有限公司 提供
-          <p>
+          </p>
         </div>
     </div>
   </div>

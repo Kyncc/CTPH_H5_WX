@@ -16,8 +16,8 @@
               <i class="iconfont icon-success1" style="font-size:3.5rem"></i>
             </flexbox-item>
             <flexbox-item :span="8">
-              <p>支付方式: <span class="default">线下支付<span></p>
-              <p>订单金额: <span class="default">￥{{OrderPrePay.offline_pay.total_deal_price}}<span></p>
+              <p>支付方式: <span class="default">线下支付</span></p>
+              <p>订单金额: <span class="default">￥{{OrderPrePay.offline_pay.total_deal_price}}</span></p>
             </flexbox-item>
           </flexbox>
       </group>
